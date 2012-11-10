@@ -1,24 +1,18 @@
 // Copyright (c) 2009-2012 Bitcoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
-// file license.txt or http://www.opensource.org/licenses/mit-license.php.
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "init.h" // for pwalletMain
 #include "bitcoinrpc.h"
 #include "ui_interface.h"
+#include "base58.h"
 
 #include <boost/lexical_cast.hpp>
 
-#include "json/json_spirit_reader_template.h"
-#include "json/json_spirit_writer_template.h"
-#include "json/json_spirit_utils.h"
-
 #define printf OutputDebugStringF
 
-// using namespace boost::asio;
 using namespace json_spirit;
 using namespace std;
-
-extern Object JSONRPCError(int code, const string& message);
 
 class CTxDump
 {
@@ -52,14 +46,13 @@ Value importprivkey(const Array& params, bool fHelp)
     CBitcoinSecret vchSecret;
     bool fGood = vchSecret.SetString(strSecret);
 
-    if (!fGood) throw JSONRPCError(-5,"Invalid private key");
+    if (!fGood) throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid private key");
 
     CKey key;
     bool fCompressed;
     CSecret secret = vchSecret.GetSecret(fCompressed);
     key.SetSecret(secret, fCompressed);
-    CBitcoinAddress vchAddress = CBitcoinAddress(key.GetPubKey());
-
+    CKeyID vchAddress = key.GetPubKey().GetID();
     {
         LOCK2(cs_main, pwalletMain->cs_wallet);
 
@@ -67,13 +60,11 @@ Value importprivkey(const Array& params, bool fHelp)
         pwalletMain->SetAddressBookName(vchAddress, strLabel);
 
         if (!pwalletMain->AddKey(key))
-            throw JSONRPCError(-4,"Error adding key to wallet");
+            throw JSONRPCError(RPC_WALLET_ERROR, "Error adding key to wallet");
 
         pwalletMain->ScanForWalletTransactions(pindexGenesisBlock, true);
         pwalletMain->ReacceptWalletTransactions();
     }
-
-    MainFrameRepaint();
 
     return Value::null;
 }
@@ -88,10 +79,13 @@ Value dumpprivkey(const Array& params, bool fHelp)
     string strAddress = params[0].get_str();
     CBitcoinAddress address;
     if (!address.SetString(strAddress))
-        throw JSONRPCError(-5, "Invalid bitcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Bitcoin address");
+    CKeyID keyID;
+    if (!address.GetKeyID(keyID))
+        throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
     CSecret vchSecret;
     bool fCompressed;
-    if (!pwalletMain->GetSecret(address, vchSecret, fCompressed))
-        throw JSONRPCError(-4,"Private key for address " + strAddress + " is not known");
+    if (!pwalletMain->GetSecret(keyID, vchSecret, fCompressed))
+        throw JSONRPCError(RPC_WALLET_ERROR, "Private key for address " + strAddress + " is not known");
     return CBitcoinSecret(vchSecret, fCompressed).ToString();
 }
