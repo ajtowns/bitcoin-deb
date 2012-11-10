@@ -14,6 +14,7 @@ Comment: According to http://www.bitcoin.org/ the Bitcoin Developers are
   * Nils Schneider <nils.schneider@gmail.com>
   * Jeff Garzik <jgarzik@exmulti.com>
   * Wladimir J. van der Laan <laanwj@gmail.com>
+  * Gregory Maxwell <gmaxwell@gmail.com>
 
 Files: contrib/macdeploy/*
 Copyright: 2011, Patrick "p2k" Schneider <me@p2k-network.org>
@@ -32,8 +33,8 @@ Files: src/strlcpy.h
 Copyright: 1998, Todd C. Miller <Todd.Miller@courtesan.com>
 License: ISC
 
-Files: src/sha256.cpp
-Copyright: 2010, Nils Schneider
+Files: contrib/bitcoind.bash-completion
+Copyright: 2012, Christian von Roques <roques@mti.ag>
 License: Expat
 
 Files: debian/*
