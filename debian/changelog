@@ -1,3 +1,23 @@
+bitcoin (0.7.1-1) UNRELEASED; urgency=low
+
+  * New upstream source.
+
+  [ Jonas Smedegaard ]
+  * Update watch file to directly use github.com (not
+    githubredir.debian.net).
+  * Update copyright file:
+    + Update list of main upstream authors.
+    + Drop obsolete Files section for sha256.cpp.
+    + Add Files section for newly introduced bash-completion.
+    + Fix use pseudo-comment section to obey silly restrictions of
+      copyright format 1.0.
+  * Bump debhelper compatibility level to 8.
+  * Update package relations:
+    + Relax to build-depend unversioned on cdbs: Needed version
+      satisfied in stable, and oldstable no longer supported.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 10 Nov 2012 23:22:04 +0100
+
 bitcoin (0.6.2.2-1) unstable; urgency=low
 
   * New upstream release.
