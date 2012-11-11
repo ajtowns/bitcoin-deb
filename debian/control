@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Jonas Smedegaard <dr@jones.dk>
 Uploaders: Micah Anderson <micah@debian.org>
 Build-Depends: cdbs,
- debhelper,
+ debhelper (>= 8.0.0),
  dh-buildinfo,
  devscripts,
  libboost-system-dev (>> 1.35) | libboost-system1.35-dev,
