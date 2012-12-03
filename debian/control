@@ -1,8 +1,9 @@
 Source: bitcoin
 Section: utils
 Priority: optional
-Maintainer: Jonas Smedegaard <dr@jones.dk>
-Uploaders: Micah Anderson <micah@debian.org>
+Maintainer: Debian Bitcoin Packaging Team <pkg-bitcoin-devel@lists.alioth.debian.org>
+Uploaders: Jonas Smedegaard <dr@jones.dk>, Micah Anderson <micah@debian.org>,
+ Scott Howard <showard@debian.org>
 Build-Depends: cdbs,
  debhelper (>= 8.0.0),
  dh-buildinfo,
@@ -19,8 +20,8 @@ Build-Depends: cdbs,
  libboost-test-dev (>> 1.35) | libboost-test1.35-dev
 Standards-Version: 3.9.3
 Homepage: http://www.bitcoin.org/
-Vcs-Git: git://git.debian.org/git/collab-maint/bitcoin
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/bitcoin.git
+Vcs-Git: git://git.debian.org/git/pkg-bitcoin/bitcoin
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-bitcoin/bitcoin.git
 
 Package: bitcoind
 Architecture: any-alpha any-amd64 any-arm any-i386 any-ia64 any-mipsel any-sh4
