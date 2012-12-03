@@ -27,6 +27,8 @@ bitcoin (0.7.1-1) UNRELEASED; urgency=low
     - Changed maintainer to: Debian Bitcoin Packaging Team
   * Added myself as uploader.
   * Enabled parallel building DEB_BUILD_PARALLEL
+  * Updated debian/control description of bitcoind to state that the
+    blockchain now is "several GB" large (Closes: #677524)
 
  -- Jonas Smedegaard <dr@jones.dk>  Sat, 10 Nov 2012 23:22:04 +0100
 
