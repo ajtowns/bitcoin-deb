@@ -21,6 +21,8 @@ include /usr/share/cdbs/1/class/makefile.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/rules/utils.mk
 
+DEB_BUILD_PARALLEL = 1
+
 DEB_UPSTREAM_URL = https://github.com/bitcoin/bitcoin/archive
 DEB_UPSTREAM_TARBALL_BASENAME = v$(DEB_UPSTREAM_TARBALL_VERSION)
 DEB_UPSTREAM_TARBALL_BASENAME_MANGLE = s/~(alpha|beta|rc)/\1/

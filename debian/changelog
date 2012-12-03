@@ -1,7 +1,9 @@
 bitcoin (0.7.1-1) UNRELEASED; urgency=low
 
   * New upstream source. (Closes: #689917)
-    - DoS vulnerabillity CVE-2012-3789 closed (Closes: #682676)
+    - DoS vulnerabillities:
+      CVE-2012-3789 closed (Closes: #682676)
+      CVE-2012-4683 and CVE-2012-4682 closed (Closes: #688813)
     - Block database no longer stored alongside wallet.dat
       (Closes: #660286)
 
@@ -24,6 +26,7 @@ bitcoin (0.7.1-1) UNRELEASED; urgency=low
     - Vcs-Git for the new pkg-bitcoin repository.
     - Changed maintainer to: Debian Bitcoin Packaging Team
   * Added myself as uploader.
+  * Enabled parallel building DEB_BUILD_PARALLEL
 
  -- Jonas Smedegaard <dr@jones.dk>  Sat, 10 Nov 2012 23:22:04 +0100
 
