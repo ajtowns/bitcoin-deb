@@ -23,7 +23,6 @@ bitcoin (0.7.1-1) UNRELEASED; urgency=low
 
   [ Scott Howard ]
   * debian/control
-    - Vcs-Git for the new pkg-bitcoin repository.
     - Changed maintainer to: Debian Bitcoin Packaging Team
   * Added myself as uploader.
   * Enabled parallel building DEB_BUILD_PARALLEL
