@@ -38,11 +38,13 @@ void CDBEnv::EnvShutdown()
     if (ret != 0)
         printf("EnvShutdown exception: %s (%d)\n", DbEnv::strerror(ret), ret);
     if (!fMockDb)
-        DbEnv(0).remove(GetDataDir().string().c_str(), 0);
+        DbEnv(0).remove(strPath.c_str(), 0);
 }
 
 CDBEnv::CDBEnv() : dbenv(DB_CXX_NO_EXCEPTIONS)
 {
+    fDbEnvInit = false;
+    fMockDb = false;
 }
 
 CDBEnv::~CDBEnv()
@@ -65,6 +67,7 @@ bool CDBEnv::Open(boost::filesystem::path pathEnv_)
 
     pathEnv = pathEnv_;
     filesystem::path pathDataDir = pathEnv;
+    strPath = pathDataDir.string();
     filesystem::path pathLogDir = pathDataDir / "database";
     filesystem::create_directory(pathLogDir);
     filesystem::path pathErrorFile = pathDataDir / "db.log";
@@ -85,7 +88,7 @@ bool CDBEnv::Open(boost::filesystem::path pathEnv_)
     dbenv.set_flags(DB_AUTO_COMMIT, 1);
     dbenv.set_flags(DB_TXN_WRITE_NOSYNC, 1);
     dbenv.log_set_config(DB_LOG_AUTO_REMOVE, 1);
-    int ret = dbenv.open(pathDataDir.string().c_str(),
+    int ret = dbenv.open(strPath.c_str(),
                      DB_CREATE     |
                      DB_INIT_LOCK  |
                      DB_INIT_LOG   |
@@ -909,19 +912,21 @@ bool CAddrDB::Read(CAddrMan& addr)
     if (hashIn != hashTmp)
         return error("CAddrman::Read() : checksum mismatch; data corrupted");
 
-    // de-serialize address data
     unsigned char pchMsgTmp[4];
     try {
+        // de-serialize file header (pchMessageStart magic number) and
         ssPeers >> FLATDATA(pchMsgTmp);
+
+        // verify the network matches ours
+        if (memcmp(pchMsgTmp, pchMessageStart, sizeof(pchMsgTmp)))
+            return error("CAddrman::Read() : invalid network magic number");
+
+        // de-serialize address data into one CAddrMan object
         ssPeers >> addr;
     }
     catch (std::exception &e) {
         return error("CAddrman::Read() : I/O error or stream data corrupted");
     }
-
-    // finally, verify the network matches ours
-    if (memcmp(pchMsgTmp, pchMessageStart, sizeof(pchMsgTmp)))
-        return error("CAddrman::Read() : invalid network magic number");
 
     return true;
 }
