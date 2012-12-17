@@ -1,4 +1,4 @@
-bitcoin (0.7.2-1) UNRELEASED; urgency=low
+bitcoin (0.7.2-1) unstable; urgency=low
 
   * New upstream source. (Closes: #689917)
     - DoS vulnerabillities:
