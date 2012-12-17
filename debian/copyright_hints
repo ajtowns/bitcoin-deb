@@ -421,7 +421,8 @@ License: ISC
 
 Files: src/qt/locale/bitcoin_fr.ts
 Copyright: ! Il s&apos;agit des frais de transaction que vous payerez si vous �mettez une transaction.</translation>
-  (mined) sera disponible quand il aura mûri dans %n bloc</numerusform><numerusform>Le solde g�n�r� (mined) sera disponible quand il aura mûri dans %n blocs</numerusform></translation>
+  (mined) sera disponible quand il aura mûri dans %n bloc</numerusform>
+  (mined) sera disponible quand il aura mûri dans %n blocs</numerusform>
   (par d�faut : 100)</translation>
   (par d�faut : 86400)</translation>
   (par ex. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
@@ -433,8 +434,10 @@ Copyright: ! Il s&apos;agit des frais de transaction que vous payerez si vous �m
   ce bloc, il a �t� diffus� sur le r�seau pour être ajout� à la chaîne de blocs. S’il �choue a int�grer la chaîne, son �tat sera modifi� en « non accept� » et il ne sera pas possible de le d�penser. Cela peut arriver occasionnellement si un autre nœud g�nère un bloc quelques secondes avant ou après vous.</translation>
   d&apos;affichage des montants :</translation>
   d&apos;utiliser le mot de passe al�atoire suivant :
-  dans %n bloc</numerusform><numerusform>arrive à maturit� dans %n blocs de plus</numerusform></translation>
+  dans %n bloc</numerusform>
+  dans %n blocs de plus</numerusform>
   de blocs</translation>
+  de porte-monnaie. Pour des raisons de s�curit�, les pr�c�dentes sauvegardes de votre fichier de porte-monnaie non chiffr� deviendront inutilisables dès que vous commencerez à utiliser le nouveau porte-monnaie chiffr�.</translation>
   diffus�e avec succès</translation>
   en raison d&apos;une erreur interne. Votre porte-monnaie n&apos;a pas �t� chiffr�.</translation>
   est activ�e.</translation>
@@ -472,7 +475,7 @@ Copyright: %1 transakčn� poplatky.</translation>
   127.0.0.1)</translation>
   2009-2012, The Bitcoin developers</source>
   5000)</translation>
-  8332)</translation>
+  8332, or testnet: 18332)</translation>
   8333, alebo testovacia sieť: 18333)</translation>
   </translation>
   a nov� heslo k peňaženke.</translation>
@@ -519,6 +522,7 @@ Copyright: %1</translation>
   necessária para desbloquear a carteira.</translation>
   necessária para desencriptar a carteira.</translation>
   necessário actualizar!</translation>
+  sempre destacada.</translation>
   substituído pela hash do bloco)</translation>
   um endereço bitcoin válido.</translation>
   um programa experimental
@@ -527,7 +531,7 @@ License: MIT/X11 (BSD like)
  FIXME
 
 Files: src/qt/locale/bitcoin_fa.ts
-Copyright: %n باز شده برای</numerusform></translation>
+Copyright: %n باز شده برای</numerusform>
   2009-2012, The Bitcoin developers</source>
   2009-2012, توسعه دهندگان bitcoin</translation>
   rpcpassword را در فایل پی�ربندی تنظیم �نید :⏎%s⏎ اگر فایل ایجاد نشد، ی� فایل فقط متنی ایجاد �نید
@@ -536,7 +540,7 @@ Copyright: %n باز شده برای</numerusform></translation>
   ادرس صحیح bitcoin نیست</translation>
   از دیگر گره ها در یافت نشده بدین دلیل شاید قابل قابول نیست</translation>
   باز �ردن بندر بیت�ویین در روتر . این فقط در مواردی می باشد �ه روتر با �م� یو پ ن پ �ار می �ند</translation>
-  باز �ن</numerusform></translation>
+  باز �ن</numerusform>
   بان� داده در زمان خاموشی</translation>
   بر &quot;امضای پیام&quot; شما ی� امضای جدید درست می �نید</translation>
   بر اساس بایت تنظیم شود (پیش فرض: 0)</translation>
@@ -567,7 +571,7 @@ License: MIT/X11 (BSD like)
  FIXME
 
 Files: src/qt/locale/bitcoin_zh_CN.ts
-Copyright: %n 个数据块</numerusform></translation>
+Copyright: %n 个数据块</numerusform>
   2009-2012, The Bitcoin developers</source>
   2009-2012, 比特币开发团队</translation>
 License: MIT/X11 (BSD like)
@@ -664,18 +668,20 @@ Copyright: 2009-2012, Vývojáři Bitcoinu</translation>
   informace nemusí být aktuální. Tvá peněženka se automaticky sesynchronizuje s Bitcoinovou sítí, jakmile se s ní spojí. Zatím ale ještě není synchronizace dokončena.</translation>
   ještě nejsou potvrzen� a kter� se ještě nezapočítávají do celkov�ho stavu účtu</translation>
   jm�no pro JSON-RPC spojení</translation>
+  mince budou použiteln� po dozrání, tj. po jednom bloku</numerusform>
   mince musí čekat 120 bloků, než mohou být utraceny. Když jsi vygeneroval tenhle blok, tak byl rozposlán do sítě, aby byl přidán do řetězce bloků. Pokud se mu nepodaří dostat se do řetězce, změní se na &quot;neakceptovaný&quot; a nepůjde utratit. To se občas může stát, pokud jiný uzel vygeneruje blok zhruba ve stejn�m okamžiku jako ty.</translation>
   mince, kter� ještě nejsou zral�</translation>
   místo</translation>
   odeslan� transakci</translation>
   parametry URI.</translation>
+  peněženky nepoužiteln�, jakmile zaneš používat novou zašifrovanou peněženku.</translation>
   podepsan� zprávě, abys nebyl napálen man-in-the-middle útokem.</translation>
   použít následující náhodn� heslo:
   pěněženky</translation>
   razítko</translation>
   s tímto záznamem v adresáři</translation>
   spojení, &lt;n&gt;*1000, bajtů (výchozí: 1000)</translation>
-  sítě</numerusform><numerusform>%n aktivní spojení do Bitcoinov� sítě</numerusform><numerusform>%n aktivních spojení do Bitcoinov� sítě</numerusform></translation>
+  sítě</numerusform>
   transakce nemusí být správn�! Možná potřebuješ aktualizovat nebo ostatní uzly potřebují aktualizovat.</translation>
   transakce</translation>
   tvou transakci zpracují, a navíc tak podpoříš síť. Chceš zaplatit poplatek?</translation>
@@ -747,7 +753,7 @@ Copyright: 2009-2012, The Bitcoin developers</source>
   آدرس bitcoin وارد �نید (مثال 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
   آدرس جدید بسازید</translation>
   آدرس صحیح برای bitcoin نسشت</translation>
-  باقی مانده است</numerusform></translation>
+  باقی مانده است</numerusform>
   برای ی� دستور</translation>
   برچسب برای این آدرس بنویسید تا به دفترچه آدرسهای شما اضافه شود</translation>
   تغییر �رد اجرا �ن (%s در دستور توسط block hash جایگزین شده است)</translation>
