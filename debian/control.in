@@ -1,8 +1,9 @@
 Source: bitcoin
 Section: utils
 Priority: optional
-Maintainer: Jonas Smedegaard <dr@jones.dk>
-Uploaders: Micah Anderson <micah@debian.org>
+Maintainer: Debian Bitcoin Packaging Team <pkg-bitcoin-devel@lists.alioth.debian.org>
+Uploaders: Jonas Smedegaard <dr@jones.dk>, Micah Anderson <micah@debian.org>,
+ Scott Howard <showard@debian.org>
 Build-Depends: @cdbs@
 Standards-Version: 3.9.3
 Homepage: http://www.bitcoin.org/
