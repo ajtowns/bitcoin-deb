@@ -65,14 +65,20 @@ DEB_INSTALL_MANPAGES_bitcoind += debian/manpages/*
 boostver =
 boostdep = $(foreach dep,$1,libboost-$(dep)$(boostver)-dev$(comma) )
 
-CDBS_BUILD_DEPENDS += , $(call boostdep,system), libdb++-dev | libdb4.6++-dev, libssl-dev, pkg-config, libminiupnpc-dev
+# Apperently any recent BerkeyDB is ok. Convenience package did not
+# exist for Debian stable (Squeeze), however, so add fallback to ease
+# backportability.
+bdbver =
+bdbstablever = 4.8
+
+CDBS_BUILD_DEPENDS += , $(call boostdep,system), libdb$(bdbver)++-dev | libdb$(bdbstablever)++-dev, libssl-dev, pkg-config, libminiupnpc-dev
 # TODO: Drop this when maybe system json is used some day
 CDBS_BUILD_DEPENDS += , $(call boostdep,filesystem program-options thread test)
 
 # Build dependencies for the bitcoin-qt package
 CDBS_BUILD_DEPENDS += , qt4-qmake, libqt4-dev, libqrencode-dev
 
-CDBS_SUGGESTS_bitcoind = db-util, db4.8-util, db4.7-util
+CDBS_SUGGESTS_bitcoind = db$(bdbver)-util, db$(bdbstablever)-util
 
 # Upstream README contains no parts relevant for Debian usage
 DEB_INSTALL_DOCS_ALL =
