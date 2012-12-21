@@ -63,22 +63,23 @@ DEB_INSTALL_MANPAGES_bitcoind += debian/manpages/*
 
 # Apparently any recent boost is ok.
 boostver =
-boostdep = $(foreach dep,$1,libboost-$(dep)$(boostver)-dev$(comma) )
+deps-boost = system
+# TODO: Drop these when (if ever?) system json is used
+deps-boost += filesystem program-options thread test
+CDBS_BUILD_DEPENDS += , $(foreach dep,$(deps-boost),libboost-$(dep)$(boostver)-dev$(comma) )
 
-# Apperently any recent BerkeyDB is ok. Convenience package did not
-# exist for Debian stable (Squeeze), however, so add fallback to ease
-# backportability.
+# Apperently any recent BerkeyDB is ok.
+# Convenience package did not exist for Debian stable (Squeeze),
+# however, so add fallback to ease backportability.
 bdbver =
 bdbstablever = 4.8
+CDBS_BUILD_DEPENDS += , libdb$(bdbver)++-dev | libdb$(bdbstablever)++-dev
+CDBS_SUGGESTS_bitcoind = db$(bdbver)-util, db$(bdbstablever)-util
 
-CDBS_BUILD_DEPENDS += , $(call boostdep,system), libdb$(bdbver)++-dev | libdb$(bdbstablever)++-dev, libssl-dev, pkg-config, libminiupnpc-dev
-# TODO: Drop this when maybe system json is used some day
-CDBS_BUILD_DEPENDS += , $(call boostdep,filesystem program-options thread test)
+CDBS_BUILD_DEPENDS += , libssl-dev, pkg-config, libminiupnpc-dev
 
 # Build dependencies for the bitcoin-qt package
 CDBS_BUILD_DEPENDS += , qt4-qmake, libqt4-dev, libqrencode-dev
-
-CDBS_SUGGESTS_bitcoind = db$(bdbver)-util, db$(bdbstablever)-util
 
 # Upstream README contains no parts relevant for Debian usage
 DEB_INSTALL_DOCS_ALL =
