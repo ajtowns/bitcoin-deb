@@ -26,7 +26,6 @@ DEB_BUILD_PARALLEL = 1
 DEB_UPSTREAM_URL = https://github.com/bitcoin/bitcoin/archive
 DEB_UPSTREAM_TARBALL_BASENAME = v$(DEB_UPSTREAM_TARBALL_VERSION)
 DEB_UPSTREAM_TARBALL_BASENAME_MANGLE = s/~(alpha|beta|rc)/\1/
-DEB_UPSTREAM_WGET_OPTS += --no-check-certificate
 DEB_UPSTREAM_TARBALL_MD5 = e019911ef8c6d7c33915560e98c188a5
 
 # Ignore graphics and .mo files in addition to the default debian files
