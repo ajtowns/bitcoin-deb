@@ -61,12 +61,9 @@ CXXFLAGS += $(if $(filter amd64,$(DEB_HOST_ARCH)),-DFOURWAYSSE2)
 DEB_INSTALL_EXAMPLES_bitcoind += debian/examples/*
 DEB_INSTALL_MANPAGES_bitcoind += debian/manpages/*
 
-# Apparently any recent boost is ok.  Unversioned Boost in Lenny is too
-# old, however (do not include libboost-system*), so add fallback to
-# ease backporting
+# Apparently any recent boost is ok.
 boostver =
-boostoldver = 1.35
-boostdep = $(foreach dep,$1,libboost-$(dep)$(boostver)-dev (>> $(boostoldver)) | libboost-$(dep)$(boostoldver)-dev$(comma) )
+boostdep = $(foreach dep,$1,libboost-$(dep)$(boostver)-dev$(comma) )
 
 CDBS_BUILD_DEPENDS += , $(call boostdep,system), libdb++-dev | libdb4.6++-dev, libssl-dev, pkg-config, libminiupnpc-dev
 # TODO: Drop this when maybe system json is used some day
