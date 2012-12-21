@@ -42,6 +42,9 @@ DEB_MAKE_CHECK_TARGET = test_bitcoin
 build/bitcoind::
 	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,src/test_bitcoin)
 
+build/bitcoin-qt::
+	$(MAKE)
+
 # work around build failure with gcc 4.7
 CXXFLAGS += -fpermissive
 
@@ -69,8 +72,8 @@ CDBS_BUILD_DEPENDS += , $(call boostdep,system), libdb++-dev | libdb4.6++-dev, l
 # TODO: Drop this when maybe system json is used some day
 CDBS_BUILD_DEPENDS += , $(call boostdep,filesystem program-options thread test)
 
-# TODO: fix support DEB_QMAKE_BUILDDIR and install binary into -qt package
-#CDBS_BUILD_DEPENDS += , qt4-qmake, libqt4-dev
+# Build dependencies for the bitcoin-qt package
+CDBS_BUILD_DEPENDS += , qt4-qmake, libqt4-dev, libqrencode-dev
 
 CDBS_SUGGESTS_bitcoind = db-util, db4.8-util, db4.7-util
 
@@ -80,12 +83,14 @@ DEB_INSTALL_DOCS_ALL =
 pre-build::
 	mkdir -p src/obj/nogui
 	mkdir -p debian/home/.bitcoin
+	qmake USE_DBUS=1 USE_QRCODE=1
 
 clean::
+	[ ! -f Makefile ] || make distclean # Clean up after qmake
 	find src/obj -type f -not -name .gitignore -delete
 	rm -f src/bitcoind
 	rm -rf debian/home
 
 # Ensure wrapper is set executable
 binary-post-install/bitcoind::
-	chmod +x $(cdbs_curdestdir)usr/bin/bitcoind
+	chmod +x debian/bitcoind/usr/bin/bitcoind
