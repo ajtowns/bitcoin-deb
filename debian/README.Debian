@@ -31,14 +31,4 @@ Above commands need the packages db-util and db4.8-util installed.
 If that fails then try with db4.7-util instead.
 
 
-Where is the graphical user interface?
---------------------------------------
-
-Currently Debian packaging provides only bitcoind, a combined daemon and
-CLI tool to interact with the daemon.  A graphical user interface is
-offered upstream as well, but unfortunately require an experimental
-version of the wxWidgets toolkit (due to improved Unicode support) which
-is not yet available in Debian.
-
-
  -- Jonas Smedegaard <dr@jones.dk>  Tue, 07 Jun 2011 10:52:52 +0200
