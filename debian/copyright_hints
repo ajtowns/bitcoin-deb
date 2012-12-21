@@ -53,10 +53,14 @@ Files: INSTALL
  contrib/testgen/gen_base58_test_vectors.py
  contrib/wallettools/walletchangepass.py
  contrib/wallettools/walletunlock.py
- debian/NEWS
  debian/README.Debian
+ debian/README.source
  debian/bin/bitcoind
  debian/bitcoin-gui.menu
+ debian/bitcoin-qt.desktop
+ debian/bitcoin-qt.install
+ debian/bitcoin-qt.lintian-overrides
+ debian/bitcoin-qt.protocol
  debian/bitcoind.examples
  debian/bitcoind.install
  debian/bitcoind.lintian-overrides
@@ -68,6 +72,7 @@ Files: INSTALL
  debian/gbp.conf
  debian/manpages/bitcoin.conf.5
  debian/patches/1001_use_system_json-spirit.patch
+ debian/patches/1002_libdb-squeeze.patch
  debian/patches/README
  debian/patches/series
  debian/source.lintian-overrides
@@ -282,7 +287,7 @@ Copyright: 2009-2010, Satoshi Nakamoto
   2009-2012, The Bitcoin developers
   2010, Satoshi Nakamoto
   2012, The Bitcoin developers
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_ca_ES.ts
@@ -298,7 +303,7 @@ Files: src/qt/locale/bitcoin_ca_ES.ts
  src/qt/locale/bitcoin_sr.ts
  src/qt/locale/bitcoin_zh_TW.ts
 Copyright: 2009-2012, The Bitcoin developers</source>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/json/json_spirit.h
@@ -330,7 +335,7 @@ Copyright: 2009-2012, The Bitcoin developers
   2011, The Bitcoin developers
   2011-2012, The Bitcoin developers
   2012, The Bitcoin developers
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: doc/README
@@ -343,7 +348,7 @@ Files: doc/README
  src/rpcnet.cpp
 Copyright: 2009-2012, Bitcoin Developers
   2011, Bitcoin Developers
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: share/pixmaps/bitcoin.ico
@@ -358,65 +363,25 @@ Files: src/makefile.linux-mingw
  src/makefile.mingw
  src/makefile.unix
 Copyright: 2009-2010, Satoshi Nakamoto
-License: MIT/X11 (BSD like)
+License: Expat
+ FIXME
+
+Files: src/addrman.cpp
+ src/addrman.h
+Copyright: 2012, Pieter Wuille
+License: Expat
+ FIXME
+
+Files: src/crypter.cpp
+ src/crypter.h
+Copyright: 2009-2012, The Bitcoin Developers
+License: Expat
  FIXME
 
 Files: contrib/debian/manpages/bitcoind.1
  debian/manpages/bitcoind.1
 Copyright: *No copyright*
 License: GPL
- FIXME
-
-Files: src/addrman.cpp
- src/addrman.h
-Copyright: 2012, Pieter Wuille
-License: MIT/X11 (BSD like)
- FIXME
-
-Files: src/crypter.cpp
- src/crypter.h
-Copyright: 2009-2012, The Bitcoin Developers
-License: MIT/X11 (BSD like)
- FIXME
-
-Files: debian/rules
-Copyright: 2010-2011, Jonas Smedegaard <dr@jones.dk>
-License: GPL-2+
- FIXME
-
-Files: contrib/macdeploy/macdeployqtplus
-Copyright: 2011, Patrick "p2k" Schneider <me@p2k-network.org>
-License: GPL-3+
- FIXME
-
-Files: contrib/macdeploy/LICENSE
-Copyright: 2007, Free Software Foundation, Inc. <http://fsf.org/>
-  <year> <name of author>
-  HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
-  are not
-  disclaimer" for the program, if necessary
-  holder as a result of your choosing to follow a
-  holder explicitly and
-  holder is
-  holder is reinstated (a)
-  holder notifies you of the
-  holder who authorizes use under this
-  holder, and you cure the violation prior to 30 days after
-  holders of
-  if you do
-  law
-  law, except executing it on a
-  on the Program, and are irrevocable provided the stated
-  on the software, and (2) offer you this License
-  permission
-  permission, other than the making of an
-  treaty adopted on 20 December 1996, or
-License: GPL-ever
- FIXME
-
-Files: src/strlcpy.h
-Copyright: 1998, Todd C. Miller <Todd.Miller@courtesan.com>
-License: ISC
  FIXME
 
 Files: src/qt/locale/bitcoin_fr.ts
@@ -462,7 +427,7 @@ Copyright: ! Il s&apos;agit des frais de transaction que vous payerez si vous �m
   sign�.</translation>
   sous licence MIT/X11, voir le fichier COPYING ou http://www.opensource.org/licenses/mit-license.php
   sur -onlynet : « %s »</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_sk.ts
@@ -505,7 +470,7 @@ Copyright: %1 transakčn� poplatky.</translation>
   veľmi vysoko. Toto sú transakčn� poplatky ktor� zaplatíte ak odošlete transakciu.</translation>
   z mincí vo vašej peňaženke boli už utraten�, napríklad ak používaš kópiu wallet.dat a mince označen� v druhej kópií neboli označen� ako utraten� v tejto.</translation>
   šifry (predvolen�: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_pt_PT.ts
@@ -527,7 +492,7 @@ Copyright: %1</translation>
   um endereço bitcoin válido.</translation>
   um programa experimental
   válido, por favor verifique.</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_fa.ts
@@ -567,61 +532,61 @@ Copyright: %n باز شده برای</numerusform>
   �ن (پیش فرض:1 اگر اش�ال زدایی روی نداد)</translation>
   �نید</translation>
   یانگ (eay@cryptsoft.com ) و UPnP توسط توماس برنارد طراحی شده است.</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_zh_CN.ts
 Copyright: %n 个数据块</numerusform>
   2009-2012, The Bitcoin developers</source>
   2009-2012, 比特币开发团队</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/res/bitcoin-qt.rc
 Copyright: *No copyright*
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: COPYING
 Copyright: 2009-2012, Bitcoin Developers
   HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_hu.ts
 Copyright: 2009-2012, Bitcoin Developers</translation>
   2009-2012, The Bitcoin developers</source>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_nb.ts
 Copyright: 2009-2012, Bitcoin Utviklerne</translation>
   2009-2012, The Bitcoin developers</source>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_tr.ts
 Copyright: 2009-2012, Bitcoin geliştiricileri</translation>
   2009-2012, The Bitcoin developers</source>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_fi.ts
 Copyright: 2009-2012, Bitcoin kehittäjät</translation>
   2009-2012, The Bitcoin developers</source>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_lt.ts
 Copyright: 2009-2012, Bitcoin programuotojai</translation>
   2009-2012, The Bitcoin developers</source>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_sv.ts
 Copyright: 2009-2012, Bitcoin-utvecklarna</translation>
   2009-2012, The Bitcoin developers</source>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_he.ts
@@ -634,18 +599,18 @@ Copyright: Caps Lock מופעל!</translation>
   ת�לום</translation>
   �ל ביטקוין.</translation>
   �עבר</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: contrib/bitcoind.bash-completion
 Copyright: 2012, Christian von Roques <roques@mti.ag>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_de.ts
 Copyright: 2009-2012, Die Bitcoinentwickler</translation>
   2009-2012, The Bitcoin developers</source>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_fr_CA.ts
@@ -653,7 +618,7 @@ Copyright: 2009-2012, D�veloppeurs de Bitcoin</translation>
   2009-2012, The Bitcoin developers</source>
   a votre presse-papier</translation>
   sous licence MIT/X11, voir le fichier COPYING ou http://www.opensource.org/licenses/mit-license.php
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_cs.ts
@@ -688,12 +653,12 @@ Copyright: 2009-2012, Vývojáři Bitcoinu</translation>
   vyrovnávací paměti v megabajtech (výchozí: 25)</translation>
   řádky</translation>
   šifry (výchozí: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/json/LICENSE.txt
 Copyright: 2007, - 2009, John W. Wilkinson
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_es.ts
@@ -701,25 +666,25 @@ Copyright: 2009-2012, Los desarrolladores de Bitcoin</translation>
   2009-2012, The Bitcoin developers</source>
   de acuerdo.</translation>
   de la base de datos en megabytes (predeterminado: 25)</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/base58.h
 Copyright: 2009-2010, Satoshi Nakamoto
   2009-2012, The Bitcoin Developers
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_nl.ts
 Copyright: 2009-2012, The Bitcoin Ontwikkelaars</translation>
   2009-2012, The Bitcoin developers</source>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_en.ts
 Copyright: 2009-2012, The Bitcoin developers</source>
   2009-2012, The Bitcoin developers</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_pt_BR.ts
@@ -727,25 +692,25 @@ Copyright: 2009-2012, The Bitcoin developers</source>
   anexar a saída de debug com estampa de tempo</translation>
   de 1 kB. Taxa de 0.01 recomendada.</translation>
   o dono deles. Seja cuidadoso para não assinar algo vago, pois ataques de pishing podem tentar te enganar para dar sua assinatura de identidade para eles. Apenas assine afirmações completamente detalhadas com as quais você concorda.</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_bg.ts
 Copyright: 2009-2012, The Bitcoin developers</source>
   2009-2012, Биткоин разработчици</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_ru.ts
 Copyright: 2009-2012, The Bitcoin developers</source>
   2009-2012, Разработчики Bitcoin</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_uk.ts
 Copyright: 2009-2012, The Bitcoin developers</source>
   2009-2012, Розробники Bitcoin</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_fa_IR.ts
@@ -770,12 +735,52 @@ Copyright: 2009-2012, The Bitcoin developers</source>
   نمایید</translation>
   گراند را اجرا �نید و دستورات را قبول نمایید</translation>
   گره برای اتصال اضافه �نید و تلاش �نید تا اتصال را باز نگاه دارید</translation>
-License: MIT/X11 (BSD like)
+License: Expat
  FIXME
 
 Files: src/qt/forms/aboutdialog.ui
 Copyright: 2009-2012, The Bitcoin developers</string>
-License: MIT/X11 (BSD like)
+License: Expat
+ FIXME
+
+Files: debian/rules
+Copyright: 2010-2011, Jonas Smedegaard <dr@jones.dk>
+License: GPL-2+
+ FIXME
+
+Files: contrib/macdeploy/macdeployqtplus
+Copyright: 2011, Patrick "p2k" Schneider <me@p2k-network.org>
+License: GPL-3+
+ FIXME
+
+Files: contrib/macdeploy/LICENSE
+Copyright: 2007, Free Software Foundation, Inc. <http://fsf.org/>
+  <year> <name of author>
+  HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
+  are not
+  disclaimer" for the program, if necessary
+  holder as a result of your choosing to follow a
+  holder explicitly and
+  holder is
+  holder is reinstated (a)
+  holder notifies you of the
+  holder who authorizes use under this
+  holder, and you cure the violation prior to 30 days after
+  holders of
+  if you do
+  law
+  law, except executing it on a
+  on the Program, and are irrevocable provided the stated
+  on the software, and (2) offer you this License
+  permission
+  permission, other than the making of an
+  treaty adopted on 20 December 1996, or
+License: GPL-ever
+ FIXME
+
+Files: src/strlcpy.h
+Copyright: 1998, Todd C. Miller <Todd.Miller@courtesan.com>
+License: ISC
  FIXME
 
 Files: contrib/debian/copyright
