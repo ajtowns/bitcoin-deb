@@ -59,7 +59,8 @@ CXXFLAGS += -Wno-unused-variable
 CXXFLAGS += $(if $(filter amd64,$(DEB_HOST_ARCH)),-DFOURWAYSSE2)
 
 DEB_INSTALL_EXAMPLES_bitcoind += debian/examples/*
-DEB_INSTALL_MANPAGES_bitcoind += debian/manpages/*
+DEB_INSTALL_MANPAGES_bitcoind += debian/manpages/bitcoind.1 debian/manpages/bitcoin.conf.5
+DEB_INSTALL_MANPAGES_bitcoin-qt += debian/manpages/bitcoin-qt.1
 
 # Apparently any recent boost is ok.
 boostver =
