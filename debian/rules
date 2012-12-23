@@ -46,9 +46,10 @@ debian/stamps-perpkg-build/bitcoind:
 	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,$(DEB_MAKE_INVOKE) test_bitcoin)
 	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,src/test_bitcoin)
 	touch $@
+DEB_PHONY_RULES += clean/bitcoind
 clean/bitcoind::
 	-$(DEB_MAKE_INVOKE) -k clean
-clean::
+clean:: clean/bitcoind
 	rm -rf debian/stamps-perpkg-build
 
 DEB_QMAKE_ARGS = USE_DBUS=1 USE_QRCODE=1
