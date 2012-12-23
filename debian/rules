@@ -38,7 +38,6 @@ HOME = $(CURDIR)/debian/home
 # Use per-package targets and variables for daemon build rules
 # TODO: instead use per-flavor variables, when supported by qmake.mk
 DEB_BUILDDIR_bitcoind = src
-#debian/stamp-daemon-build daemon-clean: DEB_BUILDDIR_bitcoind = src
 debian/stamps-perpkg-build/bitcoind clean/bitcoind: DEB_MAKE_MAKEFILE = makefile.unix
 build/bitcoind:: debian/stamps-perpkg-build/bitcoind
 debian/stamps-perpkg-build/bitcoind:
