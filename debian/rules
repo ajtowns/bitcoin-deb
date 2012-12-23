@@ -93,6 +93,7 @@ pre-build::
 clean::
 	[ ! -f Makefile ] || make distclean # Clean up after qmake
 	find src/obj -type f -not -name .gitignore -delete
+	rm -f build/build.h
 	rm -f src/bitcoind
 	rm -rf debian/home
 
