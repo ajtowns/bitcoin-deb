@@ -1,7 +1,7 @@
 Description: Use QImage.bits instead of QImage.constBits to ease backporting
  QImage.constBits was introduced in Qt 4.7.  Should be ok here to use
  QImage.bits which allows linking against the Qt in Squeeze.
-Author: Petter Reinholdtsen <pere@meta.reinholdtsen.name>
+Author: Petter Reinholdtsen <pere@hungry.com>
 Last-Update: 2012-12-23
 
 --- a/src/qt/notificator.cpp
