@@ -56,23 +56,26 @@ Files: INSTALL
  debian/README.Debian
  debian/README.source
  debian/bin/bitcoind
- debian/bitcoin-gui.menu
  debian/bitcoin-qt.desktop
  debian/bitcoin-qt.install
  debian/bitcoin-qt.lintian-overrides
+ debian/bitcoin-qt.menu
  debian/bitcoin-qt.protocol
+ debian/bitcoind.bash-completion
  debian/bitcoind.examples
  debian/bitcoind.install
  debian/bitcoind.lintian-overrides
- debian/bitcoind.manpages
  debian/compat
  debian/control
  debian/control.in
  debian/examples/bitcoin.conf
  debian/gbp.conf
+ debian/manpages/bitcoin-qt.1
  debian/manpages/bitcoin.conf.5
  debian/patches/1001_use_system_json-spirit.patch
  debian/patches/1002_libdb-squeeze.patch
+ debian/patches/1003_qmake_cleanup.patch
+ debian/patches/2001_stupify_header_script.patch
  debian/patches/README
  debian/patches/series
  debian/source.lintian-overrides
