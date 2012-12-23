@@ -103,7 +103,7 @@ pre-build::
 
 clean::
 	find src/obj -type f -not -name .gitignore -delete
-	rm -f build/build.h
+	rmdir --ignore-fail-on-non-empty build
 	rm -f src/bitcoind
 
 # Ensure wrapper is set executable
