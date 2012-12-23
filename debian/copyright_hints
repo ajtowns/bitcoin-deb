@@ -75,6 +75,7 @@ Files: INSTALL
  debian/patches/1001_use_system_json-spirit.patch
  debian/patches/1002_libdb-squeeze.patch
  debian/patches/1003_qmake_cleanup.patch
+ debian/patches/1004_conservative_qt-dbus.patch
  debian/patches/2001_stupify_header_script.patch
  debian/patches/README
  debian/patches/series
