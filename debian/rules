@@ -58,6 +58,11 @@ clean:: clean/bitcoind
 
 DEB_QMAKE_ARGS = USE_DBUS=1 USE_QRCODE=1
 
+# optionally disable miniupnp to ease backporting
+CDBS_BUILD_DEPENDS += $(if $(filter noupnp,$(DEB_BUILD_OPTIONS)),,$(comma) libminiupnpc-dev)
+DEB_QMAKE_ARGS += $(if $(filter noupnp,$(DEB_BUILD_OPTIONS)),USE_UPNP=-)
+DEB_MAKE_EXTRA_ARGS += $(if $(filter noupnp,$(DEB_BUILD_OPTIONS)),USE_UPNP=-)
+
 # work around build failure with gcc 4.7
 CXXFLAGS += -fpermissive
 
@@ -90,7 +95,7 @@ bdbstablever = 4.8
 CDBS_BUILD_DEPENDS += , libdb$(bdbver)++-dev | libdb$(bdbstablever)++-dev
 CDBS_SUGGESTS_bitcoind = db$(bdbver)-util, db$(bdbstablever)-util
 
-CDBS_BUILD_DEPENDS += , libssl-dev, pkg-config, libminiupnpc-dev
+CDBS_BUILD_DEPENDS += , libssl-dev, pkg-config
 
 # Build dependencies for the bitcoin-qt package
 CDBS_BUILD_DEPENDS += , qt4-qmake, libqt4-dev, libqrencode-dev
@@ -103,7 +108,7 @@ pre-build::
 
 clean::
 	find src/obj -type f -not -name .gitignore -delete
-	rmdir --ignore-fail-on-non-empty build
+	-rmdir --ignore-fail-on-non-empty build
 	rm -f src/bitcoind
 
 # Ensure wrapper is set executable
