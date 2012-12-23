@@ -4,8 +4,8 @@ Priority: optional
 Maintainer: Debian Bitcoin Packaging Team <pkg-bitcoin-devel@lists.alioth.debian.org>
 Uploaders: Jonas Smedegaard <dr@jones.dk>, Micah Anderson <micah@debian.org>,
  Scott Howard <showard@debian.org>
-Build-Depends: cdbs (>= 0.4.85~),
- debhelper (>= 8~),
+Build-Depends: cdbs,
+ debhelper,
  dh-buildinfo,
  devscripts,
  libboost-system-dev,
