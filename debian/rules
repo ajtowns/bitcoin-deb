@@ -88,7 +88,14 @@ DEB_INSTALL_DOCS_ALL =
 pre-build::
 	mkdir -p src/obj/nogui
 	mkdir -p debian/home/.bitcoin
-	qmake USE_DBUS=1 USE_QRCODE=1
+	# Enable some hardening flags with qmake.  Setting CXXFLAGS
+	# caused the build to fail, so it is not enabled.  The
+	# failure should be investiaged (FIXME).
+	qmake \
+	  QMAKE_CFLAGS_RELEASE="$(shell dpkg-buildflags --get CPPFLAGS)" \
+	  QMAKE_CXXFLAGS_RELEASE="$(shell dpkg-buildflags --get CPPFLAGS)" \
+	  QMAKE_LFLAGS_RELEASE="$(shell dpkg-buildflags --get LDFLAGS)" \
+	  USE_DBUS=1 USE_QRCODE=1
 
 clean::
 	[ ! -f Makefile ] || make distclean # Clean up after qmake
