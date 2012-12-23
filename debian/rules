@@ -18,6 +18,7 @@
 
 -include /usr/share/cdbs/1/rules/upstream-tarball.mk
 include /usr/share/cdbs/1/class/makefile.mk
+include /usr/share/cdbs/1/class/qmake.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/rules/utils.mk
 
@@ -34,16 +35,24 @@ DEB_COPYRIGHT_CHECK_IGNORE_REGEX = ^(doc/bitcoin_logo_doxygen\.png|src/qt/res/ic
 #see http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=696262
 HOME = $(CURDIR)/debian/home
 
-DEB_SRCDIR = src
-
-DEB_MAKE_MAKEFILE = makefile.unix
-
-DEB_MAKE_CHECK_TARGET = test_bitcoin
-build/bitcoind::
+# Use per-package targets and variables for daemon build rules
+# TODO: instead use per-flavor variables, when supported by qmake.mk
+DEB_BUILDDIR_bitcoind = src
+#debian/stamp-daemon-build daemon-clean: DEB_BUILDDIR_bitcoind = src
+debian/stamps-perpkg-build/bitcoind clean/bitcoind: DEB_MAKE_MAKEFILE = makefile.unix
+build/bitcoind:: debian/stamps-perpkg-build/bitcoind
+debian/stamps-perpkg-build/bitcoind:
+	mkdir -p debian/stamps-perpkg-build
+	+$(DEB_MAKE_INVOKE)
+	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,$(DEB_MAKE_INVOKE) test_bitcoin)
 	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,src/test_bitcoin)
+	touch $@
+clean/bitcoind::
+	-$(DEB_MAKE_INVOKE) -k clean
+clean::
+	rm -rf debian/stamps-perpkg-build
 
-build/bitcoin-qt::
-	$(MAKE)
+DEB_QMAKE_ARGS = USE_DBUS=1 USE_QRCODE=1
 
 # work around build failure with gcc 4.7
 CXXFLAGS += -fpermissive
@@ -88,17 +97,8 @@ DEB_INSTALL_DOCS_ALL =
 pre-build::
 	mkdir -p src/obj/nogui
 	mkdir -p debian/home/.bitcoin
-	# Enable some hardening flags with qmake.  Setting CXXFLAGS
-	# caused the build to fail, so it is not enabled.  The
-	# failure should be investiaged (FIXME).
-	qmake \
-	  QMAKE_CFLAGS_RELEASE="$(shell dpkg-buildflags --get CPPFLAGS)" \
-	  QMAKE_CXXFLAGS_RELEASE="$(shell dpkg-buildflags --get CPPFLAGS)" \
-	  QMAKE_LFLAGS_RELEASE="$(shell dpkg-buildflags --get LDFLAGS)" \
-	  USE_DBUS=1 USE_QRCODE=1
 
 clean::
-	[ ! -f Makefile ] || make distclean # Clean up after qmake
 	find src/obj -type f -not -name .gitignore -delete
 	rm -f build/build.h
 	rm -f src/bitcoind
