@@ -1,2 +1,3 @@
 #1001_use_system_json-spirit.patch
 1002_libdb-squeeze.patch
+2001_stupify_header_script.patch
