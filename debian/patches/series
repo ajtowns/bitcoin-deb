@@ -3,3 +3,4 @@
 1003_qmake_cleanup.patch
 1004_conservative_qt-dbus.patch
 2001_stupify_header_script.patch
+3001_debug_bts_672524.patch
