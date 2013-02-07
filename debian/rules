@@ -48,7 +48,7 @@ build/bitcoind:: debian/stamps-perpkg-build/bitcoind
 debian/stamps-perpkg-build/bitcoind:
 	mkdir -p debian/stamps-perpkg-build
 	+$(DEB_MAKE_INVOKE)
-	@echo "Debug output for #672524
+	@echo "Debug output for #672524"
 	pwd
 	ls -Rl .
 	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,$(DEB_MAKE_INVOKE) test_bitcoin)
