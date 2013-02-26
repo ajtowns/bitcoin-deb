@@ -1,5 +1,6 @@
 #1001_use_system_json-spirit.patch
 1002_libdb-squeeze.patch
 1003_qmake_cleanup.patch
+1005_use_system_leveldb.patch
 2001_stupify_header_script.patch
 3001_debug_bts_672524.patch

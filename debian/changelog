@@ -1,8 +1,10 @@
 bitcoin (0.8.0-1) UNRELEASED; urgency=low
 
   * New upstream release (Closes: #700910)
-  * Removed debian/patches/1004_conservative_qt-dbus.patch
-    applied upstream
+  * debian/patches
+    - Removed 1004_conservative_qt-dbus.patch applied upstream
+    - New 1005_use_system_libleveldb.patch
+      use system leveldb, however lack of libmemenv.a causes tests to fail
   * removed depricated Encoding key from bitcoin-qt.desktop
 
  -- Scott Howard <showard@debian.org>  Tue, 26 Feb 2013 14:10:15 -0500
