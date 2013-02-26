@@ -4,9 +4,11 @@ Description: Get src/db.cpp to build with the version of libdb in Squeeze
 Author: Petter Reinholdtsen <pere@hungry.com>
 Last-Update: 2012-12-21
 
---- bitcoin-0.7.2.orig/src/db.cpp
-+++ bitcoin-0.7.2/src/db.cpp
-@@ -87,7 +87,11 @@ bool CDBEnv::Open(boost::filesystem::pat
+Index: bitcoin/src/db.cpp
+===================================================================
+--- bitcoin.orig/src/db.cpp	2013-02-26 14:14:54.044752659 -0500
++++ bitcoin/src/db.cpp	2013-02-26 14:15:10.396752580 -0500
+@@ -85,7 +85,11 @@
      dbenv.set_errfile(fopen(pathErrorFile.string().c_str(), "a")); /// debug
      dbenv.set_flags(DB_AUTO_COMMIT, 1);
      dbenv.set_flags(DB_TXN_WRITE_NOSYNC, 1);
@@ -18,7 +20,7 @@ Last-Update: 2012-12-21
      int ret = dbenv.open(strPath.c_str(),
                       DB_CREATE     |
                       DB_INIT_LOCK  |
-@@ -122,7 +126,11 @@ void CDBEnv::MakeMock()
+@@ -120,7 +124,11 @@
      dbenv.set_lk_max_locks(10000);
      dbenv.set_lk_max_objects(10000);
      dbenv.set_flags(DB_AUTO_COMMIT, 1);
