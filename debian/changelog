@@ -1,4 +1,4 @@
-bitcoin (0.7.2-3) UNRELEASED; urgency=low
+bitcoin (0.7.2-3) unstable; urgency=low
 
   [ Petter Reinholdtsen ]
   * Clean up hyphen handling and rewrite long line causing roff warning
@@ -7,7 +7,7 @@ bitcoin (0.7.2-3) UNRELEASED; urgency=low
   * Update Standards-Version from 3.9.3 to 3.9.4.  No changes needed.
   * Add patch and rules code to try to debug #672524.
 
- -- Jonas Smedegaard <dr@jones.dk>  Wed, 26 Dec 2012 08:26:14 +0100
+ -- Scott Howard <showard@debian.org>  Thu, 07 Feb 2013 10:49:50 -0500
 
 bitcoin (0.7.2-2) unstable; urgency=low
 
