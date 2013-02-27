@@ -100,7 +100,7 @@ bdbstablever = 4.8
 CDBS_BUILD_DEPENDS += , libdb$(bdbver)++-dev | libdb$(bdbstablever)++-dev
 CDBS_SUGGESTS_bitcoind = db$(bdbver)-util, db$(bdbstablever)-util
 
-CDBS_BUILD_DEPENDS += , libssl-dev, pkg-config
+CDBS_BUILD_DEPENDS += , libssl-dev, pkg-config, libleveldb-dev
 
 # Build dependencies for the bitcoin-qt package
 CDBS_BUILD_DEPENDS += , qt4-qmake, libqt4-dev, libqrencode-dev
