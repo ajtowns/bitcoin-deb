@@ -2,11 +2,11 @@ Description: Add debug output trying to pinpoint bug #672524
 Author: Petter Reinholdtsen <pere@hungry.com>
 Last-Update: 2013-02-02
 
-diff --git a/src/test/script_tests.cpp b/src/test/script_tests.cpp
-index 61d9a64..8762364 100644
---- a/src/test/script_tests.cpp
-+++ b/src/test/script_tests.cpp
-@@ -98,6 +98,9 @@ read_json(const std::string& filename)
+Index: bitcoin/src/test/script_tests.cpp
+===================================================================
+--- bitcoin.orig/src/test/script_tests.cpp	2013-03-20 23:04:15.760259263 -0400
++++ bitcoin/src/test/script_tests.cpp	2013-03-20 23:04:15.756259263 -0400
+@@ -98,6 +98,9 @@
      }
  #endif
  
