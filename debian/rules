@@ -59,7 +59,6 @@ clean/bitcoind::
 	-$(DEB_MAKE_INVOKE) -k clean
 clean:: clean/bitcoind
 	rm -rf debian/stamps-perpkg-build
-	#rm -rf src/leveldb/* #keep leveldb to build libmemenv.a, only needed for testing
 
 DEB_QMAKE_ARGS = USE_DBUS=1 USE_QRCODE=1
 
