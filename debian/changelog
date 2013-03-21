@@ -1,6 +1,6 @@
-bitcoin (0.8.0-1) UNRELEASED; urgency=low
+bitcoin (0.8.1-1) UNRELEASED; urgency=low
 
-  * New upstream release (Closes: #700910, Closes: #701085)
+  * New upstream release (Closes: #700910, Closes: #701085, Closes: #703213)
   * debian/patches
     - Removed 1004_conservative_qt-dbus.patch applied upstream
     - New 1005_use_system_libleveldb.patch
