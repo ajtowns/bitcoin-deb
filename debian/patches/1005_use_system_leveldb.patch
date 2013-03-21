@@ -2,11 +2,10 @@ Description: Use system leveldb, which does not have libmemenv.a
  libmemenv.a only used in testing. When libmemenv.a is added, edit this patch
 Author: Luke-Jr <luke@dashjr.org>, Scott Howard <showard@debian.org>
 Bug-Debian: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=700910
-
 Index: bitcoin/src/makefile.unix
 ===================================================================
---- bitcoin.orig/src/makefile.unix	2013-03-20 23:24:38.460288322 -0400
-+++ bitcoin/src/makefile.unix	2013-03-20 23:26:13.968290592 -0400
+--- bitcoin.orig/src/makefile.unix	2013-03-21 12:18:50.359479054 -0400
++++ bitcoin/src/makefile.unix	2013-03-21 12:19:16.307479671 -0400
 @@ -36,6 +36,10 @@
     -l ssl \
     -l crypto
@@ -62,10 +61,11 @@ Index: bitcoin/src/makefile.unix
  MAKEOVERRIDES =
 -LIBS += $(CURDIR)/leveldb/libleveldb.a $(CURDIR)/leveldb/libmemenv.a
 -DEFS += $(addprefix -I,$(CURDIR)/leveldb/include)
-+LIBS += -lleveldb $(CURDIR)/leveldb/libmemenv.a
- DEFS += $(addprefix -I,$(CURDIR)/leveldb/helpers)
+-DEFS += $(addprefix -I,$(CURDIR)/leveldb/helpers)
 -leveldb/libleveldb.a:
 -	@echo "Building LevelDB ..." && cd leveldb && $(MAKE) CC=$(CC) CXX=$(CXX) OPT="$(xCXXFLAGS)" libleveldb.a libmemenv.a && cd ..
++LIBS += -lleveldb $(CURDIR)/leveldb/libmemenv.a
++TESTDEFS += $(addprefix -I,$(CURDIR)/leveldb/helpers)
 +leveldb/libmemenv.a:
 +	@echo "Building LevelDB ..." && cd leveldb && $(MAKE) CC=$(CC) CXX=$(CXX) OPT="$(xCXXFLAGS)" libmemenv.a && cd ..
  
@@ -103,27 +103,26 @@ Index: bitcoin/src/makefile.unix
 +	$(P_TO_D)
 +
 +obj-test/leveldb.o: leveldb.cpp
-+	$(CXX) -c $(TESTDEFS) $(xCXXFLAGS) -MMD -MF $(@:%.o=%.d) -o $@ $<
++	$(CXX) -c $(TESTDEFS) $(xCXXFLAGS) -DTEST_SUITE -MMD -MF $(@:%.o=%.d) -o $@ $<
 +	$(P_TO_D)
  
 -test_bitcoin: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 -	$(LINK) $(xCXXFLAGS) -o $@ $(LIBPATHS) $^ -Wl,-B$(LMODE) -lboost_unit_test_framework $(xLDFLAGS) $(LIBS)
 +test_bitcoin: $(TESTOBJS)
-+	$(LINK) $(xCXXFLAGS) -o $@ $(LIBPATHS) $^ $(TESTLIBS) $(xLDFLAGS) $(LIBS) $$PWD/src/leveldb/libmemenv.a
++	$(LINK) $(xCXXFLAGS) -o $@ $(LIBPATHS) $^ $(TESTLIBS) $(xLDFLAGS) $(LIBS) $$PWD/leveldb/libmemenv.a
  
  clean:
  	-rm -f bitcoind test_bitcoin
 Index: bitcoin/bitcoin-qt.pro
 ===================================================================
---- bitcoin.orig/bitcoin-qt.pro	2013-03-20 23:24:38.460288322 -0400
-+++ bitcoin/bitcoin-qt.pro	2013-03-20 23:25:27.616289490 -0400
-@@ -96,10 +96,10 @@
+--- bitcoin.orig/bitcoin-qt.pro	2013-03-21 12:18:50.359479054 -0400
++++ bitcoin/bitcoin-qt.pro	2013-03-21 12:18:50.351479054 -0400
+@@ -96,10 +96,9 @@
      QTPLUGIN += qcncodecs qjpcodecs qtwcodecs qkrcodecs qtaccessiblewidgets
  }
  
 -INCLUDEPATH += src/leveldb/include src/leveldb/helpers
 -LIBS += $$PWD/src/leveldb/libleveldb.a $$PWD/src/leveldb/libmemenv.a
-+INCLUDEPATH += src/leveldb/helpers
 +LIBS += -lleveldb
  !win32 {
 -    genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX $(MAKE) OPT=\"$$QMAKE_CXXFLAGS\" libleveldb.a libmemenv.a
@@ -131,7 +130,7 @@ Index: bitcoin/bitcoin-qt.pro
  } else {
      # make an educated guess about what the ranlib command is called
      isEmpty(QMAKE_RANLIB) {
-@@ -108,12 +108,12 @@
+@@ -108,12 +107,12 @@
      LIBS += -lshlwapi
      genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX TARGET_OS=OS_WINDOWS_CROSSCOMPILE $(MAKE) OPT=\"$$QMAKE_CXXFLAGS\" libleveldb.a libmemenv.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libleveldb.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libmemenv.a
  }
@@ -147,3 +146,30 @@ Index: bitcoin/bitcoin-qt.pro
  
  # regenerate src/build.h
  !win32|contains(USE_BUILD_INFO, 1) {
+Index: bitcoin/src/leveldb.cpp
+===================================================================
+--- bitcoin.orig/src/leveldb.cpp	2013-03-21 12:18:50.359479054 -0400
++++ bitcoin/src/leveldb.cpp	2013-03-21 12:18:50.351479054 -0400
+@@ -8,7 +8,9 @@
+ #include <leveldb/env.h>
+ #include <leveldb/cache.h>
+ #include <leveldb/filter_policy.h>
++#ifdef TEST_SUITE
+ #include <memenv/memenv.h>
++#endif
+ 
+ #include <boost/filesystem.hpp>
+ 
+@@ -42,8 +44,12 @@
+     options = GetOptions(nCacheSize);
+     options.create_if_missing = true;
+     if (fMemory) {
++#ifdef TEST_SUITE
+         penv = leveldb::NewMemEnv(leveldb::Env::Default());
+         options.env = penv;
++#else
++        throw std::runtime_error("CLevelDB(): compiled without memenv support");
++#endif
+     } else {
+         if (fWipe) {
+             printf("Wiping LevelDB in %s\n", path.string().c_str());

@@ -4,8 +4,8 @@ bitcoin (0.8.0-1) UNRELEASED; urgency=low
   * debian/patches
     - Removed 1004_conservative_qt-dbus.patch applied upstream
     - New 1005_use_system_libleveldb.patch
-      use system leveldb, however lack of libmemenv.a causes tests to fail
-      temporarily disabled test suites
+      use system leveldb, build convenience copy of libmemenv.a but only
+      linked against test suite which is not distributed
   * removed depricated Encoding key from bitcoin-qt.desktop
 
  -- Scott Howard <showard@debian.org>  Tue, 26 Feb 2013 14:10:15 -0500
