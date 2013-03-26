@@ -1,3 +1,9 @@
+bitcoin (0.8.1-2) UNRELEASED; urgency=low
+
+  * Fixes kFreeBSD FTBFS for unknown OS
+
+ -- Scott Howard <showard@debian.org>  Tue, 26 Mar 2013 13:52:40 -0400
+
 bitcoin (0.8.1-1) experimental; urgency=low
 
   * New upstream release (Closes: #700910, Closes: #701085, Closes: #703213)

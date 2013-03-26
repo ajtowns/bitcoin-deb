@@ -1,0 +1,16 @@
+Description: fixes a kFreeBSD FTBFS for an unknown OS
+Author: Scott Howard <showard@debian.org>
+
+Index: bitcoin/src/leveldb/build_detect_platform
+===================================================================
+--- bitcoin.orig/src/leveldb/build_detect_platform	2013-03-25 20:18:26.125241227 -0400
++++ bitcoin/src/leveldb/build_detect_platform	2013-03-26 12:59:03.641880521 -0400
+@@ -76,7 +76,7 @@
+         PLATFORM_SHARED_LDFLAGS="-dynamiclib -install_name $INSTALL_PATH/"
+         PORT_FILE=port/port_posix.cc
+         ;;
+-    Linux)
++    Linux | GNU/kFreeBSD )
+         PLATFORM=OS_LINUX
+         COMMON_FLAGS="$MEMCMP_FLAG -pthread -DOS_LINUX"
+         PLATFORM_LDFLAGS="-pthread"
