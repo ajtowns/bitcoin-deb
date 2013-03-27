@@ -20,7 +20,8 @@ Build-Depends: cdbs,
  qt4-qmake,
  libqt4-dev,
  libqrencode-dev,
- libleveldb-dev
+ libleveldb-dev,
+ icoutils
 Standards-Version: 3.9.4
 Homepage: http://www.bitcoin.org/
 Vcs-Git: git://git.debian.org/git/collab-maint/bitcoin

@@ -38,8 +38,23 @@ fakehome = $(CURDIR)/debian/home
 pre-build::
 	mkdir -p "$(fakehome)"
 clean::
-	rm -rf "$(fakehome)"
-
+	rm -rf "$(fakehome)" $(CURDIR)/share/pixmaps/hicolor $(CURDIR)/share/pixmaps/convert
+configure/bitcoin-qt:: debian/stamps-perpkg-configure/bitcoin-qt
+debian/stamps-perpkg-configure/bitcoin-qt:
+	mkdir -p debian/stamps-perpkg-configure
+	mkdir -p $(CURDIR)/share/pixmaps/hicolor/256x256 \
+                 $(CURDIR)/share/pixmaps/hicolor/64x64 \
+                 $(CURDIR)/share/pixmaps/hicolor/48x48 \
+                 $(CURDIR)/share/pixmaps/hicolor/32x32 \
+                 $(CURDIR)/share/pixmaps/hicolor/16x16
+	mkdir $(CURDIR)/share/pixmaps/convert
+	icotool -x -o $(CURDIR)/share/pixmaps/convert $(CURDIR)/share/pixmaps/bitcoin.ico
+	mv $(CURDIR)/share/pixmaps/convert/bitcoin_1_256x256x32.png  $(CURDIR)/share/pixmaps/hicolor/256x256/bitcoin.png
+	mv $(CURDIR)/share/pixmaps/convert/bitcoin_2_64x64x32.png  $(CURDIR)/share/pixmaps/hicolor/64x64/bitcoin.png
+	mv $(CURDIR)/share/pixmaps/convert/bitcoin_3_48x48x32.png  $(CURDIR)/share/pixmaps/hicolor/48x48/bitcoin.png
+	mv $(CURDIR)/share/pixmaps/convert/bitcoin_4_32x32x32.png  $(CURDIR)/share/pixmaps/hicolor/32x32/bitcoin.png
+	mv $(CURDIR)/share/pixmaps/convert/bitcoin_6_16x16x32.png  $(CURDIR)/share/pixmaps/hicolor/16x16/bitcoin.png
+	touch $@
 # Use per-package targets and variables for daemon build rules
 # TODO: instead use per-flavor variables, when supported by qmake.mk
 DEB_BUILDDIR_bitcoind = src
@@ -58,7 +73,7 @@ DEB_PHONY_RULES += clean/bitcoind
 clean/bitcoind::
 	-$(DEB_MAKE_INVOKE) -k clean
 clean:: clean/bitcoind
-	rm -rf debian/stamps-perpkg-build
+	rm -rf debian/stamps-perpkg*
 
 DEB_QMAKE_ARGS = USE_DBUS=1 USE_QRCODE=1
 
@@ -103,6 +118,9 @@ CDBS_BUILD_DEPENDS += , libssl-dev, pkg-config, libleveldb-dev
 
 # Build dependencies for the bitcoin-qt package
 CDBS_BUILD_DEPENDS += , qt4-qmake, libqt4-dev, libqrencode-dev
+
+# Build dependencies for extracting icons
+CDBS_BUILD_DEPENDS += icoutils
 
 # Upstream README contains no parts relevant for Debian usage
 DEB_INSTALL_DOCS_ALL =

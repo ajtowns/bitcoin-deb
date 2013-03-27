@@ -1,6 +1,7 @@
 bitcoin (0.8.1-2) UNRELEASED; urgency=low
 
   * Fixes kFreeBSD FTBFS for unknown OS
+  * Added high res icons to package (LP: #1127181)
 
  -- Scott Howard <showard@debian.org>  Tue, 26 Mar 2013 13:52:40 -0400
 

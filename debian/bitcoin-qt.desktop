@@ -6,6 +6,6 @@ Comment[tr]=Bitcoin, eşten eşe kriptografik sanal para birimi
 Exec=/usr/bin/bitcoin-qt
 Terminal=false
 Type=Application
-Icon=/usr/share/pixmaps/bitcoin80.xpm
+Icon=bitcoin
 MimeType=x-scheme-handler/bitcoin;
 Categories=Office;

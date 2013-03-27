@@ -3,3 +3,4 @@ share/pixmaps/bitcoin32.xpm usr/share/pixmaps
 share/pixmaps/bitcoin80.xpm usr/share/pixmaps
 debian/bitcoin-qt.desktop usr/share/applications
 debian/bitcoin-qt.protocol usr/share/kde4/services/
+share/pixmaps/hicolor usr/share/icons
