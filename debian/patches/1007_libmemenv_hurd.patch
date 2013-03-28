@@ -1,0 +1,38 @@
+Author: Pino Toscano <pino@debian.org>
+Description: Support for GNU/Hurd
+ This adds support for GNU/Hurd:
+ - detect the correct platform
+ - ignore msync() errors when they are ENOSYS, like currently it happens on
+   GNU/Hurd (not something that can be sent upstream, though)
+Last-Update: 2011-12-01
+
+Index: bitcoin/src/leveldb/build_detect_platform
+===================================================================
+--- bitcoin.orig/src/leveldb/build_detect_platform	2013-03-28 14:06:38.626733399 -0400
++++ bitcoin/src/leveldb/build_detect_platform	2013-03-28 14:06:38.598733398 -0400
+@@ -141,6 +141,12 @@
+         PLATFORM_LIBS="-lpthread -lrt"
+         PORT_FILE=port/port_posix.cc
+         ;;
++    GNU)
++        PLATFORM=OS_HURD
++        PLATFORM_CFLAGS="-pthread -DOS_HURD"
++        PLATFORM_LIBS="-lpthread"
++        PORT_FILE=port/port_posix.cc
++        ;;
+     *)
+         echo "Unknown platform!" >&2
+         exit 1
+Index: bitcoin/src/leveldb/util/env_posix.cc
+===================================================================
+--- bitcoin.orig/src/leveldb/util/env_posix.cc	2013-03-28 14:06:38.626733399 -0400
++++ bitcoin/src/leveldb/util/env_posix.cc	2013-03-28 14:06:38.618733399 -0400
+@@ -337,7 +337,7 @@
+       size_t p1 = TruncateToPageBoundary(last_sync_ - base_);
+       size_t p2 = TruncateToPageBoundary(dst_ - base_ - 1);
+       last_sync_ = dst_;
+-      if (msync(base_ + p1, p2 - p1 + page_size_, MS_SYNC) < 0) {
++      if (msync(base_ + p1, p2 - p1 + page_size_, MS_SYNC) < 0 && errno != ENOSYS) {
+         s = IOError(filename_, errno);
+       }
+     }

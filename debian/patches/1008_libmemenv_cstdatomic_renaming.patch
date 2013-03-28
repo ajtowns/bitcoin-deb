@@ -1,0 +1,33 @@
+Description: cstdatomic has been renamed to atomic, fix #include statements.
+Bug: http://code.google.com/p/leveldb/issues/detail?id=3
+---
+ build_detect_platform |    2 +-
+ port/atomic_pointer.h |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+Index: bitcoin/src/leveldb/build_detect_platform
+===================================================================
+--- bitcoin.orig/src/leveldb/build_detect_platform	2013-03-28 14:09:26.286737383 -0400
++++ bitcoin/src/leveldb/build_detect_platform	2013-03-28 14:09:26.278737383 -0400
+@@ -177,7 +177,7 @@
+ else
+     # If -std=c++0x works, use <cstdatomic>.  Otherwise use port_posix.h.
+     $CXX $CXXFLAGS -std=c++0x -x c++ - -o /dev/null 2>/dev/null  <<EOF
+-      #include <cstdatomic>
++      #include <atomic>
+       int main() {}
+ EOF
+     if [ "$?" = 0 ]; then
+Index: bitcoin/src/leveldb/port/atomic_pointer.h
+===================================================================
+--- bitcoin.orig/src/leveldb/port/atomic_pointer.h	2013-03-28 14:09:26.286737383 -0400
++++ bitcoin/src/leveldb/port/atomic_pointer.h	2013-03-28 14:09:26.278737383 -0400
+@@ -21,7 +21,7 @@
+ 
+ #include <stdint.h>
+ #ifdef LEVELDB_CSTDATOMIC_PRESENT
+-#include <cstdatomic>
++#include <atomic>
+ #endif
+ #ifdef OS_WIN
+ #include <windows.h>

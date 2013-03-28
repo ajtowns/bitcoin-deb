@@ -1,16 +1,21 @@
-Description: fixes a kFreeBSD FTBFS for an unknown OS
-Author: Scott Howard <showard@debian.org>
+Description: Allow compilation on kFreeBSD.
+From: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=640378
+Forwarded: http://code.google.com/p/leveldb/issues/detail?id=38
 
 Index: bitcoin/src/leveldb/build_detect_platform
 ===================================================================
---- bitcoin.orig/src/leveldb/build_detect_platform	2013-03-25 20:18:26.125241227 -0400
-+++ bitcoin/src/leveldb/build_detect_platform	2013-03-26 12:59:03.641880521 -0400
-@@ -76,7 +76,7 @@
-         PLATFORM_SHARED_LDFLAGS="-dynamiclib -install_name $INSTALL_PATH/"
-         PORT_FILE=port/port_posix.cc
+--- bitcoin.orig/src/leveldb/build_detect_platform	2013-03-28 13:59:05.526722630 -0400
++++ bitcoin/src/leveldb/build_detect_platform	2013-03-28 13:59:05.518722630 -0400
+@@ -135,6 +135,12 @@
+         PORT_FILE=port/port_win.cc
+         CROSS_COMPILE=true
          ;;
--    Linux)
-+    Linux | GNU/kFreeBSD )
-         PLATFORM=OS_LINUX
-         COMMON_FLAGS="$MEMCMP_FLAG -pthread -DOS_LINUX"
-         PLATFORM_LDFLAGS="-pthread"
++    GNU/kFreeBSD)
++        PLATFORM=OS_FREEBSD
++        PLATFORM_CFLAGS="-pthread -DOS_FREEBSD"
++        PLATFORM_LIBS="-lpthread -lrt"
++        PORT_FILE=port/port_posix.cc
++        ;;
+     *)
+         echo "Unknown platform!" >&2
+         exit 1
