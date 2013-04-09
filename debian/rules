@@ -132,7 +132,3 @@ clean::
 	find src/obj -type f -not -name .gitignore -delete
 	-rmdir --ignore-fail-on-non-empty build
 	rm -f src/bitcoind
-
-# Ensure wrapper is set executable
-binary-post-install/bitcoind::
-	chmod +x debian/bitcoind/usr/bin/bitcoind

@@ -4,6 +4,8 @@ bitcoin (0.8.1-2) UNRELEASED; urgency=low
   * Added high res icons to package (LP: #1127181)
   * Remove reference to IRC network in debian/control
   * Patch and ship upstream manpages instead of maintaining our own
+  * Drop wrapper for bitcoind, upstream has dropped it and may introduce
+    problems with multi-wallet and non-standard data directories
 
  -- Scott Howard <showard@debian.org>  Tue, 26 Mar 2013 13:52:40 -0400
 
