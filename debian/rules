@@ -23,7 +23,7 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/rules/utils.mk
 
 # linker failures suspected to be caused by parallel builds unsupported
-#DEB_BUILD_PARALLEL = 1
+DEB_BUILD_PARALLEL = 1
 
 DEB_UPSTREAM_URL = https://github.com/bitcoin/bitcoin/archive
 DEB_UPSTREAM_TARBALL_BASENAME = v$(DEB_UPSTREAM_TARBALL_VERSION)
@@ -95,8 +95,8 @@ CXXFLAGS += -Wno-unused-variable
 # Use optimized miner for amd64 only
 CXXFLAGS += $(if $(filter amd64,$(DEB_HOST_ARCH)),-DFOURWAYSSE2)
 
-DEB_INSTALL_EXAMPLES_bitcoind += debian/examples/*
-DEB_INSTALL_MANPAGES_bitcoind += debian/manpages/bitcoind.1 debian/manpages/bitcoin.conf.5
+DEB_INSTALL_EXAMPLES_bitcoind += contrib/debian/examples/*
+DEB_INSTALL_MANPAGES_bitcoind += contrib/debian/manpages/bitcoind.1 contrib/debian/manpages/bitcoin.conf.5
 DEB_INSTALL_MANPAGES_bitcoin-qt += debian/manpages/bitcoin-qt.1
 
 # Apparently any recent boost is ok.

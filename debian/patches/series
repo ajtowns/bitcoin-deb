@@ -5,6 +5,7 @@
 1006_libmemenv_kfrebsd.patch
 1007_libmemenv_hurd.patch
 1008_libmemenv_cstdatomic_renaming.patch
+1009_manpage_hyphons.patch
 2001_stupify_header_script.patch
 2002_libmemenv_debian-ports.patch
 3001_debug_bts_672524.patch
