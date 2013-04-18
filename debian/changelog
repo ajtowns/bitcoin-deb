@@ -1,8 +1,13 @@
 bitcoin (0.8.1-2) UNRELEASED; urgency=low
 
+  [ Scott Howard ]
   * Import patches from libleveldb to fixes kFreeBSD & hurd FTBFS
   * Added high res icons to package (LP: #1127181)
   * Remove reference to IRC network in debian/control
+
+  [ Jonas Smedegaard ]
+  * Update README.source to emphasize control.in file as *not* a
+    show-stopper for contributions.
 
  -- Scott Howard <showard@debian.org>  Tue, 26 Mar 2013 13:52:40 -0400
 
