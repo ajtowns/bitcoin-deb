@@ -1,4 +1,4 @@
-bitcoin (0.8.1-2) UNRELEASED; urgency=low
+bitcoin (0.8.1-2) unstable; urgency=low
 
   * Merge from experimental closing two security bugs in sid
     - Closes: #705266 CVE-2013-2272
