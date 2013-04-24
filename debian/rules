@@ -42,18 +42,18 @@ clean::
 configure/bitcoin-qt:: debian/stamps-perpkg-configure/bitcoin-qt
 debian/stamps-perpkg-configure/bitcoin-qt:
 	mkdir -p debian/stamps-perpkg-configure
-	mkdir -p $(CURDIR)/share/pixmaps/hicolor/256x256 \
-                 $(CURDIR)/share/pixmaps/hicolor/64x64 \
-                 $(CURDIR)/share/pixmaps/hicolor/48x48 \
-                 $(CURDIR)/share/pixmaps/hicolor/32x32 \
-                 $(CURDIR)/share/pixmaps/hicolor/16x16
+	mkdir -p $(CURDIR)/share/pixmaps/hicolor/256x256/apps \
+                 $(CURDIR)/share/pixmaps/hicolor/64x64/apps \
+                 $(CURDIR)/share/pixmaps/hicolor/48x48/apps \
+                 $(CURDIR)/share/pixmaps/hicolor/32x32/apps \
+                 $(CURDIR)/share/pixmaps/hicolor/16x16/apps
 	mkdir $(CURDIR)/share/pixmaps/convert
 	icotool -x -o $(CURDIR)/share/pixmaps/convert $(CURDIR)/share/pixmaps/bitcoin.ico
-	mv $(CURDIR)/share/pixmaps/convert/bitcoin_1_256x256x32.png  $(CURDIR)/share/pixmaps/hicolor/256x256/bitcoin.png
-	mv $(CURDIR)/share/pixmaps/convert/bitcoin_2_64x64x32.png  $(CURDIR)/share/pixmaps/hicolor/64x64/bitcoin.png
-	mv $(CURDIR)/share/pixmaps/convert/bitcoin_3_48x48x32.png  $(CURDIR)/share/pixmaps/hicolor/48x48/bitcoin.png
-	mv $(CURDIR)/share/pixmaps/convert/bitcoin_4_32x32x32.png  $(CURDIR)/share/pixmaps/hicolor/32x32/bitcoin.png
-	mv $(CURDIR)/share/pixmaps/convert/bitcoin_6_16x16x32.png  $(CURDIR)/share/pixmaps/hicolor/16x16/bitcoin.png
+	mv $(CURDIR)/share/pixmaps/convert/bitcoin_1_256x256x32.png  $(CURDIR)/share/pixmaps/hicolor/256x256/apps/bitcoin.png
+	mv $(CURDIR)/share/pixmaps/convert/bitcoin_2_64x64x32.png  $(CURDIR)/share/pixmaps/hicolor/64x64/apps/bitcoin.png
+	mv $(CURDIR)/share/pixmaps/convert/bitcoin_3_48x48x32.png  $(CURDIR)/share/pixmaps/hicolor/48x48/apps/bitcoin.png
+	mv $(CURDIR)/share/pixmaps/convert/bitcoin_4_32x32x32.png  $(CURDIR)/share/pixmaps/hicolor/32x32/apps/bitcoin.png
+	mv $(CURDIR)/share/pixmaps/convert/bitcoin_6_16x16x32.png  $(CURDIR)/share/pixmaps/hicolor/16x16/apps/bitcoin.png
 	touch $@
 # Use per-package targets and variables for daemon build rules
 # TODO: instead use per-flavor variables, when supported by qmake.mk

@@ -1,11 +1,16 @@
 bitcoin (0.8.1-2) UNRELEASED; urgency=low
 
-  * Import patches from libleveldb to fixes kFreeBSD & hurd FTBFS
+  * Merge from experimental closing two security bugs in sid
+    - Closes: #705266 CVE-2013-2272
+    - Closes: #705265 CVE-2013-2293
+  * Import patches from libleveldb to fix one of the kFreeBSD & hurd FTBFS
   * Added high res icons to package (LP: #1127181)
   * Remove reference to IRC network in debian/control
   * Patch and ship upstream manpages instead of maintaining our own
-  * Drop wrapper for bitcoind, upstream has dropped it and may introduce
-    problems with multi-wallet and non-standard data directories
+    - updated bitcoin-qt manpage for version 0.8.1
+  * Drop wrapper for bitcoind
+    -upstream has dropped it and the wrapper may introduce problems with 
+     multi-wallet or non-default data directories
 
  -- Scott Howard <showard@debian.org>  Tue, 26 Mar 2013 13:52:40 -0400
 
