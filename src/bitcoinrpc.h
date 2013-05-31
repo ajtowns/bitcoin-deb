@@ -11,6 +11,7 @@
 #include <map>
 
 class CBlockIndex;
+class CReserveKey;
 
 #include "json/json_spirit_reader_template.h"
 #include "json/json_spirit_writer_template.h"
@@ -67,7 +68,8 @@ enum RPCErrorCode
 
 json_spirit::Object JSONRPCError(int code, const std::string& message);
 
-void ThreadRPCServer(void* parg);
+void StartRPCThreads();
+void StopRPCThreads();
 int CommandLineRPC(int argc, char *argv[]);
 
 /** Convert parameter values for RPC call from strings to command-specific JSON objects. */
@@ -95,7 +97,7 @@ public:
     std::string name;
     rpcfn_type actor;
     bool okSafeMode;
-    bool unlocked;
+    bool threadSafe;
 };
 
 /**
@@ -121,6 +123,7 @@ public:
 };
 
 extern const CRPCTable tableRPC;
+extern CReserveKey* pMiningKey;
 
 extern int64 nWalletUnlockTime;
 extern int64 AmountFromValue(const json_spirit::Value& value);
