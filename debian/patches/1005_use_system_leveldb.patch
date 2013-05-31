@@ -4,11 +4,11 @@ Author: Luke-Jr <luke@dashjr.org>, Scott Howard <showard@debian.org>
 Bug-Debian: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=700910
 Index: bitcoin/src/makefile.unix
 ===================================================================
---- bitcoin.orig/src/makefile.unix	2013-03-21 12:18:50.359479054 -0400
-+++ bitcoin/src/makefile.unix	2013-03-21 12:19:16.307479671 -0400
-@@ -36,6 +36,10 @@
-    -l ssl \
-    -l crypto
+--- bitcoin.orig/src/makefile.unix	2013-05-31 18:06:01.480339115 -0400
++++ bitcoin/src/makefile.unix	2013-05-31 18:09:05.912343499 -0400
+@@ -46,6 +46,10 @@
+  -Wl,-B$(LMODE) \
+    -l boost_unit_test_framework$(BOOST_LIB_SUFFIX)
  
 +TESTLIBS += \
 + -Wl,-B$(LMODE) \
@@ -17,7 +17,7 @@ Index: bitcoin/src/makefile.unix
  ifndef USE_UPNP
  	override USE_UPNP = -
  endif
-@@ -100,8 +104,7 @@
+@@ -110,8 +114,7 @@
  # adds some defaults in front. Unfortunately, LDFLAGS=... $(LDFLAGS) does not work.
  xLDFLAGS=$(LDHARDENING) $(LDFLAGS)
  
@@ -27,15 +27,15 @@ Index: bitcoin/src/makefile.unix
      obj/alert.o \
      obj/version.o \
      obj/checkpoints.o \
-@@ -110,7 +113,6 @@
+@@ -120,7 +123,6 @@
      obj/crypter.o \
      obj/key.o \
      obj/db.o \
 -    obj/init.o \
-     obj/irc.o \
      obj/keystore.o \
      obj/main.o \
-@@ -131,9 +133,18 @@
+     obj/net.o \
+@@ -140,9 +142,18 @@
      obj/hash.o \
      obj/bloom.o \
      obj/noui.o \
@@ -55,7 +55,7 @@ Index: bitcoin/src/makefile.unix
  
  all: bitcoind
  
-@@ -144,11 +155,10 @@
+@@ -153,11 +164,10 @@
  # LevelDB support
  #
  MAKEOVERRIDES =
@@ -71,7 +71,7 @@ Index: bitcoin/src/makefile.unix
  
  # auto-generated dependencies:
  -include obj/*.P
-@@ -159,27 +169,29 @@
+@@ -168,27 +178,29 @@
  version.cpp: obj/build.h
  DEFS += -DHAVE_BUILD_INFO
  
@@ -107,7 +107,7 @@ Index: bitcoin/src/makefile.unix
 +	$(P_TO_D)
  
 -test_bitcoin: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
--	$(LINK) $(xCXXFLAGS) -o $@ $(LIBPATHS) $^ -Wl,-B$(LMODE) -lboost_unit_test_framework $(xLDFLAGS) $(LIBS)
+-	$(LINK) $(xCXXFLAGS) -o $@ $(LIBPATHS) $^ $(TESTLIBS) $(xLDFLAGS) $(LIBS)
 +test_bitcoin: $(TESTOBJS)
 +	$(LINK) $(xCXXFLAGS) -o $@ $(LIBPATHS) $^ $(TESTLIBS) $(xLDFLAGS) $(LIBS) $$PWD/leveldb/libmemenv.a
  
@@ -115,9 +115,9 @@ Index: bitcoin/src/makefile.unix
  	-rm -f bitcoind test_bitcoin
 Index: bitcoin/bitcoin-qt.pro
 ===================================================================
---- bitcoin.orig/bitcoin-qt.pro	2013-03-21 12:18:50.359479054 -0400
-+++ bitcoin/bitcoin-qt.pro	2013-03-21 12:18:50.351479054 -0400
-@@ -96,10 +96,9 @@
+--- bitcoin.orig/bitcoin-qt.pro	2013-05-31 18:06:01.480339115 -0400
++++ bitcoin/bitcoin-qt.pro	2013-05-31 18:11:09.928346446 -0400
+@@ -98,11 +98,10 @@
      QTPLUGIN += qcncodecs qjpcodecs qtwcodecs qkrcodecs qtaccessiblewidgets
  }
  
@@ -125,14 +125,15 @@ Index: bitcoin/bitcoin-qt.pro
 -LIBS += $$PWD/src/leveldb/libleveldb.a $$PWD/src/leveldb/libmemenv.a
 +LIBS += -lleveldb
  !win32 {
--    genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX $(MAKE) OPT=\"$$QMAKE_CXXFLAGS\" libleveldb.a libmemenv.a
-+    genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX $(MAKE) OPT=\"$$QMAKE_CXXFLAGS\" libmemenv.a
+     # we use QMAKE_CXXFLAGS_RELEASE even without RELEASE=1 because we use RELEASE to indicate linking preferences not -O preferences
+-    genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a
++    genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libmemenv.a
  } else {
      # make an educated guess about what the ranlib command is called
      isEmpty(QMAKE_RANLIB) {
-@@ -108,12 +107,12 @@
+@@ -111,12 +110,12 @@
      LIBS += -lshlwapi
-     genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX TARGET_OS=OS_WINDOWS_CROSSCOMPILE $(MAKE) OPT=\"$$QMAKE_CXXFLAGS\" libleveldb.a libmemenv.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libleveldb.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libmemenv.a
+     genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX TARGET_OS=OS_WINDOWS_CROSSCOMPILE $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libleveldb.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libmemenv.a
  }
 -genleveldb.target = $$PWD/src/leveldb/libleveldb.a
 +genleveldb.target = $$PWD/src/leveldb/libmemenv.a
@@ -148,8 +149,8 @@ Index: bitcoin/bitcoin-qt.pro
  !win32|contains(USE_BUILD_INFO, 1) {
 Index: bitcoin/src/leveldb.cpp
 ===================================================================
---- bitcoin.orig/src/leveldb.cpp	2013-03-21 12:18:50.359479054 -0400
-+++ bitcoin/src/leveldb.cpp	2013-03-21 12:18:50.351479054 -0400
+--- bitcoin.orig/src/leveldb.cpp	2013-05-31 18:06:01.480339115 -0400
++++ bitcoin/src/leveldb.cpp	2013-05-31 18:06:01.476339115 -0400
 @@ -8,7 +8,9 @@
  #include <leveldb/env.h>
  #include <leveldb/cache.h>
@@ -160,7 +161,7 @@ Index: bitcoin/src/leveldb.cpp
  
  #include <boost/filesystem.hpp>
  
-@@ -42,8 +44,12 @@
+@@ -43,8 +45,12 @@
      options = GetOptions(nCacheSize);
      options.create_if_missing = true;
      if (fMemory) {

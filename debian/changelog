@@ -6,6 +6,8 @@ bitcoin (0.8.2-1) UNRELEASED; urgency=low
 
   [ Scott Howard ]
   * New upstream release
+  * Use new bitcoin-qt manpage from upstream
+    - debian/patches/1009_manpage_hyphons.patch dropped, adopted upstream
 
  -- Scott Howard <showard@debian.org>  Fri, 31 May 2013 17:43:50 -0400
 
