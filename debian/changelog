@@ -1,4 +1,4 @@
-bitcoin (0.8.2-1) UNRELEASED; urgency=low
+bitcoin (0.8.2-1) unstable; urgency=low
 
   [ Jonas Smedegaard ]
   * Update README.source to emphasize control.in file as *not* a
