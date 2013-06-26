@@ -1,3 +1,9 @@
+bitcoin (0.8.3-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Scott Howard <showard@debian.org>  Wed, 26 Jun 2013 17:19:51 -0400
+
 bitcoin (0.8.2-1) unstable; urgency=low
 
   [ Jonas Smedegaard ]
