@@ -23,3 +23,71 @@ CDBS backported) to not accidentally get inferior package relations.
 
 
  -- Jonas Smedegaard <dr@jones.dk>  Mon, 18 Feb 2013 12:55:37 +0100
+
+
+
+
+Included Libraries
+------------------
+
+Per discussions with upstream [1], Bitcoin cannot use system libraries for the
+libraries included with the bitcoin source. This is because system libraries may
+be patched without Bitcoin testing.
+
+
+[1] Comments from Jeff Garzik:
+Say Bitcoin used a backing database which had an unknown a bug where
+any item with a key that begins with 0xDEADBEEF returns not found when
+queried, even if its in the DB. Once discovered, any database library
+would want to fix that quickly and they'd fix it in a point release
+without reservation. They might not even release note that particular
+fix it if went along with some others, it could even be fixed
+accidentally.
+
+Now say that we have a state where half the Bitcoin network is running
+the old buggy version, and half is running the fixed version.  Someone
+creates a transaction with ID 0xDEADBEEF...  and then subsequently
+spends the output of that transaction. This could be by pure chance or
+it could be a malicious act.
+
+To half the network that spending transaction looks like someone
+spending coin from nowhere, a violation of the rules.  The consensus
+would then fork, effectively partitioning the network.  On each fork
+any coin could be spent twice, and the fork will only be resolvable by
+one side or the other abandoning their state (generally the more
+permissive side would need to be abandoned because the permissive one
+is tolerant of the restrictive one's behavior) by manually downgrading
+or patching software.  As a result of this parties who believed some
+of their transactions were safely settled would find them reversed by
+people who exploited the inconsistent consensus.
+
+To deploy such a fix in Bitcoin without creating a risk for
+participants we need to make a staged revision of the network protocol
+rules:  There would be a protocol update that fixed the database bug
+_and_ explicitly rejected 0xDEADBEEF transactions until either some
+far out future date or until triggered by quorum sensing (or both).
+The users of Bitcoin would all be advised that they had to apply
+fixes/workaround by the switchover point or be left out of service or
+vulnerable. At designated time / quorum nodes would simultaneously
+switch to the new behavior.  (Or in some cases, we'd just move the
+'bug' into the Bitcoin code so that it can be fixed in the database,
+and we'd then just keep it forever, depending on how harmful it was to
+Bitcoin, a one if 4 billion chance of having to rewrite a transaction
+wouldn't be a big deal)
+
+We've done these organized updates to solve problems (as various flaws
+in Bitcoin itself can present similar consensus risks) several times
+with great success, typical time horizons spanning for months to
+years.  But it cannot work if the behavior is changed out from under
+the software.
+
+Fortunately, if the number of users running with an uncontrolled
+consensus relevant inconsistent behavior is small the danger is only
+to themselves (and, perhaps, their customers). I'm not happy to see
+anyone get harmed, but it's better if its few people than many. This
+is part of the reason that it's a "linux packaging letter", since for
+Bitcoin the combination of uncoordinated patching and non-trivial
+userbases appears to be currently unique to GNU/Linux systems.  Though
+indeed, the concerns do apply more broadly.
+
+ -- Scott Howard <showard@debian.org>  Thu, 25 Jul 2013 17:28:01 -0500

@@ -1,3 +1,9 @@
+bitcoin (0.8.3-2) UNRELEASED; urgency=low
+
+  * Use included leveldb instead of system library. See debian/README.source
+
+ -- Scott Howard <showard@debian.org>  Thu, 25 Jul 2013 16:54:38 -0400
+
 bitcoin (0.8.3-1) unstable; urgency=low
 
   * New upstream release
