@@ -1,4 +1,4 @@
-bitcoin (0.8.3-2) UNRELEASED; urgency=low
+bitcoin (0.8.3-2) unstable; urgency=low
 
   * Use included leveldb instead of system library. See debian/README.source
 
