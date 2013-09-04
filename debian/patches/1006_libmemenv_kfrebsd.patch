@@ -4,9 +4,9 @@ Forwarded: http://code.google.com/p/leveldb/issues/detail?id=38
 
 Index: bitcoin/src/leveldb/build_detect_platform
 ===================================================================
---- bitcoin.orig/src/leveldb/build_detect_platform	2013-03-28 13:59:05.526722630 -0400
-+++ bitcoin/src/leveldb/build_detect_platform	2013-03-28 13:59:05.518722630 -0400
-@@ -135,6 +135,12 @@
+--- bitcoin.orig/src/leveldb/build_detect_platform	2013-09-03 23:02:09.861470907 -0400
++++ bitcoin/src/leveldb/build_detect_platform	2013-09-03 23:02:09.853470907 -0400
+@@ -145,6 +145,12 @@
          PORT_FILE=port/port_win.cc
          CROSS_COMPILE=true
          ;;

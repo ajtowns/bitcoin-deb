@@ -1,6 +1,8 @@
 bitcoin (0.8.4-1) unstable; urgency=low
 
-  * New upstream release
+  * New upstream release. (Closes: #717828)
+    CVE-2013-4165 CVE-2013-4627
+  * Refreshed patches
 
  -- Scott Howard <showard@debian.org>  Tue, 03 Sep 2013 22:58:54 -0400
 
