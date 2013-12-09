@@ -3,8 +3,8 @@ Author: Nobuhiro Iwamatsu <iwamatsu@debian.org>
 
 Index: bitcoin/src/leveldb/port/atomic_pointer.h
 ===================================================================
---- bitcoin.orig/src/leveldb/port/atomic_pointer.h	2013-03-28 14:03:07.050728370 -0400
-+++ bitcoin/src/leveldb/port/atomic_pointer.h	2013-03-28 14:03:07.046728370 -0400
+--- bitcoin.orig/src/leveldb/port/atomic_pointer.h	2013-12-09 10:40:50.789950673 -0500
++++ bitcoin/src/leveldb/port/atomic_pointer.h	2013-12-09 10:50:19.921964200 -0500
 @@ -38,6 +38,18 @@
  #define ARCH_CPU_ARM_FAMILY 1
  #elif defined(__ppc__) || defined(__powerpc__) || defined(__powerpc64__)
@@ -24,8 +24,17 @@ Index: bitcoin/src/leveldb/port/atomic_pointer.h
  #endif
  
  namespace leveldb {
-@@ -50,9 +62,17 @@
- // http://msdn.microsoft.com/en-us/library/ms684208(v=vs.85).aspx
+@@ -52,14 +64,25 @@
+ 
+ // Mac OS
+ #elif defined(OS_MACOSX)
+-inline void MemoryBarrier() {
++inline void ReadMemoryBarrier() {
++  OSMemoryBarrier();
++}
++inline void WriteMemoryBarrier() {
+   OSMemoryBarrier();
+ }
  #define LEVELDB_HAVE_MEMORY_BARRIER
  
 +#define ReadMemoryBarrier MemoryBarrier()
@@ -43,33 +52,7 @@ Index: bitcoin/src/leveldb/port/atomic_pointer.h
    // See http://gcc.gnu.org/ml/gcc/2003-04/msg01180.html for a discussion on
    // this idiom. Also see http://en.wikipedia.org/wiki/Memory_ordering.
    __asm__ __volatile__("" : : : "memory");
-@@ -61,7 +81,12 @@
- 
- // Sun Studio
- #elif defined(ARCH_CPU_X86_FAMILY) && defined(__SUNPRO_CC)
--inline void MemoryBarrier() {
-+inline void ReadMemoryBarrier() {
-+  // See http://gcc.gnu.org/ml/gcc/2003-04/msg01180.html for a discussion on
-+  // this idiom. Also see http://en.wikipedia.org/wiki/Memory_ordering.
-+  asm volatile("" : : : "memory");
-+}
-+inline void WriteMemoryBarrier() {
-   // See http://gcc.gnu.org/ml/gcc/2003-04/msg01180.html for a discussion on
-   // this idiom. Also see http://en.wikipedia.org/wiki/Memory_ordering.
-   asm volatile("" : : : "memory");
-@@ -70,7 +95,10 @@
- 
- // Mac OS
- #elif defined(OS_MACOSX)
--inline void MemoryBarrier() {
-+inline void ReadMemoryBarrier() {
-+  OSMemoryBarrier();
-+}
-+inline void WriteMemoryBarrier() {
-   OSMemoryBarrier();
- }
- #define LEVELDB_HAVE_MEMORY_BARRIER
-@@ -88,17 +116,99 @@
+@@ -88,17 +111,99 @@
  // shows that the extra function call cost is completely negligible on
  // multi-core devices.
  //
@@ -174,7 +157,7 @@ Index: bitcoin/src/leveldb/port/atomic_pointer.h
  }
  #define LEVELDB_HAVE_MEMORY_BARRIER
  
-@@ -116,11 +226,11 @@
+@@ -116,11 +221,11 @@
    inline void NoBarrier_Store(void* v) { rep_ = v; }
    inline void* Acquire_Load() const {
      void* result = rep_;
@@ -188,7 +171,7 @@ Index: bitcoin/src/leveldb/port/atomic_pointer.h
      rep_ = v;
    }
  };
-@@ -217,6 +327,12 @@
+@@ -217,6 +322,12 @@
  #undef ARCH_CPU_X86_FAMILY
  #undef ARCH_CPU_ARM_FAMILY
  #undef ARCH_CPU_PPC_FAMILY

@@ -8,8 +8,8 @@ Last-Update: 2011-12-01
 
 Index: bitcoin/src/leveldb/build_detect_platform
 ===================================================================
---- bitcoin.orig/src/leveldb/build_detect_platform	2013-09-03 23:02:22.781471214 -0400
-+++ bitcoin/src/leveldb/build_detect_platform	2013-09-03 23:02:22.773471214 -0400
+--- bitcoin.orig/src/leveldb/build_detect_platform	2013-12-09 10:40:34.125950277 -0500
++++ bitcoin/src/leveldb/build_detect_platform	2013-12-09 10:40:34.121950277 -0500
 @@ -151,6 +151,12 @@
          PLATFORM_LIBS="-lpthread -lrt"
          PORT_FILE=port/port_posix.cc
@@ -25,9 +25,9 @@ Index: bitcoin/src/leveldb/build_detect_platform
          exit 1
 Index: bitcoin/src/leveldb/util/env_posix.cc
 ===================================================================
---- bitcoin.orig/src/leveldb/util/env_posix.cc	2013-09-03 23:02:22.781471214 -0400
-+++ bitcoin/src/leveldb/util/env_posix.cc	2013-09-03 23:02:22.777471214 -0400
-@@ -337,7 +337,7 @@
+--- bitcoin.orig/src/leveldb/util/env_posix.cc	2013-12-09 10:40:34.125950277 -0500
++++ bitcoin/src/leveldb/util/env_posix.cc	2013-12-09 10:40:34.121950277 -0500
+@@ -368,7 +368,7 @@
        size_t p1 = TruncateToPageBoundary(last_sync_ - base_);
        size_t p2 = TruncateToPageBoundary(dst_ - base_ - 1);
        last_sync_ = dst_;

@@ -1,6 +1,7 @@
 bitcoin (0.8.6-1) unstable; urgency=low
 
   * New upstream release.
+  * Refreshed patches, copyright_hints
 
  -- Scott Howard <showard@debian.org>  Mon, 09 Dec 2013 10:26:57 -0500
 
