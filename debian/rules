@@ -95,6 +95,11 @@ CXXFLAGS += -Wno-unused-variable
 # Use optimized miner for amd64 only
 CXXFLAGS += $(if $(filter amd64,$(DEB_HOST_ARCH)),-DFOURWAYSSE2)
 
+# Fixes some FTBFS, see http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=730423
+# and http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=726989
+XDG_CONFIG_DIRS := $(shell echo $(XDG_CONFIG_DIRS)):/usr/lib/$(DEB_HOST_MULTIARCH)
+export XDF_CONFIG_DIRS
+
 DEB_INSTALL_EXAMPLES_bitcoind += contrib/debian/examples/*
 DEB_INSTALL_MANPAGES_bitcoind += contrib/debian/manpages/bitcoind.1 contrib/debian/manpages/bitcoin.conf.5
 DEB_INSTALL_MANPAGES_bitcoin-qt += contrib/debian/manpages/bitcoin-qt.1

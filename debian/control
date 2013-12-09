@@ -17,8 +17,7 @@ Build-Depends: cdbs,
  libdb++-dev | libdb4.8++-dev,
  libssl-dev,
  pkg-config,
- qt4-qmake,
- libqt4-dev,
+ qt4-default,
  libqrencode-dev,
  icoutils
 Standards-Version: 3.9.4
