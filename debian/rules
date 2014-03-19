@@ -35,6 +35,8 @@ DEB_COPYRIGHT_CHECK_IGNORE_REGEX = ^(doc/bitcoin_logo_doxygen\.png|src/qt/res/ic
 
 #testsuite needs writable $HOME (see bug#696262)
 fakehome = $(CURDIR)/debian/home
+DEB_MAKE_ENVVARS:= HOME=$(fakehome)
+
 pre-build::
 	mkdir -p "$(fakehome)"
 clean::
@@ -80,6 +82,8 @@ debian/stamps-perpkg-configure/bitcoin-qt:
 CDBS_BUILD_DEPENDS += $(if $(filter noupnp,$(DEB_BUILD_OPTIONS)),,$(comma) libminiupnpc-dev)
 #DEB_QMAKE_ARGS += $(if $(filter noupnp,$(DEB_BUILD_OPTIONS)),USE_UPNP=-)
 DEB_MAKE_EXTRA_ARGS += $(if $(filter noupnp,$(DEB_BUILD_OPTIONS)),USE_UPNP=-)
+
+#
 
 # work around build failure with gcc 4.7
 CXXFLAGS += -fpermissive
