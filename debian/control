@@ -23,7 +23,7 @@ Build-Depends: cdbs,
  dh-autoreconf,
  libprotobuf-dev,
  protobuf-compiler
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Homepage: http://www.bitcoin.org/
 Vcs-Git: git://git.debian.org/git/collab-maint/bitcoin
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/bitcoin.git
