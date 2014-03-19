@@ -17,8 +17,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -include /usr/share/cdbs/1/rules/upstream-tarball.mk
-include /usr/share/cdbs/1/class/makefile.mk
-include /usr/share/cdbs/1/class/qmake.mk
+include /usr/share/cdbs/1/rules/autoreconf.mk
+include /usr/share/cdbs/1/class/autotools.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/rules/utils.mk
 
@@ -57,29 +57,28 @@ debian/stamps-perpkg-configure/bitcoin-qt:
 	touch $@
 # Use per-package targets and variables for daemon build rules
 # TODO: instead use per-flavor variables, when supported by qmake.mk
-DEB_BUILDDIR_bitcoind = src
-debian/stamps-perpkg-build/bitcoind clean/bitcoind: DEB_MAKE_MAKEFILE = makefile.unix
-build/bitcoind:: debian/stamps-perpkg-build/bitcoind
-debian/stamps-perpkg-build/bitcoind:
-	mkdir -p debian/stamps-perpkg-build
-	+$(DEB_MAKE_INVOKE)
-	#@echo "Debug output for #672524"
-	#pwd
-	#ls -Rl .
-	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,$(DEB_MAKE_INVOKE) test_bitcoin)
-	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,HOME="$(fakehome)" src/test_bitcoin)
-	touch $@
-DEB_PHONY_RULES += clean/bitcoind
-clean/bitcoind::
-	-$(DEB_MAKE_INVOKE) -k clean
-clean:: clean/bitcoind
-	rm -rf debian/stamps-perpkg*
+#build/bitcoind:: debian/stamps-perpkg-build/bitcoind
+#debian/stamps-perpkg-build/bitcoind:
+#	mkdir -p debian/stamps-perpkg-build
+#	+$(DEB_MAKE_INVOKE)
+#	#@echo "Debug output for #672524"
+#	#pwd
+#	#ls -Rl .
+#	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,$(DEB_MAKE_INVOKE) test_bitcoin)
+#	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,HOME="$(fakehome)" src/test_bitcoin)
+#	touch $@
 
-DEB_QMAKE_ARGS = USE_DBUS=1 USE_QRCODE=1
+#DEB_PHONY_RULES += clean/bitcoind
+#clean/bitcoind::
+#	-$(DEB_MAKE_INVOKE) -k clean
+#clean:: clean/bitcoind
+#	rm -rf debian/stamps-perpkg*
+
+#DEB_QMAKE_ARGS = USE_DBUS=1 USE_QRCODE=1
 
 # optionally disable miniupnp to ease backporting
 CDBS_BUILD_DEPENDS += $(if $(filter noupnp,$(DEB_BUILD_OPTIONS)),,$(comma) libminiupnpc-dev)
-DEB_QMAKE_ARGS += $(if $(filter noupnp,$(DEB_BUILD_OPTIONS)),USE_UPNP=-)
+#DEB_QMAKE_ARGS += $(if $(filter noupnp,$(DEB_BUILD_OPTIONS)),USE_UPNP=-)
 DEB_MAKE_EXTRA_ARGS += $(if $(filter noupnp,$(DEB_BUILD_OPTIONS)),USE_UPNP=-)
 
 # work around build failure with gcc 4.7
@@ -93,16 +92,22 @@ CXXFLAGS += -DNOPCH -DUSE_SSL
 CXXFLAGS += -Wno-unused-variable
 
 # Use optimized miner for amd64 only
-CXXFLAGS += $(if $(filter amd64,$(DEB_HOST_ARCH)),-DFOURWAYSSE2)
+#CXXFLAGS += $(if $(filter amd64,$(DEB_HOST_ARCH)),-DFOURWAYSSE2)
 
 # Fixes some FTBFS, see http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=730423
 # and http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=726989
 XDG_CONFIG_DIRS := $(shell echo $(XDG_CONFIG_DIRS)):/usr/lib/$(DEB_HOST_MULTIARCH)
 export XDF_CONFIG_DIRS
 
+#Build with system libdb and correct boost dir
+DEB_CONFIGURE_EXTRA_FLAGS := --with-incompatible-bdb --with-boost-libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
+
 DEB_INSTALL_EXAMPLES_bitcoind += contrib/debian/examples/*
 DEB_INSTALL_MANPAGES_bitcoind += contrib/debian/manpages/bitcoind.1 contrib/debian/manpages/bitcoin.conf.5
 DEB_INSTALL_MANPAGES_bitcoin-qt += contrib/debian/manpages/bitcoin-qt.1
+
+#Run tests
+DEB_MAKE_CHECK_TARGET = check
 
 # Apparently any recent boost is ok.
 boostver =

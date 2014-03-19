@@ -19,7 +19,10 @@ Build-Depends: cdbs,
  pkg-config,
  qt4-default,
  libqrencode-dev,
- icoutils
+ icoutils,
+ dh-autoreconf,
+ libprotobuf-dev,
+ protobuf-compiler
 Standards-Version: 3.9.4
 Homepage: http://www.bitcoin.org/
 Vcs-Git: git://git.debian.org/git/collab-maint/bitcoin

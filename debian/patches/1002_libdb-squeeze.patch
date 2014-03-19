@@ -6,9 +6,9 @@ Last-Update: 2012-12-21
 
 Index: bitcoin/src/db.cpp
 ===================================================================
---- bitcoin.orig/src/db.cpp	2013-12-09 10:40:19.561949931 -0500
-+++ bitcoin/src/db.cpp	2013-12-09 10:40:19.561949931 -0500
-@@ -82,7 +82,11 @@
+--- bitcoin.orig/src/db.cpp	2014-03-19 15:56:47.594737290 -0400
++++ bitcoin/src/db.cpp	2014-03-19 15:56:47.586737290 -0400
+@@ -89,7 +89,11 @@
      dbenv.set_errfile(fopen(pathErrorFile.string().c_str(), "a")); /// debug
      dbenv.set_flags(DB_AUTO_COMMIT, 1);
      dbenv.set_flags(DB_TXN_WRITE_NOSYNC, 1);
@@ -20,7 +20,7 @@ Index: bitcoin/src/db.cpp
      int ret = dbenv.open(path.string().c_str(),
                       DB_CREATE     |
                       DB_INIT_LOCK  |
-@@ -116,7 +120,11 @@
+@@ -123,7 +127,11 @@
      dbenv.set_lk_max_locks(10000);
      dbenv.set_lk_max_objects(10000);
      dbenv.set_flags(DB_AUTO_COMMIT, 1);

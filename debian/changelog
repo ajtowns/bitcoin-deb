@@ -1,6 +1,11 @@
 bitcoin (0.9.0-1) UNRELEASED; urgency=low
 
   * New upstream release.
+    - autotools build & add BDs for dh-autoreconf,libprotobuf-dev,
+      protobuf-compiler
+  * Refreshed patches
+    - 1003_qmake_cleanup.patch, no longer needed - no longer uses qmake
+    - 1007_libmemenv_hurd.patch, no longer make msync() calls
 
  -- Scott Howard <showard@debian.org>  Wed, 19 Mar 2014 15:37:29 -0400
 

@@ -1,13 +1,15 @@
 Description: Stupify header generating script to not uselessly inspect our git.
 Author: Jonas Smedegaard <dr@jones.dk>
 Last-Update: 2011-12-23
---- a/share/genbuild.sh
-+++ b/share/genbuild.sh
-@@ -11,7 +11,7 @@
-     exit 1
- fi
+Index: bitcoin/share/genbuild.sh
+===================================================================
+--- bitcoin.orig/share/genbuild.sh	2014-03-19 15:54:00.174740726 -0400
++++ bitcoin/share/genbuild.sh	2014-03-19 15:54:39.902739911 -0400
+@@ -15,7 +15,7 @@
  
--if [ -e "$(which git)" ]; then
+ DESC=""
+ LAST_COMMIT_DATE=""
+-if [ -e "$(which git)" -a -d ".git" ]; then
 +if false; then
      # clean 'dirty' status of touched files that haven't been modified
      git diff >/dev/null 2>/dev/null 
