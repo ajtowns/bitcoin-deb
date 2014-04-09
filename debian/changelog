@@ -1,3 +1,9 @@
+bitcoin (0.9.1-2) UNRELEASED; urgency=low
+
+  * Clean left over config.log from failed build (Closes: #743971)
+
+ -- Scott Howard <showard@debian.org>  Wed, 09 Apr 2014 16:47:50 -0400
+
 bitcoin (0.9.1-1) unstable; urgency=low
 
   * New upstream release.
