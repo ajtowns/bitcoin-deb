@@ -103,8 +103,8 @@ CXXFLAGS += -Wno-unused-variable
 XDG_CONFIG_DIRS := $(shell echo $(XDG_CONFIG_DIRS)):/usr/lib/$(DEB_HOST_MULTIARCH)
 export XDF_CONFIG_DIRS
 
-#Build with system libdb and correct boost dir
-DEB_CONFIGURE_EXTRA_FLAGS := --with-incompatible-bdb --with-boost-libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
+#Build with system libdb
+DEB_CONFIGURE_EXTRA_FLAGS := --with-incompatible-bdb #--with-boost-libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
 
 DEB_INSTALL_EXAMPLES_bitcoind += contrib/debian/examples/*
 DEB_INSTALL_MANPAGES_bitcoind += contrib/debian/manpages/bitcoind.1 contrib/debian/manpages/bitcoin.conf.5
