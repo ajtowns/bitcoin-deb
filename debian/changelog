@@ -1,5 +1,6 @@
-bitcoin (0.9.1-2) UNRELEASED; urgency=low
+bitcoin (0.9.2-1) unstable; urgency=medium
 
+  * New upstream release.
   * Clean left over config.log from failed build (Closes: #743971)
   * No longer need to declare multiarch libboost dir, commented out
     from debian/rules
