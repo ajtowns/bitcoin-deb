@@ -4,6 +4,7 @@ bitcoin (0.9.2-1) unstable; urgency=medium
   * Clean left over config.log from failed build (Closes: #743971)
   * No longer need to declare multiarch libboost dir, commented out
     from debian/rules
+  * Refreshed patches, debian/copyright_hints
 
  -- Scott Howard <showard@debian.org>  Wed, 09 Apr 2014 16:47:50 -0400
 

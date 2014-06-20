@@ -40,9 +40,15 @@ Files: INSTALL
  contrib/gitian-descriptors/deps-linux.yml
  contrib/gitian-descriptors/deps-win.yml
  contrib/gitian-descriptors/gitian-linux.yml
+ contrib/gitian-descriptors/gitian-osx-bitcoin.yml
+ contrib/gitian-descriptors/gitian-osx-depends.yml
+ contrib/gitian-descriptors/gitian-osx-native.yml
+ contrib/gitian-descriptors/gitian-osx-qt.yml
  contrib/gitian-descriptors/gitian-win.yml
  contrib/gitian-descriptors/protobuf-win.yml
+ contrib/gitian-descriptors/qt-linux.yml
  contrib/gitian-descriptors/qt-win.yml
+ contrib/gitian-downloader/aschildbach-key.pgp
  contrib/gitian-downloader/bluematt-key.pgp
  contrib/gitian-downloader/devrandom-key.pgp
  contrib/gitian-downloader/gavinandresen-key.pgp
@@ -55,6 +61,7 @@ Files: INSTALL
  contrib/gitian-downloader/wtogami-key.pgp
  contrib/linearize/README.md
  contrib/linearize/example-linearize.cfg
+ contrib/macdeploy/DS_Store
  contrib/macdeploy/README.md
  contrib/macdeploy/background.png
  contrib/macdeploy/fancy.plist
@@ -86,6 +93,7 @@ Files: INSTALL
  debian/bitcoind.examples
  debian/bitcoind.install
  debian/bitcoind.lintian-overrides
+ debian/clean
  debian/compat
  debian/control
  debian/control.in
@@ -106,12 +114,31 @@ Files: INSTALL
  debian/source/format
  debian/watch
  doc/Doxyfile
+ doc/README_osx.txt
  doc/assets-attribution.md
+ doc/bootstrap.md
  doc/build-msw.md
  doc/build-osx.md
  doc/build-unix.md
  doc/coding.md
  doc/files.md
+ doc/gitian-building.md
+ doc/gitian-building/debian_install_10_configure_clock.png
+ doc/gitian-building/debian_install_12_choose_disk.png
+ doc/gitian-building/debian_install_13_partition_scheme.png
+ doc/gitian-building/debian_install_14_finish.png
+ doc/gitian-building/debian_install_15_write_changes.png
+ doc/gitian-building/debian_install_17_choose_a_mirror2.png
+ doc/gitian-building/debian_install_2_select_a_language.png
+ doc/gitian-building/debian_install_3_select_location.png
+ doc/gitian-building/debian_install_4_configure_keyboard.png
+ doc/gitian-building/debian_install_5_configure_the_network.png
+ doc/gitian-building/debian_install_6_domain_name.png
+ doc/gitian-building/debian_install_6a_set_up_root_password.png
+ doc/gitian-building/debian_install_7_set_up_user_fullname.png
+ doc/gitian-building/debian_install_8_set_up_username.png
+ doc/gitian-building/debian_install_9_user_password.png
+ doc/img/bootstrap5.png
  doc/multiwallet-qt.md
  doc/release-notes.md
  doc/release-notes/release-notes-0.3.12.md
@@ -156,25 +183,15 @@ Files: INSTALL
  doc/release-notes/release-notes-0.8.4.md
  doc/release-notes/release-notes-0.8.5.md
  doc/release-notes/release-notes-0.8.6.md
+ doc/release-notes/release-notes-0.9.0.md
  doc/release-process.md
  doc/tor.md
  doc/translation_process.md
  doc/unit-tests.md
- qa/pull-tester/build-tests.sh.in
- qa/pull-tester/pull-tester.py
- qa/pull-tester/pull-tester.sh
- qa/pull-tester/run-bitcoind-for-test.sh.in
  qa/rpc-tests/.gitignore
  qa/rpc-tests/README.md
- qa/rpc-tests/conflictedbalance.sh
- qa/rpc-tests/listtransactions.py
- qa/rpc-tests/send.sh
- qa/rpc-tests/skeleton.py
- qa/rpc-tests/txnmall.sh
- qa/rpc-tests/util.py
- qa/rpc-tests/util.sh
- qa/rpc-tests/wallet.sh
- qa/rpc-tests/walletbackup.sh
+ qa/rpc-tests/python-bitcoinrpc/bitcoinrpc/.gitignore
+ qa/rpc-tests/python-bitcoinrpc/setup.py
  share/certs/BitcoinFoundation_Apple_Cert.pem
  share/certs/BitcoinFoundation_Comodo_Cert.pem
  share/certs/PrivateKeyNotes.md
@@ -208,9 +225,10 @@ Files: INSTALL
  share/qt/make_windows_icon.sh
  share/qt/protobuf.pri
  share/ui.rc
- src/.gitignore
  src/Makefile.am
  src/Makefile.include
+ src/compat/glibc_compat.cpp
+ src/compat/glibcxx_compat.cpp
  src/hash.cpp
  src/leveldb/.gitignore
  src/leveldb/AUTHORS
@@ -263,7 +281,6 @@ Files: INSTALL
  src/qt/res/movies/spinner-010.png
  src/qt/res/movies/spinner-011.png
  src/qt/res/movies/spinner-012.png
- src/qt/res/movies/spinner-013.png
  src/qt/res/movies/spinner-015.png
  src/qt/res/movies/spinner-016.png
  src/qt/res/movies/spinner-017.png
@@ -299,22 +316,8 @@ Files: INSTALL
  src/qt/test/test_main.cpp
  src/qt/test/uritests.cpp
  src/qt/test/uritests.h
- src/test/Checkpoints_tests.cpp
- src/test/DoS_tests.cpp
  src/test/Makefile.am
- src/test/README
- src/test/accounting_tests.cpp
- src/test/alert_tests.cpp
- src/test/allocator_tests.cpp
- src/test/base32_tests.cpp
- src/test/base58_tests.cpp
- src/test/base64_tests.cpp
- src/test/bignum_tests.cpp
- src/test/bip32_tests.cpp
- src/test/bloom_tests.cpp
- src/test/canonical_tests.cpp
- src/test/checkblock_tests.cpp
- src/test/compress_tests.cpp
+ src/test/README.md
  src/test/data/alertTests.raw
  src/test/data/base58_encode_decode.json
  src/test/data/base58_keys_invalid.json
@@ -323,32 +326,142 @@ Files: INSTALL
  src/test/data/script_valid.json
  src/test/data/sig_canonical.json
  src/test/data/sig_noncanonical.json
+ src/test/data/sighash.json
  src/test/data/tx_invalid.json
  src/test/data/tx_valid.json
- src/test/getarg_tests.cpp
- src/test/hash_tests.cpp
- src/test/hmac_tests.cpp
- src/test/key_tests.cpp
- src/test/main_tests.cpp
- src/test/miner_tests.cpp
- src/test/mruset_tests.cpp
- src/test/multisig_tests.cpp
- src/test/netbase_tests.cpp
- src/test/pmt_tests.cpp
- src/test/rpc_tests.cpp
- src/test/rpc_wallet_tests.cpp
- src/test/script_P2SH_tests.cpp
- src/test/script_tests.cpp
- src/test/serialize_tests.cpp
- src/test/sighash_tests.cpp
- src/test/sigopcount_tests.cpp
- src/test/test_bitcoin.cpp
- src/test/transaction_tests.cpp
- src/test/uint256_tests.cpp
- src/test/util_tests.cpp
- src/test/wallet_tests.cpp
 Copyright: *No copyright*
 License: UNKNOWN
+ FIXME
+
+Files: contrib/linearize/linearize.py
+ contrib/pyminer/pyminer.py
+ src/allocators.cpp
+ src/base58.cpp
+ src/bloom.cpp
+ src/bloom.h
+ src/checkpoints.cpp
+ src/checkpoints.h
+ src/checkqueue.h
+ src/coincontrol.h
+ src/coins.cpp
+ src/crypter.cpp
+ src/crypter.h
+ src/key.cpp
+ src/leveldbwrapper.cpp
+ src/leveldbwrapper.h
+ src/limitedmap.h
+ src/mruset.h
+ src/netbase.h
+ src/noui.h
+ src/qt/addressbookpage.cpp
+ src/qt/addressbookpage.h
+ src/qt/addresstablemodel.cpp
+ src/qt/addresstablemodel.h
+ src/qt/askpassphrasedialog.cpp
+ src/qt/askpassphrasedialog.h
+ src/qt/bitcoin.cpp
+ src/qt/bitcoinaddressvalidator.cpp
+ src/qt/bitcoinaddressvalidator.h
+ src/qt/bitcoinamountfield.cpp
+ src/qt/bitcoinamountfield.h
+ src/qt/bitcoingui.cpp
+ src/qt/bitcoingui.h
+ src/qt/bitcoinunits.cpp
+ src/qt/bitcoinunits.h
+ src/qt/clientmodel.cpp
+ src/qt/clientmodel.h
+ src/qt/coincontroldialog.cpp
+ src/qt/coincontroldialog.h
+ src/qt/coincontroltreewidget.cpp
+ src/qt/coincontroltreewidget.h
+ src/qt/csvmodelwriter.cpp
+ src/qt/csvmodelwriter.h
+ src/qt/editaddressdialog.cpp
+ src/qt/editaddressdialog.h
+ src/qt/guiconstants.h
+ src/qt/guiutil.cpp
+ src/qt/guiutil.h
+ src/qt/intro.cpp
+ src/qt/intro.h
+ src/qt/macdockiconhandler.h
+ src/qt/macnotificationhandler.h
+ src/qt/monitoreddatamapper.cpp
+ src/qt/monitoreddatamapper.h
+ src/qt/notificator.cpp
+ src/qt/notificator.h
+ src/qt/openuridialog.cpp
+ src/qt/openuridialog.h
+ src/qt/optionsdialog.cpp
+ src/qt/optionsdialog.h
+ src/qt/optionsmodel.cpp
+ src/qt/optionsmodel.h
+ src/qt/overviewpage.cpp
+ src/qt/overviewpage.h
+ src/qt/paymentrequestplus.cpp
+ src/qt/paymentrequestplus.h
+ src/qt/paymentserver.cpp
+ src/qt/paymentserver.h
+ src/qt/qvalidatedlineedit.cpp
+ src/qt/qvalidatedlineedit.h
+ src/qt/qvaluecombobox.cpp
+ src/qt/qvaluecombobox.h
+ src/qt/receivecoinsdialog.cpp
+ src/qt/receivecoinsdialog.h
+ src/qt/receiverequestdialog.cpp
+ src/qt/receiverequestdialog.h
+ src/qt/recentrequeststablemodel.cpp
+ src/qt/recentrequeststablemodel.h
+ src/qt/rpcconsole.cpp
+ src/qt/rpcconsole.h
+ src/qt/sendcoinsdialog.cpp
+ src/qt/sendcoinsdialog.h
+ src/qt/sendcoinsentry.cpp
+ src/qt/sendcoinsentry.h
+ src/qt/signverifymessagedialog.cpp
+ src/qt/signverifymessagedialog.h
+ src/qt/splashscreen.h
+ src/qt/trafficgraphwidget.cpp
+ src/qt/trafficgraphwidget.h
+ src/qt/transactiondesc.cpp
+ src/qt/transactiondesc.h
+ src/qt/transactiondescdialog.cpp
+ src/qt/transactiondescdialog.h
+ src/qt/transactionfilterproxy.cpp
+ src/qt/transactionfilterproxy.h
+ src/qt/transactionrecord.cpp
+ src/qt/transactionrecord.h
+ src/qt/transactiontablemodel.cpp
+ src/qt/transactiontablemodel.h
+ src/qt/transactionview.cpp
+ src/qt/transactionview.h
+ src/qt/utilitydialog.h
+ src/qt/walletframe.cpp
+ src/qt/walletframe.h
+ src/qt/walletmodel.cpp
+ src/qt/walletmodel.h
+ src/qt/walletmodeltransaction.cpp
+ src/qt/walletmodeltransaction.h
+ src/qt/walletview.cpp
+ src/qt/walletview.h
+ src/qt/winshutdownmonitor.cpp
+ src/qt/winshutdownmonitor.h
+ src/rpcdump.cpp
+ src/rpcnet.cpp
+ src/sync.cpp
+ src/version.cpp
+ src/version.h
+Copyright: 2009-2013, The Bitcoin developers
+  2009-2014, The Bitcoin developers
+  2011, The Bitcoin developers
+  2011-2012, The Bitcoin developers
+  2011-2013, The Bitcoin developers
+  2011-2014, The Bitcoin developers
+  2012, The Bitcoin developers
+  2012-2013, The Bitcoin developers
+  2012-2014, The Bitcoin developers
+  2013, The Bitcoin developers
+  2014, The Bitcoin developers
+License: Expat
  FIXME
 
 Files: src/leveldb/db/autocompact_test.cc
@@ -474,133 +587,6 @@ Copyright: 2011, The LevelDB Authors.
 License: UNKNOWN
  FIXME
 
-Files: contrib/linearize/linearize.py
- contrib/pyminer/pyminer.py
- src/allocators.cpp
- src/bloom.cpp
- src/bloom.h
- src/checkpoints.cpp
- src/checkpoints.h
- src/checkqueue.h
- src/coincontrol.h
- src/coins.cpp
- src/crypter.cpp
- src/crypter.h
- src/key.cpp
- src/leveldbwrapper.cpp
- src/leveldbwrapper.h
- src/limitedmap.h
- src/mruset.h
- src/netbase.h
- src/noui.h
- src/qt/addressbookpage.cpp
- src/qt/addressbookpage.h
- src/qt/addresstablemodel.cpp
- src/qt/addresstablemodel.h
- src/qt/askpassphrasedialog.cpp
- src/qt/askpassphrasedialog.h
- src/qt/bitcoin.cpp
- src/qt/bitcoinaddressvalidator.cpp
- src/qt/bitcoinaddressvalidator.h
- src/qt/bitcoinamountfield.cpp
- src/qt/bitcoinamountfield.h
- src/qt/bitcoingui.cpp
- src/qt/bitcoingui.h
- src/qt/bitcoinunits.cpp
- src/qt/bitcoinunits.h
- src/qt/clientmodel.cpp
- src/qt/clientmodel.h
- src/qt/coincontroldialog.cpp
- src/qt/coincontroldialog.h
- src/qt/coincontroltreewidget.cpp
- src/qt/coincontroltreewidget.h
- src/qt/csvmodelwriter.cpp
- src/qt/csvmodelwriter.h
- src/qt/editaddressdialog.cpp
- src/qt/editaddressdialog.h
- src/qt/guiconstants.h
- src/qt/guiutil.cpp
- src/qt/guiutil.h
- src/qt/intro.cpp
- src/qt/intro.h
- src/qt/macdockiconhandler.h
- src/qt/macnotificationhandler.h
- src/qt/monitoreddatamapper.cpp
- src/qt/monitoreddatamapper.h
- src/qt/notificator.cpp
- src/qt/notificator.h
- src/qt/openuridialog.cpp
- src/qt/openuridialog.h
- src/qt/optionsdialog.cpp
- src/qt/optionsdialog.h
- src/qt/optionsmodel.cpp
- src/qt/optionsmodel.h
- src/qt/overviewpage.cpp
- src/qt/overviewpage.h
- src/qt/paymentrequestplus.cpp
- src/qt/paymentrequestplus.h
- src/qt/paymentserver.cpp
- src/qt/paymentserver.h
- src/qt/qvalidatedlineedit.cpp
- src/qt/qvalidatedlineedit.h
- src/qt/qvaluecombobox.cpp
- src/qt/qvaluecombobox.h
- src/qt/receivecoinsdialog.cpp
- src/qt/receivecoinsdialog.h
- src/qt/receiverequestdialog.cpp
- src/qt/receiverequestdialog.h
- src/qt/recentrequeststablemodel.cpp
- src/qt/recentrequeststablemodel.h
- src/qt/rpcconsole.cpp
- src/qt/rpcconsole.h
- src/qt/sendcoinsdialog.cpp
- src/qt/sendcoinsdialog.h
- src/qt/sendcoinsentry.cpp
- src/qt/sendcoinsentry.h
- src/qt/signverifymessagedialog.cpp
- src/qt/signverifymessagedialog.h
- src/qt/splashscreen.h
- src/qt/trafficgraphwidget.cpp
- src/qt/trafficgraphwidget.h
- src/qt/transactiondesc.cpp
- src/qt/transactiondesc.h
- src/qt/transactiondescdialog.cpp
- src/qt/transactiondescdialog.h
- src/qt/transactionfilterproxy.cpp
- src/qt/transactionfilterproxy.h
- src/qt/transactionrecord.cpp
- src/qt/transactionrecord.h
- src/qt/transactiontablemodel.cpp
- src/qt/transactiontablemodel.h
- src/qt/transactionview.cpp
- src/qt/transactionview.h
- src/qt/utilitydialog.h
- src/qt/walletframe.cpp
- src/qt/walletframe.h
- src/qt/walletmodel.cpp
- src/qt/walletmodel.h
- src/qt/walletmodeltransaction.cpp
- src/qt/walletmodeltransaction.h
- src/qt/walletview.cpp
- src/qt/walletview.h
- src/rpcdump.cpp
- src/rpcnet.cpp
- src/sync.cpp
- src/version.cpp
- src/version.h
-Copyright: 2009-2013, The Bitcoin developers
-  2009-2014, The Bitcoin developers
-  2011, The Bitcoin developers
-  2011-2012, The Bitcoin developers
-  2011-2013, The Bitcoin developers
-  2011-2014, The Bitcoin developers
-  2012, The Bitcoin developers
-  2012-2013, The Bitcoin developers
-  2012-2014, The Bitcoin developers
-  2013, The Bitcoin developers
-License: Expat
- FIXME
-
 Files: src/alert.cpp
  src/alert.h
  src/allocators.h
@@ -682,11 +668,10 @@ Files: src/bitcoin-cli-res.rc
  src/qt/locale/bitcoin_cy.ts
  src/qt/locale/bitcoin_da.ts
  src/qt/locale/bitcoin_de.ts
- src/qt/locale/bitcoin_de_AT.ts
  src/qt/locale/bitcoin_el_GR.ts
  src/qt/locale/bitcoin_en.ts
  src/qt/locale/bitcoin_eo.ts
- src/qt/locale/bitcoin_es_MX.ts
+ src/qt/locale/bitcoin_es_CL.ts
  src/qt/locale/bitcoin_es_UY.ts
  src/qt/locale/bitcoin_et.ts
  src/qt/locale/bitcoin_eu_ES.ts
@@ -696,6 +681,7 @@ Files: src/bitcoin-cli-res.rc
  src/qt/locale/bitcoin_hr.ts
  src/qt/locale/bitcoin_hu.ts
  src/qt/locale/bitcoin_id_ID.ts
+ src/qt/locale/bitcoin_it.ts
  src/qt/locale/bitcoin_ja.ts
  src/qt/locale/bitcoin_ka.ts
  src/qt/locale/bitcoin_kk_KZ.ts
@@ -703,7 +689,9 @@ Files: src/bitcoin-cli-res.rc
  src/qt/locale/bitcoin_la.ts
  src/qt/locale/bitcoin_lt.ts
  src/qt/locale/bitcoin_lv_LV.ts
+ src/qt/locale/bitcoin_mn.ts
  src/qt/locale/bitcoin_ms_MY.ts
+ src/qt/locale/bitcoin_nb.ts
  src/qt/locale/bitcoin_nl.ts
  src/qt/locale/bitcoin_pam.ts
  src/qt/locale/bitcoin_pl.ts
@@ -727,6 +715,68 @@ Copyright: *No copyright*
 License: Expat
  FIXME
 
+Files: qa/pull-tester/build-tests.sh.in
+ qa/pull-tester/pull-tester.py
+ qa/pull-tester/pull-tester.sh
+ qa/pull-tester/run-bitcoind-for-test.sh.in
+ qa/rpc-tests/conflictedbalance.sh
+ qa/rpc-tests/listtransactions.py
+ qa/rpc-tests/send.sh
+ qa/rpc-tests/skeleton.py
+ qa/rpc-tests/txnmall.sh
+ qa/rpc-tests/util.py
+ qa/rpc-tests/util.sh
+ qa/rpc-tests/wallet.sh
+ qa/rpc-tests/walletbackup.sh
+ src/qt/macdockiconhandler.mm
+ src/qt/macnotificationhandler.mm
+ src/test/Checkpoints_tests.cpp
+ src/test/DoS_tests.cpp
+ src/test/accounting_tests.cpp
+ src/test/alert_tests.cpp
+ src/test/allocator_tests.cpp
+ src/test/base32_tests.cpp
+ src/test/base58_tests.cpp
+ src/test/base64_tests.cpp
+ src/test/bignum_tests.cpp
+ src/test/bip32_tests.cpp
+ src/test/bloom_tests.cpp
+ src/test/canonical_tests.cpp
+ src/test/checkblock_tests.cpp
+ src/test/compress_tests.cpp
+ src/test/data/README.md
+ src/test/getarg_tests.cpp
+ src/test/hash_tests.cpp
+ src/test/hmac_tests.cpp
+ src/test/key_tests.cpp
+ src/test/main_tests.cpp
+ src/test/miner_tests.cpp
+ src/test/mruset_tests.cpp
+ src/test/multisig_tests.cpp
+ src/test/netbase_tests.cpp
+ src/test/pmt_tests.cpp
+ src/test/rpc_tests.cpp
+ src/test/rpc_wallet_tests.cpp
+ src/test/script_P2SH_tests.cpp
+ src/test/script_tests.cpp
+ src/test/serialize_tests.cpp
+ src/test/sighash_tests.cpp
+ src/test/sigopcount_tests.cpp
+ src/test/test_bitcoin.cpp
+ src/test/transaction_tests.cpp
+ src/test/uint256_tests.cpp
+ src/test/util_tests.cpp
+ src/test/wallet_tests.cpp
+Copyright: 2011-2013, The Bitcoin Core developers
+  2011-2014, The Bitcoin Core developers
+  2012-2013, The Bitcoin Core developers
+  2012-2014, The Bitcoin Core developers
+  2013, The Bitcoin Core developers
+  2013-2014, The Bitcoin Core developers
+  2014, The Bitcoin Core developers
+License: Expat
+ FIXME
+
 Files: src/json/json_spirit.h
  src/json/json_spirit_error_position.h
  src/json/json_spirit_reader.cpp
@@ -739,6 +789,14 @@ Files: src/json/json_spirit.h
  src/json/json_spirit_writer.h
  src/json/json_spirit_writer_template.h
 Copyright: John W. Wilkinson 2007, - 2009
+License: UNKNOWN
+ FIXME
+
+Files: doc/gitian-building/create_vm_file_location_size.png
+ doc/gitian-building/create_vm_storage_physical_hard_drive.png
+ doc/img/bootstrap2.png
+ share/setup.nsi.in
+Copyright: 
 License: UNKNOWN
  FIXME
 
@@ -770,16 +828,15 @@ Copyright: 2012, Pieter Wuille
 License: Expat
  FIXME
 
-Files: src/qt/macdockiconhandler.mm
- src/qt/macnotificationhandler.mm
-Copyright: 2011-2013, The Bitcoin Core developers
+Files: contrib/devtools/symbol-check.py
+ contrib/devtools/update-translations.py
+Copyright: 2014, Wladimir J. van der Laan
 License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_es.ts
  src/qt/locale/bitcoin_es_DO.ts
 Copyright: de acuerdo.</translation>
-  de la base de datos en megabytes (predeterminado: 25)</translation>
 License: Expat
  FIXME
 
@@ -807,6 +864,7 @@ Copyright: ! Ceci peut Ãªtre causÃ par un fichier de demande de paiement invalid
   !</translation>
   %1 blocs de l&apos;historique des transactions.</translation>
   %1 blocs sur %2 (estimÃs) de l&apos;historique des transactions.</translation>
+  (l&apos;Ãcoute a retournÃ l&apos;erreur %d)</translation>
   (par dÃfautÂ : 100)</translation>
   (par dÃfautÂ : 86400)</translation>
   (par ex. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
@@ -823,12 +881,16 @@ Copyright: ! Ceci peut Ãªtre causÃ par un fichier de demande de paiement invalid
   d&apos;utiliser une nouvelle adresse de rÃception pour chaque transaction.</translation>
   dans %n bloc de plus</numerusform><numerusform>arrive Ã  maturitÃ dans %n blocs de plus</numerusform></translation>
   dans ce rÃpertoire.</translation>
+  dans l&apos;index des blocs</translation>
   de blocs</translation>
+  de la base de donnÃes de la mÃmoire vers le journal sur disque tous les &lt;n&gt; mÃgaoctets (par dÃfaut : 100)</translation>
   de rÃgler alertnotify pour Ãªtre prÃvenu des problÃ¨mes ;
+  des transactions et les frais par ko lors du minage (par dÃfaut : 0) </translation>
   deviendront inutilisables dÃ¨s que vous commencerez Ã  utiliser le nouveau portefeuille chiffrÃ.</translation>
   diffusÃe avec succÃ¨s</translation>
   en raison d&apos;une erreur interne. Votre portefeuille n&apos;a pas ÃtÃ chiffrÃ.</translation>
   en tant que frais de transaction</translation>
+  en toute sÃcuritÃ...</translation>
   enregistrÃ en tant que wallet.{timestamp}.bak dans %s ; si votre solde ou transactions sont incorrects vous devriez effectuer une restauration depuis une sauvegarde.</translation>
   enregistrÃes avec succÃ¨s vers %1</translation>
   est activÃe.</translation>
@@ -838,6 +900,7 @@ Copyright: ! Ceci peut Ãªtre causÃ par un fichier de demande de paiement invalid
   gÃnÃrÃ il y a %1.</translation>
   ignorÃ, utiliser -debug=net</translation>
   l&apos;erreur %d, %s)</translation>
+  la dÃpense de la monnaie non confirmÃe, la monnaie d&apos;une transaction ne peut pas Ãªtre utilisÃe tant que cette transaction n&apos;a pas reÃ§u au moins une confirmation. Ceci affecte aussi comment votre solde est calculÃ.</translation>
   lues correctement mais les donnÃes de transaction ou les entrÃes du carnet d&apos;adresses sont peut-Ãªtre incorrectes ou manquantes.</translation>
   mais pas acceptÃ</translation>
   modifiÃe avec succÃ¨s.</translation>
@@ -846,6 +909,7 @@ Copyright: ! Ceci peut Ãªtre causÃ par un fichier de demande de paiement invalid
   ou enlevÃ au solde.</translation>
   par Thomas Bernard.</translation>
   par dÃfaut pour l&apos;affichage dans l&apos;interface et lors de l&apos;envoi de piÃ¨ces.</translation>
+  par le hachage de la transaction. Les URL multiples sont sÃparÃes par une barre verticale |.</translation>
   par le hachage du bloc)</translation>
   par le message)</translation>
   par une adresse Bitcoin invalide ou par des paramÃ¨tres d&apos;URI mal composÃ.</translation>
@@ -870,107 +934,249 @@ Copyright: ! Ceci peut Ãªtre causÃ par un fichier de demande de paiement invalid
 License: Expat
  FIXME
 
+Files: src/qt/locale/bitcoin_ar.ts
+Copyright: &amp;Ù…Ø³ØªÙ„Ù…</translation>
+  &lt;b&gt;Ù…Ø´ÙØ±Ø&lt;/b&gt; Ùˆ &lt;b&gt;Ù…ÙØªÙˆØ­Ø&lt;/b&gt; Ø­Ø§Ù„ÙŠØ§</translation>
+  &lt;b&gt;Ù…Ø´ÙØ±Ø&lt;/b&gt; Ùˆ &lt;b&gt;Ù…Ù‚ÙÙ„Ø&lt;/b&gt; Ø­Ø§Ù„ÙŠØ§</translation>
+  (Block) Ù…Ù† Ù‚Ø¨Ù„ Ø£ÙŠ Ø§Ù„Ø¹Ù‚Ø¯ Ø§Ù„Ø£Ø®Ø±Ù‰ ÙˆØ±Ø¨Ù…Ø§ Ù„Ù† ØªÙƒÙˆÙ† Ù…Ù‚Ø¨ÙˆÙ„Ø!</translation>
+  ...</translation>
+  1% Ø±Ø³ÙˆÙ… Ø§Ù„Ø¹Ù…Ù„ÙŠØ</translation>
+  2% Ø¯Ù‚ÙŠÙ‚Ø</translation>
+  :</translation>
+  </translation>
+  Ø§Ø­ØªÙŠØ§Ø·ÙŠØ Ù„Ù„Ù…Ø­ÙØ¸Ø ÙÙŠ Ù…ÙƒØ§Ù† Ø¢Ø®Ø±</translation>
+  Ø§Ø®Ø±Ù‰</translation>
+  Ø§Ù„ØªØ£ÙƒØ¯ Ù…Ù† Ø§Ù„Ø±Ø³Ø§Ù„Ø.</translation>
+  Ø§Ù„ØªØ´ÙÙŠØ±. ØªØ°ÙƒØ± Ø£Ù† Ø§Ù„ØªØ´ÙÙŠØ± Ù„Ø§ ÙŠØ³ØªØ·ÙŠØ¹ Ø­Ù…Ø§ÙŠØ Ù…Ø­ÙØ¸ØªÙƒ ØªÙ…Ø§Ù…Ù‹Ø§ Ù…Ù† Ø§Ù„Ø³Ø±Ù‚Ø Ù…Ù† Ø®Ù„Ø§Ù„ Ø§Ù„Ø¨Ø±Ù…Ø¬ÙŠØ§Øª Ø§Ù„Ø®Ø¨ÙŠØ«Ø Ø§Ù„ØªÙŠ ØªØµÙŠØ¨ Ø¬Ù‡Ø§Ø²Ùƒ </translation>
+  Ø§Ù„ØªÙŠ ØªØ±ÙŠØ¯ ØªÙˆÙ‚ÙŠØ¹Ù‡Ø§ Ù‡Ù†Ø§</translation>
+  Ø§Ù„Ø®ÙŠØ§Ø±Ø§Øª</translation>
+  Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ</translation>
+  Ø§Ù„Ø³Ø±ÙŠØ¹Ø QR</translation>
+  Ø§Ù„ØµÙÙ‚Ø</translation>
+  Ø§Ù„Ø¹Ù…Ù„ÙŠØ Ø¨Ø§Ù„Ù…ÙˆØ¬Ø¨</translation>
+  Ø§Ù„Ø¹Ù…Ù„ÙŠØ ØµØºÙŠØ±Ù‡ Ø¬Ø¯Ø§</translation>
+  Ø§Ù„Ø¹Ù†Ø§ÙˆÙŠÙ†</translation>
+  Ø§Ù„Ø¹Ù†ÙˆØ§Ù† Ø§Ù„Ø§ÙØªØ±Ø§Ø¶ÙŠ</translation>
+  Ø§Ù„Ù‚Ø±Øµ Ù…Ù†Ø®ÙØ¶Ø</translation>
+  Ø§Ù„Ù…Ø±ÙˆØ± Ø§Ù„ØªÙŠ ØªÙ… Ø¥Ø¯Ø®Ø§Ù„Ù‡Ø§ Ù„ÙÙƒ ØªØ´ÙÙŠØ± Ø§Ù„Ù…Ø­ÙØ¸Ø ØºÙŠØ± ØµØ­ÙŠØ­Ø.</translation>
+  Ø§Ù„Ù…Ø±ÙˆØ± Ø§Ù„Ø¬Ø¯ÙŠØ¯Ø Ù…Ø±Ø Ø£Ø®Ø±Ù‰</translation>
+  Ø§Ù„Ù…Ø±ÙˆØ± Ø§Ù„Ù‚Ø¯ÙŠÙ…Ø ÙˆØ§Ù„Ø¬Ø¯ÙŠØ¯Ø Ù„Ù„Ù…Ø­ÙØ¸Ø.</translation>
+  Ø§Ù„Ù…Ø±ÙˆØ± Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…Ø Ù„ØªØ´ÙÙŠØ± Ø§Ù„Ù…Ø­ÙØ¸Ø</translation>
+  Ø§Ù„Ù…Ø±ÙˆØ±</translation>
+  Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯Ø Ù‡Ø°Ù‡</translation>
+  Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… &amp;Ø§Ù„Ù„ØºØ:</translation>
+  Ø§Ù„Ù…Ø¹Ø§Ù„Ø¬Ø</translation>
+  Ø§Ù„Ù…Ø¹Ø§Ù…Ù„Ø. ØªØ­ÙˆÙ… Ø­ÙˆÙ„ Ù‡Ø°Ø§ Ø§Ù„Ø­Ù‚Ù„ Ù„Ø¹Ø±Ø¶ Ø¹Ø¯Ø¯ Ø§Ù„ØªØ£ÙƒÙŠØ¯Ø§Øª.</translation>
+  Ø§Ù„Ù…Ø¹Ø§Ù…Ù„Ø</translation>
+  Ø§Ù„Ù…ÙØ§ØªÙŠØ­</translation>
+  Ø§Ù„Ù‰ 1%Ù‚ÙŠÙ‚Ø§ Ø¨Ø§ÙŠØª )</translation>
+  Ø¨Ø³Ø¨Ø¨ Ø®Ø·Ø£ Ø¯Ø§Ø®Ù„ÙŠ. Ù„Ù… ÙŠØªÙ… ØªØ´ÙÙŠØ± Ù…Ø­ÙØ¸ØªÙƒ.</translation>
+  ØªØ§Ù„ÙØ</translation>
+  ØªØªØ¬Ø§ÙˆØ² Ø±ØµÙŠØ¯Ùƒ</translation>
+  ØªØªØ·Ù„Ø¨ Ù†Ø³Ø®Ø Ø£Ø­Ø¯Ø« Ù…Ù† Ø¨ØªÙƒÙˆÙŠÙ†</translation>
+  ØªØ­ØªØ§Ø¬ ÙƒÙ„Ù…Ø Ù…Ø±ÙˆØ± Ù…Ø­ÙØ¸ØªÙƒ Ù„ÙØªØ­Ù‡Ø§</translation>
+  ØªØ­ØªØ§Ø¬ ÙƒÙ„Ù…Ø Ù…Ø±ÙˆØ± Ù…Ø­ÙØ¸ØªÙƒ Ù„ÙÙƒ ØªØ´ÙÙŠØ±Ù‡Ø§ </translation>
+  ØªØ­ØªØ§Ø¬ Ù„Ø¥Ø¹Ø§Ø¯Ø Ø¥Ù†Ø´Ø§Ø¡: Ø£Ø¹Ø¯ ØªØ´ØºÙŠÙ„ Ø¨ØªÙƒÙˆÙŠÙ† Ù„Ù„Ø¥ØªÙ…Ø§Ù…</translation>
+  Ø³ÙŠØ¦Ø Ù…Ù† Ø§Ù„Ù…Ù„Ù‚Ù…Ùª 1</translation>
+  Ø·ÙˆÙŠÙ„Ø Ø¬Ø¯Ø§</translation>
+  Ø¹Ø§Ù…Ø Ø¹Ù„Ù‰ Ø§Ù„Ù…Ø­ÙØ¸Ø</translation>
+  Ø¹Ø§Ù…Ø</translation>
+  ØºÙŠØ± ØµØ­ÙŠØ­Ø</translation>
+  ÙØªØ­ Ø§Ù„Ù…Ø­ÙØ¸Ø</translation>
+  ÙÙŠ ÙƒØªØ§Ø¨Ø Ø§Ù„Ø§ÙˆØ§Ù…Ø±</translation>
+  Ù„ØªØ«Ø¨Øª Ø§Ù†Ùƒ ØªÙ…ØªÙ„Ùƒ Ø¹Ù†ÙˆØ§Ù† Ø§Ù„Ø¨Øª ÙƒÙˆÙŠÙ† Ù‡Ø°Ø§</translation>
+  Ù„Ø­Ø§ÙØ¸Ø Ø§Ù„Ù†Ø¸Ø§Ù…</translation>
+  Ù„Ù„Ù†Ø³Ø®Ø Ø§Ù„Ø§Ø®ÙŠØ±Ø</translation>
+  Ù„Ù‡Ø°Ø§ Ø§Ù„Ø¹Ù†ÙˆØ§Ù† Ù„Ø¥Ø¶Ø§ÙØªÙ‡ Ø¥Ù„Ù‰ Ø¯ÙØªØ± Ø§Ù„Ø¹Ù†Ø§ÙˆÙŠÙ† Ø§Ù„Ø®Ø§Øµ Ø¨Ùƒ</translation>
+  Ù…ØªØ§Ø­Ø</translation>
+  Ù…Ø±Ø Ø§Ø®Ø±Ù‰</translation>
+  Ù…Ø±ÙˆØ± Ø§Ù„Ø´Ø¨ÙƒØ</translation>
+  Ù…Ø±ÙˆØ± Ø¬Ø¯ÙŠØ¯Ø Ù„Ù„Ù…Ø­ÙØ¸Ø. &lt;br/&gt;Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ø³ØªØ®Ø¯Ø§Ù… ÙƒÙ„Ù…Ø Ù…Ø±ÙˆØ± ØªØªÙƒÙˆÙ† &lt;b&gt;Ù…Ù† 10 Ø­Ø±ÙˆÙ Ø¹Ø´ÙˆØ§Ø¦ÙŠØ Ø¹Ù„Ù‰ Ø§Ù„Ø§Ù‚Ù„&lt;/b&gt;, Ø£Ùˆ &lt;b&gt;Ø£ÙƒØ«Ø± Ù…Ù† 7 ÙƒÙ„Ù…Ø§Øª&lt;/b&gt;. </translation>
+  Ù…Ø±ÙˆØ± Ø¬Ø¯ÙŠØ¯Ø</translation>
+  Ù…Ø³ØªÙ„Ù…ÙŠÙ† ÙÙŠ ÙˆÙ‚Øª ÙˆØ§Ø­Ø¯</translation>
+  Ù…Ø³Ø­</translation>
+  Ù…Ø´ÙØ±Ø</translation>
+  Ù…Ø¹ Ø§Ù„Ø´Ø¨ÙƒØ ...</translation>
+  Ù…ØºÙ„Ù‚Ø , Ù„Ø§ ØªØ³ØªØ·ÙŠØ¹ ØªÙ†ÙÙŠØ° Ø§Ù„Ù…Ø¹Ø§Ù…Ù„Ø</translation>
+  Ù…ÙØ¹Ù„</translation>
+  Ù…ÙˆÙ‚Ø¹Ø.</translation>
+License: Expat
+ FIXME
+
 Files: src/qt/locale/bitcoin_sk.ts
 Copyright: %1 transakÄnÃ poplatky.</translation>
+  %1</translation>
+  %d)</translation>
   &amp;poplatky</translation>
   (%1 potvrdenÃ­)</translation>
-  (%1 z %2 potvrdenÃ­)</translation>
+  (%1 potvrdenÃ­, bude k dispozÃ­cii po %2)</translation>
+  (pre preposielanie) (prednastavenÃ:</translation>
+  (pre vytvorenie transakcie) (prednastavenÃ:</translation>
+  -system-)</translation>
+  0)</translation>
+  0, uvÃ¡dzanie &lt;category&gt; je voliteÄ¾nÃ)</translation>
+  1 ak bez -debug)</translation>
+  1 ak Å¾iadne -proxy alebo -connect)</translation>
+  1 okrem -connect)</translation>
+  1 pri poÄÃºvanÃ­/listening a Å¾iadnej -externalip)</translation>
   1)</translation>
   100)</translation>
+  1000)</translation>
   125)</translation>
   127.0.0.1)</translation>
-  25)</translation>
+  15)</translation>
+  288, 0 = vÅ¡etky)</translation>
+  4)</translation>
+  5)</translation>
   5000)</translation>
+  50000)</translation>
+  8332, alebo testnet: 18332)</translation>
   8332, or testnet: 18332)</translation>
   8333, alebo testovacia sieÅ¥: 18333)</translation>
   86400)</translation>
   </translation>
   URI prÃ­liÅ¡ dlhÃ, skrÃ¡Å¥ text pre nÃ¡zov
   a novÃ heslo k peÅˆaÅ¾enke.</translation>
+  aj neplatnÃ½m sÃºborom s vÃ½zvou.</translation>
+  ako dvoj-klik na zÃ¡znam)</translation>
   ako transakÄnÃ½ poplatok</translation>
+  ale adresa pre vÃ½davok je prÃ¡zdna alebo neplatnÃ¡, vÃ½davok bude poslanÃ½ na novovytvorenÃº adresu.</translation>
   ale neakceptovanÃ</translation>
+  ale transakÄnÃ dÃ¡ta alebo zÃ¡znamy v adresÃ¡ri mÃ´Å¾u byÅ¥ nesprÃ¡vne.</translation>
   bitcoin.conf)</translation>
   bitcoind.pid)</translation>
+  bloky -checkblocks (0-4, prednastavenÃ: 3)</translation>
+  body zhodnÃ s blockchain (prednastavenÃ: 1)</translation>
+  coins musia dospieÅ¥ %1 blokov kÃ½m mÃ´Å¾u byÅ¥ minutÃ. KeÄ vytvorÃ­te tento blok, bude rozoslanÃ½ do siete aby bol akceptovanÃ½ do reÅ¥aze blokov. Ak sa nedostane reÅ¥aze, jeho stav sa zmenÃ­ na &quot;zamietnutÃ½&quot; a nebude sa daÅ¥ minÃºÅ¥. Toto sa mÃ´Å¾e obÄas staÅ¥ ak inÃ¡ nÃ³da vytvorÃ­ blok pribliÅ¾ne v tom istom Äase.</translation>
+  coins vo vaÅ¡ej peÅˆaÅ¾enke uÅ¾ boli minutÃ, ako keÄ pouÅ¾ijete kÃ³piu wallet.dat a coins boli minutÃ z kÃ³pie ale neoznaÄenÃ ako minutÃ tu.</translation>
   dekÃ³dovaÅ¥.</translation>
+  do %1.</translation>
   do %1</translation>
+  eÅ¡te neboli potvrdenÃ a eÅ¡te sa nepoÄÃ­tajÃº do disponibilnÃho zostatku</translation>
+  generovanie (-1 = bez obmedzenia, prednastavenÃ: -1)</translation>
   heslo k peÅˆaÅ¾enke.&lt;br/&gt;ProsÃ­m pouÅ¾ite heslo s dÄºÅ¾kou aspon &lt;b&gt;10 alebo viac nÃ¡hodnÃ½ch znakov&lt;/b&gt;, alebo &lt;b&gt;8 alebo viac slov&lt;/b&gt;.</translation>
   heslo pre deÅ¡ifrovanie peÅˆaÅ¾enky bolo nesprÃ¡vne.</translation>
+  heslo:
   heslo</translation>
   heslÃ¡ nesÃºhlasia.</translation>
+  informÃ¡cie mÃ´Å¾u byÅ¥ neaktuÃ¡pne. VaÅ¡a peÅˆaÅ¾enka sa automaticky synchronizuje so sieÅ¥ou Bitcoin po nadviazanÃ­ spojenia ale tento proces eÅ¡te nieje ukonÄenÃ½.</translation>
+  je potrebnÃ pre vyzvu na zaplatenie cez proxy.</translation>
+  kÃ³pie peÅˆaÅ¾enky ktorÃ ste zhotovili by mali byÅ¥ nahradenÃ novÃ½m zaÅ¡ifrovanÃ½m sÃºborom s peÅˆaÅ¾enkou. Z bezpeÄnostnÃ½ch dÃ´vodov sa predchÃ¡dzajÃºce kÃ³pie nezaÅ¡ifrovanej peÅˆaÅ¾enky stanÃº neuÅ¾itoÄnÃ keÄ zaÄnete pouÅ¾Ã­vaÅ¥ novÃº zaÅ¡ifrovanÃº peÅˆaÅ¾enku.</translation>
+  kÄ¾ÃºÄe ktorÃ patria do vaÅ¡ej peÅˆaÅ¾enky</translation>
+  kÄ¾ÃºÄe z poÅ¡kodenÃho wallet.dat</translation>
+  len pre majiteÄ¾a
+  meno a heslo NESMÃš byÅ¥ rovnakÃ
   meno pre JSON-RPC spojenia</translation>
   miesto</translation>
   na Å¡ifrovanie peÅˆaÅ¾enky</translation>
   na</translation>
   naÄÃ­tavanie</translation>
+  neplatou Bitcoin adresou alebo zle upravenÃ½mi vlastnosÅ¥ami URI.</translation>
+  nesprÃ¡vne, Bitcoin nebude sprÃ¡vne pracovaÅ¥.</translation>
+  nÃ¡strojom pre regresnÃ testovania a vÃ½voj programu.</translation>
+  nÃ³dy potrebujÃº vyÅ¡Å¡iu verziu.</translation>
+  o sÃºbore</translation>
   od:</translation>
   okno</translation>
+  platobnÃ vÃ½zvy na vlastnÃ¡ skripty.</translation>
+  po reÅ¡tartovanÃ­ Bitcoin.</translation>
   poslaÅ¥ na kaÅ¾dÃº adresu len raz v jednej odchÃ¡dzajÃºcej transakcii.</translation>
+  pouÅ¾iÅ¥ aÅ¾ keÄ danÃ¡ transakcia bude maÅ¥ aspoÅˆ jedno potvrdenie. Toto mÃ¡ vplyv aj na vÃ½poÄet vÃ¡Å¡ho zostatku.</translation>
+  pre eÅ¡te %1 blok</numerusform><numerusform>OtvorenÃ pre %n viac blokov </numerusform><numerusform>OtvorenÃ pre %n blokov</numerusform></translation>
   prehÄ¾adÃ¡vanie...</translation>
   prejsÅ¥ na niÅ¾Å¡iu verziu peÅˆaÅ¾enky</translation>
   prepÃ­saÅ¥ peÅˆaÅ¾enku: dokonÄite reÅ¡tartovanÃ­m Bitcoin</translation>
+  prepÃ­Å¡u moÅ¾nosti vyÅ¡Å¡ie:</translation>
+  proxy)</translation>
   prÃ¡va</translation>
+  riziko - nepouÅ¾Ã­vajte na tvorbu bitcoin ani obchodovanie.</translation>
   s</translation>
+  sa zobrazujÃº v zÃ¡loÅ¾ke transakciÃ­ ako poloÅ¾ky kontextovÃho menu. %s v URL je nahradenÃ hash-om transakcie. ViacerÃ URL sÃº oddelenÃ zvislou Äiarou |.</translation>
   server.cert)</translation>
   server.pem)</translation>
+  sluÅ¾by (prednastavenÃ: -proxy)</translation>
   sprÃ¡vu.</translation>
   systÃmovÃ½)</translation>
+  sÃºbory.</translation>
   transakcie</translation>
+  varovanie alebo vidÃ­me veÄ¾mi dlhÃ rozdvojenie siete (%s v cmd je nahradenÃ sprÃ¡vou)</translation>
   veÄ¾mi vysoko. Toto sÃº transakÄnÃ poplatky ktorÃ zaplatÃ­te ak odoÅ¡lete transakciu.</translation>
+  viac neÅ¾ je v samotnej podpÃ­sanej sprÃ¡ve a mÃ´Å¾ete sa tak vyhnÃºÅ¥ podvodu mitm Ãºtokom.</translation>
+  vlÃ¡kno pravidelnÃho ÄÃ­stenia peÅˆaÅ¾enky (predvolenÃ: 1)</translation>
+  wallet.dat)</translation>
+  za prach.</translation>
   zapÃ­saÅ¥ predvolenÃº adresu.</translation>
+  zÃ¡znamy zo zoznamu</translation>
+  Å¡ifry (prednastavenÃ: TLSv1.2+HIGH:TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!3DES:@STRENGTH)</translation>
 License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_pt_BR.ts
 Copyright: %1</translation>
-  16, 0 = auto, &lt;0 = deixar muitos nÃºcleos livres, padrÃ£o: 0)</translation>
-  a verificaÃ§Ã£o dos blocos (0-4, padrÃ£o: 3)</translation>
+  (0-4, padrÃ£o: 3)</translation>
+  a transaÃ§Ã£o ter pelo menos uma confirmaÃ§Ã£o. Isso tambÃm afeta seu saldo computado.</translation>
+  aberto vocÃª pode escolher onde o Bitcoin Core vai guardar os dados.</translation>
+  cobranÃ§a verificada.</translation>
   dono deles</translation>
   dono deste endereÃ§o Bitcoin</translation>
   escolhida, o aplicativo sÃ³ serÃ¡ fechado selecionando Sair no menu Arquivo.</translation>
   esta janela desaparece.</translation>
   estabelecida, mas este processo pode nÃ£o estar completo ainda.</translation>
   incluÃ­da.</translation>
+  invÃ¡lida: %1</translation>
   invÃ¡lido.</translation>
+  mostrada como sujeira.</translation>
   muito alto! Este Ã o valor da taxa de transaÃ§Ã£o que vocÃª irÃ¡ pagar se enviar a transaÃ§Ã£o.</translation>
+  muito pequeno (Considerado poeira).</translation>
+  necessÃ¡ria.</translation>
   o dono deles. Seja cuidadoso para nÃ£o assinar algo vago, pois ataques de pishing podem tentar te enganar para dar sua assinatura de identidade para eles. Apenas assine afirmaÃ§Ãµes completamente detalhadas com as quais vocÃª concorda.</translation>
+  obrigatÃ³rio para cobranÃ§as via proxy.</translation>
+  opcional)</translation>
   possÃ­vel criar um diretÃ³rio de dados aqui.</translation>
   possÃ­vel fazer downgrade da carteira</translation>
   recebido ou vemos um longo garfo (% s em cmd Ã substituÃ­da pela mensagem)</translation>
+  suportado.</translation>
   um diretÃ³rio.</translation>
   um endereÃ§o Bitcoin vÃ¡lido.</translation>
+  um pagamento normal.</translation>
   um software experimental.â
+  uma cobranÃ§a nÃ£o verificada.</translation>
+  usado para testes de regressÃ£o e ferramentas de desenvolvimento.</translation>
   vÃ¡lido, favor verificar.</translation>
 License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_pt_PT.ts
 Copyright: %1</translation>
-  16, 0 = automÃ¡tico, &lt;0 = disponibiliza esse nÃºmero de nÃºcleos livres, por defeito: 0)</translation>
   a taxa que irÃ¡ pagar se enviar uma transaÃ§Ã£o.</translation>
   dono deste endereÃ§o Bitcoin</translation>
-  fechada. Com esta opÃ§Ã£o selecionada, a aplicaÃ§Ã£o apenas serÃ¡ encerrada quando escolher Sair da aplicaÃ§Ã£o no menÃº.</translation>
-  fornecida, toda a informaÃ§Ã£o debug Ã &quot;output&quot;.</translation>
-  iniciado, vocÃª pode escolher onde Bitcoin Core vai guardar os seus dados.</translation>
+  fechada. Com esta opÃ§Ã£o selecionada, a aplicaÃ§Ã£o apenas serÃ¡ encerrada sÃ³ quando escolher Sair da aplicaÃ§Ã£o no menu.</translation>
+  fornecida, imprimir toda a informaÃ§Ã£o de depuraÃ§Ã£o.</translation>
+  iniciado, poderÃ¡ escolher onde o Bitcoin Core irÃ¡ guardar os seus dados.</translation>
   invÃ¡lido. </translation>
+  invÃ¡lido.</translation>
+  invÃ¡lido: %1</translation>
   muito baixa</translation>
-  muito pequena (considerada pÃ³).</translation>
+  muito pequena (considerada &quot;pÃ³&quot;).</translation>
   necessÃ¡ria para desbloquear a carteira.</translation>
   necessÃ¡ria para desencriptar a carteira.</translation>
   necessÃ¡ria.</translation>
   necessÃ¡rio actualizar!</translation>
+  necessÃ¡rio lembrar esta palavra-passe)
+  necessÃ¡rio para efectuar pedidos de pagemento via proxy.</translation>
   opcional)</translation>
-  recomendado definir alertnotify para que seja alertado sobre problemas;
+  que essa transaÃ§Ã£o tenha pelo menos uma confirmaÃ§Ã£o. Isto tambÃm afeta o cÃ¡lculo do seu saldo.</translation>
+  recomendado definir um alertnotify para que seja alertado sobre problemas;
   substituÃ­do pela hash do bloco)</translation>
   substituÃ­do pela mensagem)</translation>
   substituÃ­do pelo ID da TransaÃ§Ã£o)</translation>
-  suportado.</translation>
   um endereÃ§o bitcoin vÃ¡lido.</translation>
   um pagamento normal.</translation>
   um pedido de pagamento nÃ£o-verificado.</translation>
-  um pedido de verificaÃ§Ã£o de pagamento.</translation>
+  um pedido de pagamento verificado.</translation>
   um programa experimental
   uma pasta.</translation>
-  uma versÃ£o de prÃ-lanÃ§amento - use Ã  sua responsabilidade - nÃ£o usar para minar ou aplicaÃ§Ãµes comerciais</translation>
+  uma versÃ£o de testes prÃ-lanÃ§amento - use Ã  sua responsabilidade - nÃ£o usar para minar ou aplicaÃ§Ãµes comerciais</translation>
   vÃ¡lido, por favor verifique.</translation>
 License: Expat
  FIXME
@@ -993,7 +1199,6 @@ Copyright: &amp;ÚØ±Ø¯Ù† Ù‡Ù…Ù‡</translation>
   Ø¨Ø± Ø§Ø³Ø§Ø³ Ø¨Ø§ÛŒØª ØªÙ†Ø¸ÛŒÙ… Ø´ÙˆØ¯ (Ù¾ÛŒØ´ ÙØ±Ø¶: 0)</translation>
   Ø¨Ø±Ú†Ø³Ø¨ ÙˆØ§Ø±Ø¯ ÚÙ†ÛŒØ¯ ØªØ§ Ø¯Ø± Ø¯ÙØªØ±Ú†Ù‡Ù” Ø¢Ø¯Ø±Ø³ Ø°Ø®ÛŒØ±Ù‡ Ø´ÙˆØ¯</translation>
   ØªØ±Ø§ÚÙ†Ø´ Ø¯Ø± ÚÛŒÙ Ù¾ÙˆÙ„ÛŒ Ø±Ø® Ù…ÛŒ Ø¯Ù‡Ø¯ØŒ Ø¯Ø³ØªÙˆØ± Ø±Ø§ Ø§Ø¬Ø±Ø§ ÚÙ†(%s Ø¯Ø± Ø¯Ø³ØªÙˆØ±Ø§Øª Ø¨ÙˆØ³ÛŒÙ„Ù‡ ÛŒ TxID Ø¬Ø§ÛŒÚ¯Ø²ÛŒÙ† Ù…ÛŒ Ø´ÙˆØ¯)</translation>
-  ØªØµØ¯ÛŒÙ‚&quot; ØªØ§ Ú†Ù‡ Ø­Ø¯ ÚØ§Ù…Ù„ Ùˆ Ø¯Ù‚ÛŒÙ‚ Ø§Ø³Øª (0-4ØŒ Ù¾ÛŒØ´ ÙØ±Ø¶: 3)</translation>
   ØªØºÛŒÛŒØ± ÚØ±Ø¯ØŒ Ø¯Ø³ØªÙˆØ± Ø±Ø§ Ø§Ø¬Ø±Ø§ ÚÙ† (%s Ø¯Ø± cmd Ø¨Ø§ block hash Ø¬Ø§ÛŒÚ¯Ø²ÛŒÙ† Ø´Ø¯Ù‡ Ø§Ø³Øª)</translation>
   Ø®Ø·Ø§ÛŒ Ø¯Ø§Ø®Ù„ÛŒ Ø¨Ø§ Ø´ÚØ³Øª Ù…ÙˆØ§Ø¬Ù‡ Ø´Ø¯. ÚÛŒÙ Ù¾ÙˆÙ„ Ø´Ù…Ø§ Ø±Ù…Ø²Ù†Ú¯Ø§Ø±ÛŒ Ù†Ø´Ø¯.</translation>
   Ø®Ø·Ø§ÛŒ Ù…Ù‡Ù„Ú Ø§ØªÙØ§Ù‚ Ø§ÙØªØ§Ø¯Ù‡ Ø§Ø³Øª. Ø¨ÛŒØªâ€ŒÚÙˆÛŒÙ† Ù†Ù…ÛŒâ€ŒØªÙˆØ§Ù†Ø¯ Ø¨Ø¯ÙˆÙ† Ù…Ø´ÚÙ„ Ø¨Ù‡ ÚØ§Ø± Ø®ÙˆØ¯ Ø§Ø¯Ø§Ù…Ù‡ Ø¯Ù‡Ø¯ Ùˆ Ø¨Ø³ØªÙ‡ Ø®ÙˆØ§Ù‡Ø¯ Ø´Ø¯.</translation>
@@ -1004,7 +1209,6 @@ Copyright: &amp;ÚØ±Ø¯Ù† Ù‡Ù…Ù‡</translation>
   Ø¯ÛŒÚ¯Ø±</numerusform></translation>
   Ø±Ø§ Ø¨Ø§Ø²Ø³Ø§Ø²ÛŒ ÚÙ†ÛŒØ¯ØŸ</translation>
   Ø³Ø±ÙˆÛŒØ³ Ùˆ Ù¾Ø°ÛŒØ±Ø´ Ø¯Ø³ØªÙˆØ±Ø§Øª</translation>
-  Ù‚ÙÙ„ Ø¨Ø±Ø§ÛŒ Ù…Ø³ÛŒØ± Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø§ÛŒØ¬Ø§Ø¯ ÚØ±Ø¯ %s. Ø§Ø­ØªÙ…Ø§Ù„ Ø¯Ø§Ø±Ø¯ Ø¨ÛŒØªÚÙˆÛŒÙ† Ø¯Ø± Ø­Ø§Ù„ Ø§Ø¬Ø±Ø§ Ø¨Ø§Ø´Ø¯.</translation>
   Ù…Ø±ÙˆØ± ÚÙ„ÛŒ Ø§Ø² Ø¯Ø³ØªÙˆØ±Ø§Øª Ù…Ù…ÚÙ†ØŒ Ø¹Ø¨Ø§Ø±Øª &lt;b&gt;help&lt;/b&gt; Ø±Ø§ Ø¨Ù†ÙˆÛŒØ³ÛŒØ¯.</translation>
   Ù…Ø³ÛŒØ± Ø¯Ø§Ø¯Ù‡Ù” Ø¬Ø¯ÛŒØ¯ Ø§ÛŒØ¬Ø§Ø¯ Ø®ÙˆØ§Ù‡Ø¯ Ø´Ø¯.</translation>
   Ù…Ø³ÛŒØ± Ø³ÙØ§Ø±Ø´ÛŒ:</translation>
@@ -1033,64 +1237,100 @@ Copyright: &amp;ÚØ±Ø¯Ù† Ù‡Ù…Ù‡</translation>
 License: Expat
  FIXME
 
-Files: src/qt/locale/bitcoin_ar.ts
-Copyright: (Block) Ù…Ù† Ù‚Ø¨Ù„ Ø£ÙŠ Ø§Ù„Ø¹Ù‚Ø¯ Ø§Ù„Ø£Ø®Ø±Ù‰ ÙˆØ±Ø¨Ù…Ø§ Ù„Ù† ØªÙƒÙˆÙ† Ù…Ù‚Ø¨ÙˆÙ„Ø!</translation>
-  Ø§Ø­ØªÙŠØ§Ø·ÙŠØ Ù„Ù„Ù…Ø­ÙØ¸Ø ÙÙŠ Ù…ÙƒØ§Ù† Ø¢Ø®Ø±</translation>
-  Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø¨Ø§Ù„Ù…ÙŠØ¬Ø§Ø¨Ø§ÙŠØª (Ø§Ù„Ø§ÙØªØ±Ø§Ø¶ÙŠ: 25)</translation>
-  Ø§Ù„ØªØ£ÙƒØ¯ Ù…Ù† Ø§Ù„Ø±Ø³Ø§Ù„Ø.</translation>
-  Ø§Ù„ØªØ´ÙÙŠØ±. ØªØ°ÙƒØ± Ø£Ù† Ø§Ù„ØªØ´ÙÙŠØ± Ù„Ø§ ÙŠØ³ØªØ·ÙŠØ¹ Ø­Ù…Ø§ÙŠØ Ù…Ø­ÙØ¸ØªÙƒ ØªÙ…Ø§Ù…Ù‹Ø§ Ù…Ù† Ø§Ù„Ø³Ø±Ù‚Ø Ù…Ù† Ø®Ù„Ø§Ù„ Ø§Ù„Ø¨Ø±Ù…Ø¬ÙŠØ§Øª Ø§Ù„Ø®Ø¨ÙŠØ«Ø Ø§Ù„ØªÙŠ ØªØµÙŠØ¨ Ø¬Ù‡Ø§Ø²Ùƒ </translation>
-  Ø§Ù„Ø³Ø±ÙŠØ Ù…Ø±Ø Ø£Ø®Ø±Ù‰</translation>
-  Ø§Ù„ØµÙÙ‚Ø</translation>
-  Ø§Ù„Ù…Ø±ÙˆØ± Ø§Ù„Ù‚Ø¯ÙŠÙ…Ø ÙˆØ§Ù„Ø¬Ø¯ÙŠØ¯Ø Ø¥Ù„Ù‰ Ø§Ù„Ù…Ø­ÙØ¸Ø.</translation>
-  Ø§Ù„Ù…Ø±ÙˆØ± Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…Ø Ù„ØªØ´ÙÙŠØ± Ø§Ù„Ù…Ø­ÙØ¸Ø</translation>
-  Ø§Ù„Ù…Ø±ÙˆØ±</translation>
-  Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯Ø Ù‡Ø°Ù‡</translation>
-  Ø§Ù„Ù…Ø¹Ø§Ù…Ù„Ø. ØªØ­ÙˆÙ… Ø­ÙˆÙ„ Ù‡Ø°Ø§ Ø§Ù„Ø­Ù‚Ù„ Ù„Ø¹Ø±Ø¶ Ø¹Ø¯Ø¯ Ø§Ù„ØªØ£ÙƒÙŠØ¯Ø§Øª.</translation>
-  Ø§Ù„Ù…Ø¹Ø§Ù…Ù„Ø</translation>
-  Ø§Ù„Ù…ÙØ§ØªÙŠØ­</translation>
-  Ø¨Ø³Ø¨Ø¨ Ø®Ø·Ø£ Ø¯Ø§Ø®Ù„ÙŠ. Ù„Ù… ÙŠØªÙ… ØªØ´ÙÙŠØ± Ù…Ø­ÙØ¸ØªÙƒ.</translation>
-  ØªØ§Ù„ÙØ</translation>
-  ØªØªØ·Ù„Ø¨ Ù†Ø³Ø®Ø Ø£Ø­Ø¯Ø« Ù…Ù† Ø¨ØªÙƒÙˆÙŠÙ†</translation>
-  ØªØ­ØªØ§Ø¬ Ø¹Ø¨Ø§Ø±Ø Ø§Ù„Ù…Ø±ÙˆØ± Ù…Ø­ÙØ¸ØªÙƒ ÙÙƒ ØªØ´ÙÙŠØ±Ù‡Ø§</translation>
-  ØªØ­ØªØ§Ø¬ Ø¹Ø¨Ø§Ø±Ø Ø§Ù„Ù…Ø±ÙˆØ± Ù…Ø­ÙØ¸ØªÙƒ Ù„ÙØªØ­Ù‡Ø§</translation>
-  ØªØ­ØªØ§Ø¬ Ù„Ø¥Ø¹Ø§Ø¯Ø Ø¥Ù†Ø´Ø§Ø¡: Ø£Ø¹Ø¯ ØªØ´ØºÙŠÙ„ Ø¨ØªÙƒÙˆÙŠÙ† Ù„Ù„Ø¥ØªÙ…Ø§Ù…</translation>
-  Ø¹Ø§Ù…Ø Ø¹Ù„Ù‰ Ø§Ù„Ù…Ø­ÙØ¸Ø</translation>
-  Ø¹Ø§Ù…Ø</translation>
-  ÙÙŠ ÙƒØªØ§Ø¨Ø Ø§Ù„Ø§ÙˆØ§Ù…Ø±</translation>
-  Ù„Ø­Ø§ÙØ¸Ø Ø§Ù„Ù†Ø¸Ø§Ù…</translation>
-  Ù„Ù‡Ø°Ø§ Ø§Ù„Ø¹Ù†ÙˆØ§Ù† Ù„Ø¥Ø¶Ø§ÙØªÙ‡ Ø¥Ù„Ù‰ Ø¯ÙØªØ± Ø§Ù„Ø¹Ù†Ø§ÙˆÙŠÙ† Ø§Ù„Ø®Ø§Øµ Ø¨Ùƒ</translation>
-  Ù…Ø±Ø Ø§Ø®Ø±Ù‰</translation>
-  Ù…Ø±ÙˆØ± Ø¬Ø¯ÙŠØ¯Ø Ø¥Ù„Ù‰ Ø§Ù„Ù…Ø­ÙØ¸Ø. Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø¹Ø¨Ø§Ø±Ø Ù…Ø±ÙˆØ± ØªØªÙƒÙˆÙ† Ù…Ù†10 Ø­Ø±ÙˆÙ Ø¹Ø´ÙˆØ§Ø¦ÙŠØ Ø¹Ù„Ù‰ Ø§Ù„Ø§Ù‚Ù„, Ø£Ùˆ Ø£ÙƒØ«Ø± Ù…Ù† 7 ÙƒÙ„Ù…Ø§Øª </translation>
-  Ù…Ø±ÙˆØ± Ø¬Ø¯ÙŠØ¯Ø</translation>
-  Ù…Ø³ØªÙ„Ù…ÙŠÙ† ÙÙŠ ÙˆÙ‚Øª ÙˆØ§Ø­Ø¯</translation>
-  Ù…Ø³Ø­</translation>
-  Ù…Ø´ÙØ±Ø Ùˆ Ù…ÙØªÙˆØ­Ø Ø­Ø§Ù„ÙŠØ§</translation>
-  Ù…Ø´ÙØ±Ø Ùˆ Ù…Ù‚ÙÙ„Ø Ø­Ø§Ù„ÙŠØ§</translation>
-  Ù…Ø´ÙØ±Ø</translation>
-  Ù…Ø¹ Ø´Ø¨ÙƒØ ...</translation>
-  Ù…ÙˆÙ‚Ø¹Ø.</translation>
-License: Expat
- FIXME
-
 Files: src/qt/locale/bitcoin_he.ts
 Copyright: (×‘×¨×™×¨×ª ××—×“×œ: 86400)</translation>
-  </translation>
+  (××™×•××Ÿ, ×”××ª×× ×‘ bitcoin-cli):</translation>
   Caps Lock ××•×¤×¢×œ!</translation>
   ××ª ××™× ×“×§ ××¨××¨×ª ×”×‘×œ×•×§×™× ××§×‘×¦×™ ×”-blk000??.dat ×”× ×•×›×—×™×™×.</translation>
-  ××ª ××¡×“ ×”× ×ª×•× ×™× ×ª×•×š ××™××•× ×‘- -reindex ×¢×œ ×× ×ª ×œ×× ×•×ª ××ª -txindex</translation>
+  ××ª ××™× ×“×§×¡ ×”×‘×œ×•×§×™× ×‘×“×™×¡×§...</translation>
   ××ª ××¡×“ × ×ª×•× ×™ ×”×‘×œ×•×§×™×?</translation>
   ××ª ××¨××¨×ª ×”×‘×œ×•×§×™× ×œ××¦×™××ª ×¤×¢×•×œ×•×ª ×—×¡×¨×•×ª ×‘××¨× ×§</translation>
   ×‘- -listen=0 ×× ×‘×¨×¦×•× ×š ×‘×›×š.</translation>
+  ×‘-OpenSSL (https( ×¢×‘×•×¨ ×—×™×‘×•×¨×™ JSON-RPC</translation>
   ×‘-OpenSSL ×’×¨×¡×”</translation>
+  ×‘-UPnP ×›×“×™ ×œ××¤×•×ª ××ª ×”×¤×•×¨×˜ ×œ×”××–× ×” (×‘×¨×™×¨×ª ××—×“×œ: 0)</translation>
+  ×‘-UPnP ×›×“×™ ×œ××¤×•×ª ××ª ×”×¤×•×¨×˜ ×œ×”××–× ×” (×‘×¨×™×¨×ª ××—×“×œ: 1 ×‘×¢×ª ×”××–× ×”)</translation>
+  ×‘××¤××¨×•×ª %s</translation>
+  ×‘×‘×¨×™×¨×ª ×”××—×“×œ ×¢×‘×•×¨ ×¡×¤×¨×™×™×ª ×”××™×“×¢.</translation>
   ×‘×” ×¢×œ ××—×¨×™×•×ª×š - ××™×Ÿ ×œ×”××ª×× ×œ×¦×•×¨×š ×›×¨×™×” ××• ×™×™××•××™ ××¡×—×¨</translation>
-  ×‘×—×™×¦×™× ×œ××¢×œ×” ×•×œ××˜×” ×›×“×™ ×œ× ×•×•×˜ ×‘×”×™×¡×˜×•×¨×™×”, ×•- &lt;b&gt;Ctrl-L&lt;/b&gt; ×›×“×™ ×œ× ×§×•×ª ××ª ×”××¡×š.</translation>
+  ×‘×›×¡×¤×™× ××”×ª×§×‘×œ×• ×œ××—×¨×•× ×”!</translation>
   ×‘×›×ª×•×‘×ª ×—×“××” ×œ×›×œ ×¤×¢×•×œ×”.</translation>
+  ×‘×œ×‘×“ ×œ××—×¨ ××–×¢×•×¨ ×”×—×œ×•×Ÿ.</translation>
   ×‘×¡×™××•×Ÿ [host
+  ×‘×¡×™×¡××” ×”××›×™×œ×” &lt;b&gt;10 ×ª×•×™× ××§×¨××™×™× ××• ×™×•×ª×¨&lt;/b&gt;, ××• &lt;b&gt;×××•× ×” ××™×œ×™× ××• ×™×•×ª×¨&lt;/b&gt;.</translation>
+  ×‘×¨××ª ×”×‘×“×™×§×”</translation>
+  ×‘×ª×™×‘×ª ×”×›×œ×™× OpenSSL (http://www.openssl.org/) ×•×ª×•×›× ×” ×§×¨×™×¤×˜×•×’×¨×¤×™×ª ×× ×›×ª×‘×” ×¢&quot;×™ ××¨×™×§ ×™×× ×’ (eay@cryptsoft.com) ×•×ª×•×›× ×ª UPnP ×× ×›×ª×‘×” ×¢&quot;×™ ×ª×•××¡ ×‘×¨× ×¨×“.</translation>
+  ×‘××¨××¨×ª ××™×•×—×“×ª ×”×××¤××¨×ª ×¤×ª×¨×•×Ÿ ××™×™×“×™ ××œ ×‘×œ×•×§×™×. ××¦×‘ ×–×” ××™×•×¢×“ ×œ×›×œ×™ ×‘×“×™×§×ª ×¨×’×¨×¡×™×” ×•×¤×™×ª×•×— ×ª×•×›× ×”.</translation>
   ×’×¨×¡×” ×—×“××” ×™×•×ª×¨ ××œ ×‘×™×˜×§×•×™×Ÿ</translation>
+  ×—×•×–×¨ ×‘×›×ª×•×‘×ª ×§×‘×œ×” ×§×™×™××ª(×œ× ××•××œ×¥)</translation>
+  ×œ×”×—×œ×™×£ ×¢× ×§×•×‘×¥ ×”××¨× ×§ ×”××•×¦×¤×Ÿ ××–×” ×¢×ª×” × ×•×¦×¨. ××¡×™×‘×•×ª ××‘×˜×—×”, ×’×™×‘×•×™×™× ×§×•×“××™× ××œ ×§×•×‘×¥ ×”××¨× ×§ ×”×œ×-××•×¦×¤×Ÿ ×™×”×¤×›×• ×œ×—×¡×¨×™ ××™××•× ×‘×¨×’×¢ ××ª×ª×—×™×œ ×œ×”××ª×× ×‘××¨× ×§ ×”×—×“× ×”××•×¦×¤×Ÿ.</translation>
+  ×œ×—×™×‘×•×¨×™ JSON-RPC</translation>
   ×œ×›×ª×•×‘ ××—×“× ××ª ×”××¨× ×§: ××ª×—×œ ××ª ×‘×™×˜×§×•×™×Ÿ ×œ×¡×™×•×</translation>
   ×œ×¨×‘×•×ª ×”×ª×•×•×™×•×ª</translation>
+  ×œ×ª××œ×•× %1 ×§×˜×Ÿ ××“×™ (× ×—××‘ ×œ××‘×§)</translation>
+  × ×›××œ×”.</translation>
   ×¦×•×¨×š ×‘××“×¨×•×’!</translation>
+  ×ª××œ×•× ×œ %1</translation>
+  ×ª××œ×•×</translation>
+  ×ª××œ×•××™× (××™×™×¦×¨ ×§×•×“×™×™ QR ×•×¡×›×™××•×ª URI ××œ :bitcoin)</translation>
   ××œ ×‘×™×˜×§×•×™×Ÿ.</translation>
+  ××¢×‘×¨</translation>
+License: Expat
+ FIXME
+
+Files: src/qt/locale/bitcoin_cs.ts
+Copyright: </translation>
+  BitcoinovÃ adresy pro posÃ­lÃ¡nÃ­ plateb. PÅ™ed odeslÃ¡nÃ­m mincÃ­ si vÅ¾dy zkontroluj ÄÃ¡stku a cÃ­lovou adresu.</translation>
+  BitcoinovÃ adresy pro pÅ™Ã­jem plateb. Je doporuÄenÃ pouÅ¾Ã­vat pokaÅ¾dÃ novou adresu pro kaÅ¾dou transakci.</translation>
+  IP adresy</translation>
+  OpenSSL Projektem pro pouÅ¾itÃ­ v OpenSSL Toolkitu (http://www.openssl.org/) a kryptografickÃ½ program od Erika Younga (eay@cryptsoft.com) a program UPnP od Thomase Bernarda.</translation>
+  RPC konzoli.</translation>
+  a novÃ heslo k penÄ›Å¾ence.</translation>
+  adrese. Pro zÃ¡pis IPv6 adresy pouÅ¾ij notaci [adresa
+  adresy ve vÃ½pisu transakcÃ­ nebo ne.</translation>
+  adresy</translation>
+  cache</translation>
+  doporuÄeno si nastavit alertnotify, abys byl upozornÄ›n na pÅ™Ã­padnÃ problÃmy;
+  heslo k penÄ›Å¾ence.&lt;br/&gt;PouÅ¾ij &lt;b&gt;alespoÅˆ 10 nÃ¡hodnÃ½ch znakÅ¯&lt;/b&gt; nebo &lt;b&gt;alespoÅˆ osm slov&lt;/b&gt;.</translation>
+  heslo pro deÅ¡ifrovÃ¡nÃ­ penÄ›Å¾enky.</translation>
+  heslo</translation>
+  informace nemusÃ­ bÃ½t aktuÃ¡lnÃ­. TvÃ¡ penÄ›Å¾enka se automaticky sesynchronizuje s Bitcoinovou sÃ­tÃ­, jakmile se s nÃ­ spojÃ­. ZatÃ­m ale jeÅ¡tÄ› nenÃ­ synchronizace dokonÄena.</translation>
+  je vyÅ¾adovÃ¡no pro platebnÃ­ poÅ¾adavky skrz proxy.</translation>
+  jeÅ¡tÄ› nejsou potvrzenÃ a kterÃ se jeÅ¡tÄ› nezapoÄÃ­tÃ¡vajÃ­ do celkovÃho disponibilnÃ­ho stavu ÃºÄtu</translation>
+  jmÃno pro JSON-RPC spojenÃ­</translation>
+  klÃ­Äe ve svÃ penÄ›Å¾ence</translation>
+  klÃ­Äe z poÅ¡kozenÃho souboru wallet.dat</translation>
+  mince musÃ­ Äekat %1 blokÅ¯, neÅ¾ mohou bÃ½t utraceny. KdyÅ¾ jsi vygeneroval tenhle blok, tak byl rozposlÃ¡n do sÃ­tÄ›, aby byl pÅ™idÃ¡n do Å™etÄ›zce blokÅ¯. Pokud se mu nepodaÅ™Ã­ dostat se do Å™etÄ›zce, zmÄ›nÃ­ se na &quot;neakceptovanÃ½&quot; a nepÅ¯jde utratit. To se obÄas mÅ¯Å¾e stÃ¡t, pokud jinÃ½ uzel vygeneruje blok zhruba ve stejnÃm okamÅ¾iku jako ty.</translation>
+  mince z tvÃ penÄ›Å¾enky uÅ¾ jednou byly utraceny, napÅ™Ã­klad pokud pouÅ¾Ã­vÃ¡Å¡ kopii souboru wallet.dat a mince byly utraceny v druhÃ kopii, ale nebyly oznaÄeny jako utracenÃ v tÃto.</translation>
+  mince, kterÃ jeÅ¡tÄ› nejsou zralÃ</translation>
+  mÃ­sto</translation>
+  nastavenÃ­)</translation>
+  odeslanÃ transakci</translation>
+  parametry URI.</translation>
+  penÄ›Å¾enky nepouÅ¾itelnÃ, jakmile zaÄneÅ¡ pouÅ¾Ã­vat novou zaÅ¡ifrovanou penÄ›Å¾enku.</translation>
+  platbÄ› pouze jednou.</translation>
+  platebnÃ­ poÅ¾adavky k uÅ¾ivatelskÃ½m platebnÃ­m skriptÅ¯m nejsou podporovanÃ.</translation>
+  podepsanÃ zprÃ¡vÄ›, abys nebyl napÃ¡len man-in-the-middle Ãºtokem.</translation>
+  pouÅ¾Ã­t nÃ¡sledujÃ­cÃ­ nÃ¡hodnÃ heslo:
+  pÄ›nÄ›Å¾enky</translation>
+  razÃ­tko (vÃ½chozÃ­: 1)</translation>
+  s tÃ­mto zÃ¡znamem v seznamu adres</translation>
+  schrÃ¡nky</translation>
+  sluÅ¾by v Toru (vÃ½chozÃ­: -proxy)</translation>
+  spojenÃ­, &lt;n&gt;*1000, bajtÅ¯ (vÃ½chozÃ­: 1000)</translation>
+  spojenÃ­, &lt;n&gt;*1000, bajtÅ¯ (vÃ½chozÃ­: 5000)</translation>
+  sÃ­tÄ› pÅ™es SOCKS proxy.</translation>
+  sÃ­tÄ›</numerusform><numerusform>%n aktivnÃ­ spojenÃ­ do BitcoinovÃ sÃ­tÄ›</numerusform><numerusform>%n aktivnÃ­ch spojenÃ­ do BitcoinovÃ sÃ­tÄ›</numerusform></translation>
+  transakce jeÅ¡tÄ› nebudou vidÄ›t.</translation>
+  transakce</translation>
+  uzly znovu pÅ™ipojit (vÃ½chozÃ­: 86400)</translation>
+  vyrovnÃ¡vacÃ­ pamÄ›ti v megabajtech (%d aÅ¾ %d, vÃ½chozÃ­: %d)</translation>
+  zaÅ¡ifrovÃ¡nÃ­ penÄ›Å¾enky ÃºplnÄ› nezabraÅˆuje krÃ¡deÅ¾i tvÃ½ch bitcoinÅ¯ malwarem, kterÃ½m se mÅ¯Å¾e poÄÃ­taÄ nakazit.</translation>
+  zmÄ›nit -txindex</translation>
+  ÄÃ¡stky, komplexnosti nebo pouÅ¾itÃ­ nedÃ¡vno pÅ™ijatÃ½ch mincÃ­!</translation>
+  Å™Ã¡dky a pÅ™es JSON-RPC</translation>
+  Å™Ã¡dky</translation>
+  Å¡ifry (vÃ½chozÃ­: TLSv1.2+HIGH:TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!3DES:@STRENGTH)</translation>
 License: Expat
  FIXME
 
@@ -1099,56 +1339,25 @@ Copyright: </translation>
   ê°€ëŠ¥í•˜ì§€ ì•Šì€ ì±„êµ´ëœ ì”ì•¡</translation>
   ê°€ëŠ¥í•œ ë¸”ë½ ì†ŒìŠ¤ê°€ ì—†ìŠµë‹ˆë‹¤...</translation>
   ê°€ëŠ¥í•œ ì”ì•¡</translation>
+  ê°€ëŠ¥í•œ íŒŒì¼ ë””ìŠ¤í¬ë¦½í„°-File Descriptor-ê°€ ë¶€ì¡±í•ë‹ˆë‹¤. </translation>
+  ê°€ëŠ¥í•ë‹ˆë‹¤)</translation>
   ê³¼ì •ì— %d ì˜¤ë¥˜ ë°œìƒ, %s)</translation>
+  ë“±ì˜ ì´ìœ ë¡œ ìµœì†Œ %s ì´ìƒì˜ ì†¡ê¸ˆ ìˆ˜ìˆ˜ë£Œê°€ í•„ìš”í•ë‹ˆë‹¤.</translation>
   ëªì ìœ¼ë¡œ ê°œë°œí•œ OpenSSL í”„ë¡œì íŠ¸ë¥¼ í¬í•¨í•˜ê³  ìˆìœ¼ë°, ì•”í˜¸í™” í”„ë¡œê·¸ë¨ì€ Eric Young(eay@cryptsoft.com)ì´, UPnP í”„ë¡œê·¸ë¨ì€ Thomas Bernardê°€ ì‘ì„±í–ˆìŠµë‹ˆë‹¤.</translation>
   ë¶ˆê°€ëŠ¥:</translation>
+  ì†Œí”„íŠ¸ì›¨ì–´ë¡œ ì‚¬ìší•˜ëŠ” ê²ƒì„ ê¶Œí•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</translation>
   ì˜¤ë¥˜</translation>
   ì™„ë£Œ</translation>
+  ì£¼ì†Œë¥¼ ì‚¬ìší• ë ¤ê³  í•ë‹ˆë‹¤. ì£¼ì†Œì˜ ì¬ì‚¬ìšì€ ë³´ì•ˆê³¼ ê°œì¸ì •ë³´ ë³´í˜¸ ì¸¡ë´ì—ì„œ ë¬¸ì œë¥¼ ì´ˆë˜í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤. ì´ì „ ì§€ë¶ˆ ìš”ì²­ì„ ì¬ìƒì„±í•˜ëŠ” ê²½ìš°ê°€ ì•„ë‹ˆë¼ë´ ì£¼ì†Œ ì¬ì‚¬ìšì„ ê¶Œí•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. </translation>
+  ì£¼ì†Œë¥¼ ì¬ì‚¬ìší•ë‹ˆë‹¤ë§Œ ê¶Œì¥í•˜ì§€ëŠ” ì•ŠìŠµë‹ˆë‹¤. (R&amp;)</translation>
   ì¤‘ë‹¨</translation>
   íŒŒì¼ ê¶Œí•œìœ¼ë¡œ ë§Œë“¤ì–´ì•¼ í•ë‹ˆë‹¤.</translation>
-  í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ì•„ë§ˆë„ ë¹„íŠ¸ì½”ì¸ì´ ì‹¤í–‰ì¤‘ì¸ ê²ƒ ê°™ìŠµë‹ˆë‹¤.</translation>
+  í”„ë¡œì‹œì ¸ í˜¸ì¶œ ì„œë¹„ìŠ¤ë¥¼ ìœ„í•œ ì“°ë ˆë“œ ê°œìˆ˜ë¥¼ ì„¤ì •í•ë‹ˆë‹¤ (ê¸°ë³¸ê°’ : 4)</translation>
 License: Expat
  FIXME
 
 Files: doc/README_windows.txt
 Copyright: 2009-2014, Bitcoin Core Developers
-License: Expat
- FIXME
-
-Files: src/qt/locale/bitcoin_cs.ts
-Copyright: BitcoinovÃ adresy pro posÃ­lÃ¡nÃ­ plateb. PÅ™ed odeslÃ¡nÃ­m mincÃ­ si vÅ¾dy zkontroluj ÄÃ¡stku a cÃ­lovou adresu.</translation>
-  IP adresy</translation>
-  OpenSSL Projektem pro pouÅ¾itÃ­ v OpenSSL Toolkitu (http://www.openssl.org/) a kryptografickÃ½ program od Erika Younga (eay@cryptsoft.com) a program UPnP od Thomase Bernarda.</translation>
-  a novÃ heslo k penÄ›Å¾ence.</translation>
-  adrese. Pro zÃ¡pis IPv6 adresy pouÅ¾ij notaci [adresa
-  adresy ve vÃ½pisu transakcÃ­ nebo ne.</translation>
-  adresy</translation>
-  doporuÄeno si nastavit alertnotify, abys byl upozornÄ›n na pÅ™Ã­padnÃ problÃmy;
-  heslo k penÄ›Å¾ence.&lt;br/&gt;PouÅ¾ij &lt;b&gt;alespoÅˆ 10 nÃ¡hodnÃ½ch znakÅ¯&lt;/b&gt; nebo &lt;b&gt;alespoÅˆ osm slov&lt;/b&gt;.</translation>
-  heslo pro deÅ¡ifrovÃ¡nÃ­ penÄ›Å¾enky.</translation>
-  informace nemusÃ­ bÃ½t aktuÃ¡lnÃ­. TvÃ¡ penÄ›Å¾enka se automaticky sesynchronizuje s Bitcoinovou sÃ­tÃ­, jakmile se s nÃ­ spojÃ­. ZatÃ­m ale jeÅ¡tÄ› nenÃ­ synchronizace dokonÄena.</translation>
-  jeÅ¡tÄ› nejsou potvrzenÃ a kterÃ se jeÅ¡tÄ› nezapoÄÃ­tÃ¡vajÃ­ do celkovÃho disponibilnÃ­ho stavu ÃºÄtu</translation>
-  jmÃno pro JSON-RPC spojenÃ­</translation>
-  klÃ­Äe ve svÃ penÄ›Å¾ence</translation>
-  mince z tvÃ penÄ›Å¾enky uÅ¾ jednou byly utraceny, napÅ™Ã­klad pokud pouÅ¾Ã­vÃ¡Å¡ kopii souboru wallet.dat a mince byly utraceny v druhÃ kopii, ale nebyly oznaÄeny jako utracenÃ v tÃto.</translation>
-  mince, kterÃ jeÅ¡tÄ› nejsou zralÃ</translation>
-  mÃ­sto</translation>
-  parametry URI.</translation>
-  platbÄ› pouze jednou.</translation>
-  podepsanÃ zprÃ¡vÄ›, abys nebyl napÃ¡len man-in-the-middle Ãºtokem.</translation>
-  pouÅ¾Ã­t nÃ¡sledujÃ­cÃ­ nÃ¡hodnÃ heslo:
-  pÄ›nÄ›Å¾enky</translation>
-  schrÃ¡nky</translation>
-  spojenÃ­, &lt;n&gt;*1000, bajtÅ¯ (vÃ½chozÃ­: 1000)</translation>
-  sÃ­tÄ›</numerusform><numerusform>%n aktivnÃ­ spojenÃ­ do BitcoinovÃ sÃ­tÄ›</numerusform><numerusform>%n aktivnÃ­ch spojenÃ­ do BitcoinovÃ sÃ­tÄ›</numerusform></translation>
-  transakce jeÅ¡tÄ› nebudou vidÄ›t.</translation>
-  transakce</translation>
-  uzly znovu pÅ™ipojit (vÃ½chozÃ­: 86400)</translation>
-  vyrovnÃ¡vacÃ­ pamÄ›ti v megabajtech (vÃ½chozÃ­: 25)</translation>
-  zmÄ›nit -txindex</translation>
-  ÄÃ¡stky, komplexnosti nebo pouÅ¾itÃ­ nedÃ¡vno pÅ™ijatÃ½ch mincÃ­!</translation>
-  Å™Ã¡dky a pÅ™es JSON-RPC</translation>
-  Å™Ã¡dky</translation>
 License: Expat
  FIXME
 
@@ -1163,7 +1372,8 @@ License: Expat
  FIXME
 
 Files: src/qt/locale/bitcoin_zh_CN.ts
-Copyright: SOCKS ç‰ˆæœ¬ï¼ˆ4 æˆ– 5ï¼Œé»˜è®¤ä¸º 5ï¼‰</translation>
+Copyright: -å¸®åŠè°ƒè¯•)</translation>
+  SOCKS ç‰ˆæœ¬ï¼ˆ4 æˆ– 5ï¼Œé»˜è®¤ä¸º 5ï¼‰</translation>
 License: Expat
  FIXME
 
@@ -1181,8 +1391,6 @@ License: Expat
 
 Files: src/qt/locale/bitcoin_gl.ts
 Copyright: a tarifa de transacciÃ³n que ti pagarÃ¡s se envÃ­as unha transacciÃ³n.</translation>
-  a verificaciÃ³n de bloques (0-4, pro defecto: 3)</translation>
-  da base de datos en megabytes (por defecto: 25)</translation>
   demasiado grande</translation>
   demasiado larga, tenta reducir o texto para a etiqueta
   demasiado pequena</translation>
@@ -1207,17 +1415,8 @@ License: Expat
 
 Files: src/qt/locale/bitcoin_fr_CA.ts
 Copyright: a votre presse-papier</translation>
+  par une virgule (*.csv)</translation>
   sous licence MIT/X11, voir le fichier COPYING ou http://www.opensource.org/licenses/mit-license.php
-License: Expat
- FIXME
-
-Files: src/qt/locale/bitcoin_nb.ts
-Copyright: avgiften er vist som stÃ¸v.</translation>
-License: Expat
- FIXME
-
-Files: src/qt/locale/bitcoin_es_CL.ts
-Copyright: de la base de datos en MB (25 predeterminado)</translation>
 License: Expat
  FIXME
 
@@ -1227,8 +1426,8 @@ Copyright: es recomana establir la notificaciÃ³ d&apos;alertes i aixÃ­ serÃ s no
 License: Expat
  FIXME
 
-Files: src/qt/locale/bitcoin_it.ts
-Copyright: utilizzato -connect)</translation>
+Files: src/qt/locale/bitcoin_es_MX.ts
+Copyright: guardada exitosamente a 1%</translation>
 License: Expat
  FIXME
 
@@ -1238,7 +1437,6 @@ Copyright: Ø¢Ø¯Ø±Ø³ bitcoin ÙˆØ§Ø±Ø¯ ÚÙ†ÛŒØ¯ (Ù…Ø«Ø§Ù„ 1NS17iag9jJgTHD1VXjvLCEnZ
   Ø¨Ø±Ø§ÛŒ ÛŒÚ Ø¯Ø³ØªÙˆØ±</translation>
   Ø¨Ø±Ú†Ø³Ø¨ Ø¨Ø±Ø§ÛŒ Ø§ÛŒÙ† Ø¢Ø¯Ø±Ø³ Ø¨Ù†ÙˆÛŒØ³ÛŒØ¯ ØªØ§ Ø¨Ù‡ Ø¯ÙØªØ±Ú†Ù‡ Ø¢Ø¯Ø±Ø³Ù‡Ø§ÛŒ Ø´Ù…Ø§ Ø§Ø¶Ø§ÙÙ‡ Ø´ÙˆØ¯</translation>
   ØªØºÛŒÛŒØ± ÚØ±Ø¯ Ø§Ø¬Ø±Ø§ ÚÙ† (%s Ø¯Ø± Ø¯Ø³ØªÙˆØ± ØªÙˆØ³Ø· block hash Ø¬Ø§ÛŒÚ¯Ø²ÛŒÙ† Ø´Ø¯Ù‡ Ø§Ø³Øª)</translation>
-  Ø¯Ø§Ø¯Ù‡ Ø±Ø§ Ø¨Ù‡ Ù…Ú¯Ø§Ø¨Ø§ÛŒØª ØªÙ†Ø¸ÛŒÙ… ÚÙ†ÛŒØ¯ (Ù¾ÛŒØ´ ÙØ±Ø¶: 25)</translation>
   Ø±Ø§ Ø¨Ø±Ø§ÛŒ ØªØ±Ø§ÚÙ†Ø´ Ø¬Ø§ Ø§ÙØªØ§Ø¯Ù‡ Ø¯Ø± WALLET Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø§Ø³ÚÙ† ÚÙ†ÛŒØ¯</translation>
   Ø±Ù…Ø² rpcpassword=&lt;password&gt; Ø±Ø§ Ø¯Ø± ÙØ§ÛŒÙ„ ØªÙ†Ø¸ÛŒÙ…Ø§Øª Ø§ÛŒØ¬Ø§Ø¯ ÚÙ†ÛŒØ¯â %s â Ø§Ú¯Ø± ÙØ§ÛŒÙ„ Ø§ÛŒØ¬Ø§Ø¯ Ù†Ø´Ø¯Ù‡ Ø§Ø³ØªØŒ Ø¢Ù† Ø±Ø§ Ø¨Ø§ ÛŒÚ ÙØ§ÛŒÙ„ &quot;ÙÙ‚Ø· Ù…ØªÙ†ÛŒ&quot; Ø§ÛŒØ¬Ø§Ø¯ ÚÙ†ÛŒØ¯
   ÙØ§ÛŒÙ„</translation>
@@ -1295,6 +1493,12 @@ Copyright: 2007, Free Software Foundation, Inc. <http://fsf.org/>
 License: GPL-ever
  FIXME
 
+Files: qa/rpc-tests/python-bitcoinrpc/bitcoinrpc/authproxy.py
+Copyright: 2007, Jan-Klaas Kollhof
+  2011, Jeff Garzik
+License: LGPL-2.1+
+ FIXME
+
 Files: contrib/debian/copyright
 Copyright: 1998, Todd C. Miller <Todd.Miller@courtesan.com>
   2007-2009, John W. Wilkinson
@@ -1312,19 +1516,36 @@ Copyright: 1998, Todd C. Miller <Todd.Miller@courtesan.com>
 License: Public domain ISC MIT/X11 (BSD like) GPL GPL-2+
  FIXME
 
-Files: share/setup.nsi.in
-Copyright: 
-License: UNKNOWN
- FIXME
-
 Files: src/qt/res/movies/spinner-000.png
 Copyright:  $¹‚…÷£Ô#» JSºQ4òµAG{üuêSò»™Ï)Ó”ubÊÉì¯´63{+ffVš}hğÓ3™Õâ[½—\no¨$+€Õñvÿ««D®BÖ.«|q¤FNtìëıO„£á‹ßì“Å¡¢d2;Kß×ÖÖU!€P;2ğ²ÿ'ù¼\>9˜b¥»˜Ádµê5_^Äë}âX1ıÊĞ\f°®I+èµwõ´%“·cŠa)R ,zCvd)k[H¥RDÄZ¸qÏ#÷7/zPÈÃ›ıM2F¹š™˜Ë¿2¸Ñ³šNÿ¢X4%®…ü‘ãçÚoÄcñÑÑÑDD(·ëu¬xî±CŞî?ûİò×e÷ÆTß=…¶–½ç€-ç2üş@kÿ¥—F'¿Ìéºî ""Ú4Ò–«ÏF|¾s&õşÙ02E[&gn!Q^áôu®k÷T7¢ãÌĞ±éÄüUfR¦) Åd±(h€VvöXà½ÔG"× ò5D¢ºÈWU{»1×Òè;
 License: UNKNOWN
  FIXME
 
-Files: src/qt/res/icons/bitcoin.icns
-Copyright: °+8Ñ›L5a`nÔ²†_õ(q#1ìØÎM2¿b¸¡vÑ)¾ø«#_èh¦×":°‰åœ­P ¸¬jXÆøÉR‹¢±µrâ…ˆm.xŸgÍ$ãï!N˜œ'Hv«.Ü-ï R'+Ûß*ŠµƒÆ¨mï
-  `-ó•Ñša€T˜ŞN·4£ó8ÎÉô|l~% h¶öNo$+1ıCƒööˆÁ³AŸDº6K¸ùa@Â–1˜¨ï@“PM+Æ 8·é&|†{|a	ôî–^oƒÄ—½M¦1Ÿ¶ŞÁ%ú´»A€·+ñã8¼o`$€¡p«‡¥˜²˜™ay†›xÛŒÆ9Î_åV<—5„–Œ–…zpDSY‘•Këp=÷ˆñÅÁ,2ÌâOÖÈ‡1´‘ˆáürõ¤×–l–LI È|gzŒø±şÖ	WóÂHfºD`˜#€)
+Files: doc/gitian-building/create_vm_hard_drive_file_type.png
+Copyright: G%DÕ¹¯yùm÷°ÅÎö™g­€À4jl×A?B›÷¥ĞŸç O_œE•°eÓ†c¥%}ú4dhXX¸$Y›ššÜ²iÃñc¥=zõEÍ_ğn·øşWEÜ>ürú—ÿgb>øñcÿŞš÷ÈÌ)¹suñ®£¬
+License: UNKNOWN
+ FIXME
+
+Files: doc/gitian-building/create_vm_page1.png
+Copyright: ›Ú÷É.ãiK²ŒÑZ}uvŞ™“%…ƒÆ\E½İ›~â†¢UOİºÚjËQµôüiD—ÆÂ¿ÙefˆÄ15‚ .().â9.19 (¥NÏ¦.Øhîšˆ1F±5!„(•ªÄäÔãG3KJŠƒ‚‚ö ¯!„¨`-Äª€ˆ+-Ñ$ÍOê}Û•µ*B 0(´°ğœ^_£Vkœ6(8¸‡×Wµ‰
+  œŒhn=p¡ëPÉ^(u”»`_ÇÃÛ¤ua?Ñ²İ“GÌÊ~àıeã3%‰ÒçŒ|iWÆÔåãƒ£â¹`µŠÏ
+License: UNKNOWN
+ FIXME
+
+Files: doc/gitian-building/select_startup_disk.png
+Copyright: lŸ{V ¨öm@«Æn›:Áû³Í_æàŠfÙÈ®îàEœ×m?ºpÊÀ³¯ÑÂgé£!½æÍ²[¿éèªiûU [jQŞ"Â Ã™4¢héÖóo¨ (±KÕˆ {è‚ä'gÖ^K– €À-üÛQCØ#°‚Ø‡ìŸ5H°zÿ–g¤\—ªîaà}&ÍKaãQ‹èíkvZxM‚ëØòÏÍ½¹ŸËï²
+  _•/•2ÆÀ|Dáäë—vìÜsêÚÓl¹ÛÌ›oE@ÅèA…¼Ën6¸k³BU·¾JÏÜ¼?yï‰k³rx\¶",Xij1„ª+IŠ*KÖ¹Œ·2¾ä%YüäÕÇÚmâÃ[Eû¸;¨{çÉÛı§o¿x¿D"Û·ì'oQõË_»®Ş}Áf1ÄRYí „–Ñm…—d
+  öéÛq¿®MœÄfãæêİ„Å8uƒe±MĞ •Z‹1Û°väˆ¯Ú6ª­ x«áL[ = ³Å¥I½°iÅÖ3Şd+	1Ote+n?SşFKCÉ¨<—ó*ÄëEºEÖôwS5A—#„šôû¯—ºFº<  æ­İëzÙë»Ô–ÒG“eÃ-Øäoe¥
+License: UNKNOWN
+ FIXME
+
+Files: share/pixmaps/bitcoin256.png
+Copyright: æBgÅD¯cô…?Á–G¿‚‘gÿ’æ+LV[Î¬€ìÏ\‰ö›‘Fg@$š±=+ ğÍü¼ c€ÀvÍ–®g°@ïı7YN@IıUA€H«fÒ³®‰Ú{‚«Ä£e„ËòäGŠó„óàñêËkŞ˜¿(D €ÔZÄÿ{{ûùEïĞ[ê¼ cÛNÃ%«c@$Œ>·¢Ş9%Œ¼ğ§˜ûÁQ}á¯4áù$21Ğyàô;`*# ¹RaYÛaèœ;Fy{„Æ`ªn®ïWÇà üÿşÛ÷í®–Ò"«˜ÿ´$Ú2¯“~‹²S7«@Ÿ(ëè‚ôĞÃú ùÚ‰}Íø"²D˜L8,—âÿ’‰ÜugÕü_Nè6(hš{ov–‰´”Ï¸O7Ş-ibâÿ„Ç¿‰¸ùª´¤O`Õ IXÅ™İïïY4D‚N*ç~Ç³?7`Ì€J˜ÎÿÎûæ÷yü ëkÜpÉÄ‰oL `1RÉp”–Í€à²÷ôâşãoâ	oš®;Ê~işëÏÈsˆH„³väo["¤ÈFo
+License: UNKNOWN
+ FIXME
+
+Files: doc/gitian-building/debian_install_21_finish_installation.png
+Copyright: Ë«µßöƒÛWÓvQ˜ß¦:kŠ¬`è×ãñ:º†sÙîdÛ/= Né9ú®ì¹ÏQüœ,                   €¢ÿPƒøEÆ¨    IEND®B`‚
 License: UNKNOWN
  FIXME
 
@@ -1340,6 +1561,13 @@ Copyright: & 0xff);
 License: UNKNOWN
  FIXME
 
+Files: doc/gitian-building/create_vm_hard_drive.png
+Copyright: )oN‘C”%—/œ£hhi9ØëàdºŒÒ´T•44Š‹ œ6Ó¢ìjÆô,}Ğ>ò´9‹¡¹¾¹õ@—€HšƒŒ² §d˜*Ì)ÊæÎŞQ¯^ÏC(İ/p'HŠÍƒU£şëU¤ÎYD›j›ëö´RN¡O-[P˜*sßò„5Müß)ä(†/)‚4tnæÁº¶ı;š€Hdšd9¡ˆDY2\ÛVß•´$“
+  Z ”<vPMÃM£æ\ì¼t¦ª<^ÀÈzßÙOMI”C†G­ú¬);§Ş”AÙNûüæı- úĞû¯İk†É„›F&,è¬®­Qc e˜-Âà5³C&!Aˆí…BÇpÎÀ‰œ•²ÈõĞfË²D8€™Q™ 8!28:†å…6ZÔ¤„s÷Ø)ªB@@ë;.+Î:—}2¿£MÿÙ¯v2-é¶ÍÔ{„¾íÕaŞ‰¬G¶%Äq`u¼°}k.²óÒ™ë)rV2j;áÇTØ‡|œ.ê´¡C„SĞ'E‘Ÿùş‰ÕO%†—l[^yÏW¯ŞÈ ¤D¿’{ìİ}™5÷Gvs¼¿|búìc¡šÚ¬õ›K"_öìèp
+  —.ùB‘è²÷µu8}@¢4$—V$JI¦ ã
+License: UNKNOWN
+ FIXME
+
 Files: contrib/testgen/base58.py
 Copyright: * (__b58base**i)
 License: UNKNOWN
@@ -1350,13 +1578,23 @@ Copyright: -;îÙìß÷¸x^™¦<ø­øÜ÷Š)HÒõyl_êÇz«=¹JcXr;|CjéxQÓG$¤0ò}éÜË‡Ï@»%Í
 License: UNKNOWN
  FIXME
 
+Files: doc/gitian-building/debian_install_11_partition_disks.png
+Copyright: ?Ö_{L*™Á×4ëñi¨sóıÚqnè7¤÷›ë¡j¹ÔÖ™j§÷rÉÔ™*¾j{iX^gp7Ç³ÎT=QË«­~€…?VyºÊì 7_×c§‚Ş»Âª3C™tì¦|Çª¶ÎLıUã5>µílş´¡ßÚ†bO!ëÔxÎ»ŞÓoí84,ÇÔ¸mJÕµ¼Â×Cà;ıXåû‘Â0±şÑ˜»ªÍİt¹Í}êtKêØPgf²¶qî½hjÛ_.SúÌDÔ¼‡¬ÿ±ëC¹N+@à,‡¹6àêş°ö\Â(×)cÍ›
+License: UNKNOWN
+ FIXME
+
 Files: share/qt/Info.plist.in
 Copyright: 2009-@_YEAR@ The Bitcoin Core developers</string>
 License: UNKNOWN
  FIXME
 
+Files: doc/gitian-building/create_vm_memsize.png
+Copyright: @¡ò—«l2N~4VŸâThƒ™ÏLn;GÀ[hL°ºÒ¶p›ÔR[QÌ…æŞDÅ18+AZÒè8óºµÆÓÃƒëb¹Œg%×~Z:Ã/ç”‘5ÛxeX§sn`}ÖuóV}÷W¦ÊÈúÏN™Ü7>Ûmçuq9wåC÷­ırÙ¿îjIpÅê¡\ï•c•
+License: UNKNOWN
+ FIXME
+
 Files: README.md
-Copyright: 2009-2013, Bitcoin Core Developers
+Copyright: 2009-2014, Bitcoin Core Developers
 License: UNKNOWN
  FIXME
 
@@ -1380,6 +1618,12 @@ Copyright: 2011, The LevelDB Authors.
 License: UNKNOWN
  FIXME
 
+Files: doc/gitian-building/debian_install_1_boot_menu.png
+Copyright: F†VYP,	Kìè:¤0
+  RSÓ2³²CŠ)ç.^ÿûŸgˆúûù6®Ñ³O7(
+License: UNKNOWN
+ FIXME
+
 Files: contrib/macdeploy/background.psd
 Copyright: 1998, Hewlett-Packard Company  desc       sRGB IEC61966-2.1           sRGB IEC61966-2.1                                                  XYZ       óQ    ÌXYZ                 XYZ       o¢  8õ  XYZ       b™  ·…  ÚXYZ       $   „  ¶Ïdesc       IEC http://www.iec.ch           IEC http://www.iec.ch                                              desc       .IEC 61966-2.1 Default RGB colour space - sRGB           .IEC 61966-2.1 Default RGB colour space - sRGB                      desc       ,Reference Viewing Condition in IEC61966-2.1           ,Reference Viewing Condition in IEC61966-2.1                          view     ¤ş _. Ï íÌ  \   XYZ      L	V P   Wçmeas                            sig     CRT curv           
 License: UNKNOWN
@@ -1400,6 +1644,11 @@ License: UNKNOWN
 Files: src/m4/ax_boost_thread.m4
 Copyright: 2009, Michael Tindal
   2009, Thomas Porschberg <thomas@randspringer.de>
+License: UNKNOWN
+ FIXME
+
+Files: doc/gitian-building/debian_install_20_install_grub.png
+Copyright: O28kÊ(ÌKCOœİ-oy{Üœ£vñI†§uÒ€µç5¡É»Š¦å¿Mj¿ìÍïæwZÏ+1£ûÿlãä;Ç[ŸÖùp‹ÖöÍÏ\ËIÖ!Éüîş5œY°.1	>Ú?ó¶ÁÛR¿Ío‡µÃ8lKªÎo;®ƒãvè˜ìØ/—˜7àÉ·÷ó:ñ}ü,ÿ1‡iÛÕ_ãw€U3—Åç»AèÏİq¹¢²İæıùçjƒMxöš¯úş·AíÿØòY–-«Ş¸ÒİÍÔ½¤Åt¿ÛWİ±ºÂ¸í(fÄøÙÒÎ2îj¨tì¼úµ¿Eø˜}7ûÑş¯—/^omgÒHÓÉc²	kÏ×”±¥¦~(÷Oy¿Ì_»xWb±*×[i^çÛ%'ë
 License: UNKNOWN
  FIXME
 
@@ -1469,6 +1718,27 @@ Copyright: file files excluded from repackaged source
 License: UNKNOWN
  FIXME
 
+Files: doc/img/bootstrap4.png
+Copyright: g)BXÒ°$óbqv®ÊE(ËŞÊ>Ü‡ûğÊî&l«s¢ÛÍÊU³uXŞŠğèş23Ó”˜1{:ÌÎ tX‚ tñz…m¿åƒÿßbR¡
+  ‚ZÇş–D³mÈşv9l=ğ„$#}Ô#j¦B…¹Ù¬eû(N‡xe<æÆÙş`ù(”P±aa?ÙÙqäò É€²"q
+License: UNKNOWN
+ FIXME
+
+Files: doc/gitian-building/debian_install_16_choose_a_mirror.png
+Copyright: i¥‡VïO˜3syÏ†•VFñÙyú
+License: UNKNOWN
+ FIXME
+
+Files: doc/gitian-building/debian_install_18_proxy_settings.png
+Copyright: j§W³ö¬oK{@'œò9
+License: UNKNOWN
+ FIXME
+
+Files: src/qt/res/icons/bitcoin.icns
+Copyright: ‡ŸşU<Õäæ¤|ìK#¥_ûu‹e¸ˆWâÀg~EM®¸9Fêâ	GÕ9ŸM?q’g¾ÕFXvo9Xì6Vò
+License: UNKNOWN
+ FIXME
+
 Files: share/qt/img/reload.png
 Copyright: ‡ËÒ,6>¸àZUUÕáS§ŞåÕÖ…¨¨¨¨„gá#TpKÿåË—Ïf# Ä5j™aÌ7qfÀÁwK~/À@„».\¸ğõ®®®Œå	aBĞ{UUÕáñãÇ×‹|HPÑYçç755ıM5¶² PQùLÄÔÕÕÕ~ó›ßœŸÓ8ààû»¦·ÍÕ‡^€É“§Ä§¥¥İsêÔ*ê{i!55•ëîîV†Ğ¨ãGMMMµ	æ$ïGùù8~üø.2›ÙŠA!
 License: UNKNOWN
@@ -1480,13 +1750,40 @@ Copyright: £C´Š„ÚJµ…X° Øb+H‹¥J.DÑ`Ám7ÄE7¢¥
 License: UNKNOWN
  FIXME
 
-Files: share/pixmaps/bitcoin256.png
-Copyright: ë0¬ƒ)MªLæ€e;|0ôß¢89\#eÃîRş ~Iò5‡£\“÷÷ß	ˆSœ(p¸Q ²„1iÆöÈôXéïx¹ÑPÆ\ñà0'ÀeL
+Files: src/qt/res/images/splash.png
+Copyright: œó²•é{ğFàóŠàş: ™— t“—ìUªÿÜm‚øb·ÖblÛv½ı<Á”Ï¨ËçPÕßezØİ ã%yDvª/A‹›ÔÛ®3Bç<İô´À»-
 License: UNKNOWN
  FIXME
 
-Files: src/qt/res/images/splash.png
-Copyright: ìå¥•2q„ÊŒ#Cbt„®Múo2°j×‰X»ÚÑ|ÓW„İh8²”¨4•¢×C0Ã)xD7c¾’\U$¶ã)syFğ¼‘ãd9àgKôágş·>`éYôsÕ“§iÉ…ÉFv@[‘;Ö»ƒh…„¨O.qÄBÕ	7l¸„áWÕÎáŞi‘nÌ9÷4ëDµ!m¿v\çÖi²Jkî¶ÖÜe}rĞÃkò¸
+Files: doc/gitian-building/network_settings.png
+Copyright: ¤RiAAL&“Ê`Àip¤å¹\şÕ›*Úõ[u"ôĞº‘éG›'ùõšq4FH“ê
+License: UNKNOWN
+ FIXME
+
+Files: doc/gitian-building/debian_install_19_software_selection.png
+Copyright: ¯ëY¸¬Íù?®ÀU~Cİ€?OmãËßˆ5ùkálµÎ¿çq^çÛÌóÌ˜<Ö}1´`A°kÇ­ îÀ=X  Á, €` @0÷`A°korà,ˆW’™æÃ”—HM¸rU• EÀ‚nÌ“S&c•Ï³g~ 2,èÏ{°ÍÓĞfËÖ»ëÎÚµT9 
+License: UNKNOWN
+ FIXME
+
+Files: doc/img/bootstrap1.png
+Copyright: ±rğZ§Gíá7¥‹)KÕ(hË2õµÃò$€PÁ“=zß—>VÁ_=¤Q9Te9ÁƒÚ¦‚ª­¯ˆ(K‚´cÎßƒ«'T‰³Ş	ÜÔ…^|;6şZç;éøMØ¢‚çzª:HàøRëºÜWıÜ”«ê°øBüİgXåÖù*x‚
+  ä\¢ÃÆ*Sÿë¾¦e9/Sûosğ)ÿ•ÛpÅı1\×w¤
+  í/ÄSS/Œ,W5À¯š·AïÚ.Ÿö†Ê—ò.DÏó Å;eºş!½,BÇsÓe 7Ì²EzIæÁ”¯BÀ?91‘ÇR…áÖñI˜áWïÙß?^~¿óóÈµ×®Q{tPõÀ¹Oá¸Ö+¡s,Ëy=£ê´A—àsíKüÊWÜÇu×Ù·ÕGÃäb<T¬óüë7Wáµv¿Æã7ë;Æí>Lu(şuq
+License: UNKNOWN
+ FIXME
+
+Files: doc/gitian-building/port_forwarding_rules.png
+Copyright: ²Şø$‘†„B‚Eë[yÕÑËm_ª  ş„diûnÛÙ¼’¹è!²ŞÁ¯è$Şò+™Éú=4Ò§–[é—T Z¿Æzî­´,³$K.ÚÎ9²^ĞÃdT"²>g;S—XHËm%³åîJ‚%¾  Êœ_Ò~‰õB²Ü?ÏáÛ×Š.ñ¼ë…¨-C‹¾uÜvcËÜ¬ç0ÉRnÑ ªd=É‰¥å^ô‚-_¯fÿÂU²~³}O@ZïÂ ±PHÚ¾NÎúmn
+License: UNKNOWN
+ FIXME
+
+Files: src/qt/res/movies/spinner-013.png
+Copyright: ëLóñ¦Éû¾ÿãEZ¨²çòóp8¿ç ÿI‰;¨¥.ôH(è "ˆU_­&€M×gÄ»š¼[#!ŠÎeì«JŠprÂ:sfÆ˜~ù“Ê°$‡×@D`Í.ÿ¡GCï¶ŸjİX0 €¥b^ÊÃ£LŞ
+License: UNKNOWN
+ FIXME
+
+Files: doc/img/bootstrap3.png
+Copyright: û„ìÍeöóQiL,† ó˜ó}¬S9Šòqş‚³27S#Ÿ;5o²Ÿ3`º¼<ˆ´´4íGQQ&aş
 License: UNKNOWN
  FIXME
 

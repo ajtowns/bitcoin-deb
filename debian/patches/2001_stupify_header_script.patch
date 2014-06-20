@@ -3,13 +3,13 @@ Author: Jonas Smedegaard <dr@jones.dk>
 Last-Update: 2011-12-23
 Index: bitcoin/share/genbuild.sh
 ===================================================================
---- bitcoin.orig/share/genbuild.sh	2014-03-19 15:54:00.174740726 -0400
-+++ bitcoin/share/genbuild.sh	2014-03-19 15:54:39.902739911 -0400
-@@ -15,7 +15,7 @@
- 
+--- bitcoin.orig/share/genbuild.sh	2014-06-16 23:19:37.463116696 -0400
++++ bitcoin/share/genbuild.sh	2014-06-16 23:20:35.591118077 -0400
+@@ -16,7 +16,7 @@
  DESC=""
+ SUFFIX=""
  LAST_COMMIT_DATE=""
--if [ -e "$(which git)" -a -d ".git" ]; then
+-if [ -e "$(which git 2>/dev/null)" -a -d ".git" ]; then
 +if false; then
      # clean 'dirty' status of touched files that haven't been modified
      git diff >/dev/null 2>/dev/null 
