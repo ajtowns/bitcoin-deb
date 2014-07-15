@@ -117,7 +117,7 @@ DEB_MAKE_CHECK_TARGET = check
 boostver =
 deps-boost = system
 # TODO: Drop these when (if ever?) system json is used
-deps-boost += filesystem program-options thread test
+deps-boost += filesystem program-options thread test chrono
 CDBS_BUILD_DEPENDS += , $(foreach dep,$(deps-boost),libboost-$(dep)$(boostver)-dev$(comma) )
 
 # Apperently any recent BerkeyDB is ok.

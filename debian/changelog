@@ -2,6 +2,8 @@ bitcoin (0.9.2.1-1) unstable; urgency=medium
 
   * New upstream release.
   * Updated regex filter for debian copyright-check
+  * BD on libboost-chrono-dev (Closes: #754356)
+  * Update Vcs: to anonscm.debian.org
 
  -- Scott Howard <showard@debian.org>  Tue, 15 Jul 2014 08:21:37 -0400
 
