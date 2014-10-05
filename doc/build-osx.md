@@ -26,55 +26,20 @@ There's an assumption that you already have `git` installed, as well. If
 not, it's the path of least resistance to install [Github for Mac](https://mac.github.com/)
 (OS X 10.7+) or
 [Git for OS X](https://code.google.com/p/git-osx-installer/). It is also
-available via Homebrew or MacPorts.
+available via Homebrew.
 
 You will also need to install [Homebrew](http://brew.sh)
-or [MacPorts](https://www.macports.org/) in order to install library
-dependencies. It's largely a religious decision which to choose, but, as of
-December 2012, MacPorts is a little easier because you can just install the
-dependencies immediately - no other work required. If you're unsure, read
-the instructions through first in order to assess what you want to do.
-Homebrew is a little more popular among those newer to OS X.
+in order to install library dependencies.
 
 The installation of the actual dependencies is covered in the Instructions
 sections below.
-
-Instructions: MacPorts
-----------------------
-
-### Install dependencies
-
-Installing the dependencies using MacPorts is very straightforward.
-
-    sudo port install boost db48@+no_java openssl miniupnpc autoconf pkgconfig automake
-
-Optional: install Qt4
-
-    sudo port install qt4-mac qrencode protobuf-cpp
-
-### Building `bitcoind`
-
-1. Clone the github tree to get the source code and go into the directory.
-
-        git clone git@github.com:bitcoin/bitcoin.git bitcoin
-        cd bitcoin
-
-2.  Build bitcoind (and Bitcoin-Qt, if configured):
-
-        ./autogen.sh
-        ./configure
-        make
-
-3.  It is a good idea to build and run the unit tests, too:
-
-        make check
 
 Instructions: Homebrew
 ----------------------
 
 #### Install dependencies using Homebrew
 
-        brew install autoconf automake berkeley-db4 boost miniupnpc openssl pkg-config protobuf qt
+        brew install autoconf automake libtool boost miniupnpc openssl pkg-config protobuf qt
 
 Note: After you have installed the dependencies, you should check that the Homebrew installed version of OpenSSL is the one available for compilation. You can check this by typing
 
@@ -89,6 +54,29 @@ If not, you can ensure that the Homebrew OpenSSL is correctly linked by running
 Rerunning "openssl version" should now return the correct version. If it
 doesn't, make sure `/usr/local/bin` comes before `/usr/bin` in your
 PATH. 
+
+#### Installing berkeley-db4 using Homebrew
+
+The homebrew package for berkeley-db4 has been broken for some time.  It will install without Java though.
+
+Running this command takes you into brew's interactive mode, which allows you to configure, make, and install by hand:
+```
+$ brew install https://raw.github.com/mxcl/homebrew/master/Library/Formula/berkeley-db4.rb -–without-java 
+```
+
+These rest of these commands are run inside brew interactive mode:
+```
+/private/tmp/berkeley-db4-UGpd0O/db-4.8.30 $ cd ..
+/private/tmp/berkeley-db4-UGpd0O $ db-4.8.30/dist/configure --prefix=/usr/local/Cellar/berkeley-db4/4.8.30 --mandir=/usr/local/Cellar/berkeley-db4/4.8.30/share/man --enable-cxx
+/private/tmp/berkeley-db4-UGpd0O $ make
+/private/tmp/berkeley-db4-UGpd0O $ make install
+/private/tmp/berkeley-db4-UGpd0O $ exit
+```
+
+After exiting, you'll get a warning that the install is keg-only, which means it wasn't symlinked to `/usr/local`.  You don't need it to link it to build bitcoin, but if you want to, here's how:
+
+    $ brew --force link berkeley-db4
+
 
 ### Building `bitcoind`
 
@@ -121,18 +109,6 @@ All dependencies should be compiled with these flags:
  -mmacosx-version-min=10.6
  -arch x86_64
  -isysroot $(xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.6.sdk
-
-For MacPorts, that means editing your macports.conf and setting
-`macosx_deployment_target` and `build_arch`:
-
-    macosx_deployment_target=10.6
-    build_arch=x86_64
-
-... and then uninstalling and re-installing, or simply rebuilding, all ports.
-
-As of December 2012, the `boost` port does not obey `macosx_deployment_target`.
-Download `http://gavinandresen-bitcoin.s3.amazonaws.com/boost_macports_fix.zip`
-for a fix.
 
 Once dependencies are compiled, see release-process.md for how the Bitcoin-Qt.app
 bundle is packaged and signed to create the .dmg disk image that is distributed.
