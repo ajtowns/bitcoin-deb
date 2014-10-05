@@ -28,7 +28,7 @@ DEB_BUILD_PARALLEL = 1
 DEB_UPSTREAM_URL = https://github.com/bitcoin/bitcoin/archive
 DEB_UPSTREAM_TARBALL_BASENAME = v$(DEB_UPSTREAM_TARBALL_VERSION)
 DEB_UPSTREAM_TARBALL_BASENAME_MANGLE = s/~(alpha|beta|rc)/\1/
-DEB_UPSTREAM_TARBALL_MD5 = bd3caef17ba5bf9075ff26cd1b29cdae
+DEB_UPSTREAM_TARBALL_MD5 = 719ac255715deffafc2ae7554c66ba70
 
 # Ignore graphics and .mo files in addition to the default debian files
 DEB_COPYRIGHT_CHECK_IGNORE_REGEX = ^(.*\.png|src/qt/res/icons/bitcoin_testnet.ico|src/qt/res/icons/bitcoin\.icns|contrib/macdeploy/background\.psd|src/qt/res/images/splash_testnet\.png|src/qt/res/movies/.*\.png|src/qt/locale/.*\.ts|share/pixmaps/bitcoin256.png|share/pixmaps/bitcoin\.ico|src/qt/res/icons/bitcoin\.ico|doc/gitian-building/.*\.png|doc/bitcoin_logo_doxygen\.png|src/qt/res/icons/.*\.png|contrib/Bitcoin.app/Contents/Resources/BitcoinAppIcon\.icns|contrib/gitian-downloader/sipa-key\.pgp|debian/(changelog|copyright(|_hints|_newhints)))$
