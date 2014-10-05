@@ -18,13 +18,13 @@ Build-Depends: cdbs,
  libdb++-dev | libdb4.8++-dev,
  libssl-dev,
  pkg-config,
- qt4-default,
+ libqt4-dev,
  libqrencode-dev,
  icoutils,
  dh-autoreconf,
  libprotobuf-dev,
  protobuf-compiler
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Homepage: http://www.bitcoin.org/
 Vcs-Git: git://anonscm.debian.org/collab-maint/bitcoin
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/bitcoin.git

@@ -1,6 +1,10 @@
 bitcoin (0.9.3-1) unstable; urgency=medium
 
   * New upstream release, minor bug fixes
+  * BD on libqt4-dev instead of qt4-default (Lintian)
+  * D S-V 3.9.6, no changes
+  * added exec code to debian/bitcoin.desktop to fix Lintian warning:
+    desktop-mime-but-no-exec-code
 
  -- Scott Howard <showard@debian.org>  Sun, 05 Oct 2014 12:41:11 -0400
 

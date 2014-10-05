@@ -131,7 +131,7 @@ CDBS_SUGGESTS_bitcoind = db$(bdbver)-util, db$(bdbstablever)-util
 CDBS_BUILD_DEPENDS += , libssl-dev, pkg-config
 
 # Build dependencies for the bitcoin-qt package
-CDBS_BUILD_DEPENDS += , qt4-qmake, libqt4-dev, libqrencode-dev
+CDBS_BUILD_DEPENDS += , libqt4-dev, libqrencode-dev
 
 # Build dependencies for extracting icons
 CDBS_BUILD_DEPENDS += icoutils
