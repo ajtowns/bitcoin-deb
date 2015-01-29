@@ -3,6 +3,12 @@ bitcoin (0.9.4-1) unstable; urgency=medium
   * New upstream release.
     - Fixes OpenSSL 1.0.1k incompatibility FTBFS and failure to sync
       blockchain (Closes: 775102)
+  * Updated debian/copyright, fixed typo in format tag
+  * Removed patches:
+    - debian/patches/1003_qmake_cleanup.patch (unused)
+    - debian/patches/2001_stupify_header_script.patch (no longer needed)
+    - debian/patches/3001_debug_bts_672524.patch (unused)
+
 
  -- Scott Howard <showard@debian.org>  Thu, 29 Jan 2015 10:36:59 -0500
 
