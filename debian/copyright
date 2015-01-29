@@ -5,7 +5,7 @@ Upstream-Contact: https: github.com/bitcoin/bitcoin/issues
 Source: https: github.com/bitcoin/bitcoin
 
 Files: *
-Copyright: 2009-2014, Bitcoin Developers
+Copyright: 2009-2015, Bitcoin Developers
 License: Expat
 Comment: According to http: www.bitcoin.org/ the Bitcoin Developers are
   * Satoshi Nakamoto
