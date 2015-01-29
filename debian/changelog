@@ -1,3 +1,11 @@
+bitcoin (0.9.4-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Fixes OpenSSL 1.0.1k incompatibility FTBFS and failure to sync
+      blockchain (Closes: 775102)
+
+ -- Scott Howard <showard@debian.org>  Thu, 29 Jan 2015 10:36:59 -0500
+
 bitcoin (0.9.3-1) unstable; urgency=medium
 
   * New upstream release, minor bug fixes
