@@ -1,41 +1,4 @@
-<TS language="be_BY" version="2.1">
-<context>
-    <name>AboutDialog</name>
-    <message>
-        <source>About Bitcoin Core</source>
-        <translation>Аб Bitcoin Core</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Bitcoin Core&lt;/b&gt; version</source>
-        <translation>&lt;b&gt;Bitcoin Core&lt;/b&gt; версіі</translation>
-    </message>
-    <message>
-        <source>
-This is experimental software.
-
-Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php.
-
-This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.</source>
-        <translation>
-Гэта эксперыментальная праграма.
-
-Распаўсюджваецца пад праграмнай ліцэнзіяй MIT/X11, глядзі суправаджальную ліцэнзію капіявання альбо http://www.opensource.org/licenses/mit-license.php.
-
-Гэты прадукт уключае ПЗ, распрацаванае Праектам OpenSSL ужыванае ў OpenSSL Toolkit ( http://www.openssl.org/ ) і крыптаграфічныя праграмы, напісаныя Eric Young (eay@cryptsoft.com) і праграму UPnP, напісаную Thomas Bernard.</translation>
-    </message>
-    <message>
-        <source>Copyright</source>
-        <translation>Copyright</translation>
-    </message>
-    <message>
-        <source>The Bitcoin Core developers</source>
-        <translation>Распрацоўнікі Bitcoin Core</translation>
-    </message>
-    <message>
-        <source>(%1-bit)</source>
-        <translation>(%1-біт)</translation>
-    </message>
-</context>
+<TS language="be_BY" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -114,11 +77,7 @@ This product includes software developed by the OpenSSL Project for use in the O
         <source>Exporting Failed</source>
         <translation>Экспартаванне няўдалае</translation>
     </message>
-    <message>
-        <source>There was an error trying to save the address list to %1.</source>
-        <translation>Адбылася памылка пры спробе захавання спісу адрасоў у %1.</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -147,10 +106,6 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <source>Repeat new passphrase</source>
         <translation>Паўтарыце новую кодавую фразу</translation>
-    </message>
-    <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Увядзіце новую кодавую фразу для гаманца. &lt;br/&gt;Калі ласка, ўжывайце пароль &lt;b&gt;не меньша за 10 адвольных сімвалаў&lt;/b&gt;, ці &lt;b&gt;болей васьмі слоў&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
@@ -222,7 +177,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>Уведзены пароль  для расшыфравання гаманца памылковы</translation>
+        <translation>Уведзена пароль  дзеля расшыфравання гаманца памылковы</translation>
     </message>
     <message>
         <source>Wallet decryption failed</source>
@@ -270,10 +225,6 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <source>Quit application</source>
         <translation>Выйсці з праграмы</translation>
-    </message>
-    <message>
-        <source>Show information about Bitcoin</source>
-        <translation>Паказаць звесткі пра Біткойн</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
@@ -343,14 +294,6 @@ This product includes software developed by the OpenSSL Project for use in the O
         <source>&amp;Help</source>
         <translation>Дапамога</translation>
     </message>
-    <message>
-        <source>[testnet]</source>
-        <translation>[testnet]</translation>
-    </message>
-    <message>
-        <source>Bitcoin client</source>
-        <translation>Bitcoin кліент</translation>
-    </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
         <translation><numerusform>%n актыўнае злучэнне з Bitcoin-сецівам</numerusform><numerusform>%n актыўных злучэнняў з Bitcoin-сецівам</numerusform></translation>
@@ -395,7 +338,7 @@ Address: %4
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Гаманец &lt;b&gt;зашыфраваны&lt;/b&gt; і зараз &lt;b&gt;заблакаваны&lt;/b&gt;</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ClientModel</name>
     </context>
@@ -408,10 +351,6 @@ Address: %4
     <message>
         <source>Amount</source>
         <translation>Колькасць</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Адрас</translation>
     </message>
     <message>
         <source>Date</source>
@@ -491,6 +430,14 @@ Address: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
+        <source>(%1-bit)</source>
+        <translation>(%1-біт)</translation>
+    </message>
+    <message>
+        <source>About Bitcoin Core</source>
+        <translation>Аб Bitcoin Core</translation>
+    </message>
+    <message>
         <source>Usage:</source>
         <translation>Ужыванне:</translation>
     </message>
@@ -518,25 +465,20 @@ Address: %4
         <source>Form</source>
         <translation>Форма</translation>
     </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Гаманец</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Нядаўнія транзаццыі&lt;/b&gt;</translation>
-    </message>
     </context>
 <context>
     <name>PaymentServer</name>
     </context>
 <context>
+    <name>PeerTableModel</name>
+    </context>
+<context>
     <name>QObject</name>
     <message>
-        <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
-        <translation>Увядзіце Біткойн-адрас (ўзор 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+        <source>Amount</source>
+        <translation>Колькасць</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>QRImageWidget</name>
     </context>
@@ -679,10 +621,6 @@ Address: %4
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
-    <message>
-        <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
-        <translation>Увядзіце Біткойн-адрас (ўзор 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
-    </message>
     </context>
 <context>
     <name>SplashScreen</name>
@@ -753,10 +691,6 @@ Address: %4
     <message>
         <source>Address</source>
         <translation>Адрас</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Колькасць</translation>
     </message>
     <message>
         <source>Confirmed (%1 confirmations)</source>
@@ -922,10 +856,6 @@ Address: %4
         <translation>Адрас</translation>
     </message>
     <message>
-        <source>Amount</source>
-        <translation>Колькасць</translation>
-    </message>
-    <message>
         <source>ID</source>
         <translation>ID</translation>
     </message>
@@ -938,6 +868,9 @@ Address: %4
         <translation>да</translation>
     </message>
 </context>
+<context>
+    <name>UnitDisplayStatusBarControl</name>
+    </context>
 <context>
     <name>WalletFrame</name>
     </context>
@@ -962,48 +895,12 @@ Address: %4
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Usage:</source>
-        <translation>Ужыванне:</translation>
-    </message>
-    <message>
-        <source>List commands</source>
-        <translation>Спіс каманд</translation>
-    </message>
-    <message>
-        <source>Get help for a command</source>
-        <translation>Атрымаць дапамогу для каманды</translation>
-    </message>
-    <message>
         <source>Options:</source>
         <translation>Опцыі:</translation>
     </message>
     <message>
-        <source>Specify configuration file (default: bitcoin.conf)</source>
-        <translation>Вызначыць канфігурацыйны файл (зыходна: bitcoin.conf)</translation>
-    </message>
-    <message>
-        <source>Specify pid file (default: bitcoind.pid)</source>
-        <translation>Вызначыць pid-файл (зыходна: bitcoind.pid)</translation>
-    </message>
-    <message>
         <source>Specify data directory</source>
         <translation>Вызначыць каталог даных</translation>
-    </message>
-    <message>
-        <source>Listen for connections on &lt;port&gt; (default: 8333 or testnet: 18333)</source>
-        <translation>Слухаць злучэнні на &lt;port&gt; (зыходна: 8333 ці testnet: 18333)</translation>
-    </message>
-    <message>
-        <source>Maintain at most &lt;n&gt; connections to peers (default: 125)</source>
-        <translation>Трымаць не больш за &lt;n&gt; злучэнняў на асобу (зыходна: 125)</translation>
-    </message>
-    <message>
-        <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
-        <translation>Парог для адлучэння злаўмысных карыстальнікаў (тыпова: 100)</translation>
-    </message>
-    <message>
-        <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
-        <translation>Колькасць секунд для ўстрымання асобаў да перадалучэння (заходна: 86400)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -1030,24 +927,12 @@ Address: %4
         <translation>Пароль для JSON-RPC злучэнняў</translation>
     </message>
     <message>
-        <source>Allow JSON-RPC connections from specified IP address</source>
-        <translation>Дазволіць  JSON-RPC злучэнні з пэўнага IP адрасу</translation>
-    </message>
-    <message>
-        <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
-        <translation>Адпраўляць каманды вузлу на &lt;ip&gt; (зыходна: 127.0.0.1)</translation>
-    </message>
-    <message>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
         <translation>Выканаць каманду калі лепшы блок зменіцца (%s замяняецца на хэш блока)</translation>
     </message>
     <message>
         <source>Upgrade wallet to latest format</source>
         <translation>Абнавіць гаманец на новы фармат</translation>
-    </message>
-    <message>
-        <source>Set key pool size to &lt;n&gt; (default: 100)</source>
-        <translation>Устанавіць памер фонда ключоў у &lt;n&gt; (тыпова: 100)</translation>
     </message>
     <message>
         <source>Rescan the block chain for missing wallet transactions</source>
@@ -1058,28 +943,12 @@ Address: %4
         <translation>Ужываць OpenSSL (https) для JSON-RPC злучэнняў</translation>
     </message>
     <message>
-        <source>Server certificate file (default: server.cert)</source>
-        <translation>Файл-сертыфікат сервера (зыходна: server.cert)</translation>
-    </message>
-    <message>
-        <source>Server private key (default: server.pem)</source>
-        <translation>Прыватны ключ сервера (зыходна: server.pem)</translation>
-    </message>
-    <message>
         <source>Loading addresses...</source>
         <translation>Загружаем адрасы...</translation>
     </message>
     <message>
         <source>Error loading wallet.dat: Wallet corrupted</source>
         <translation>Памылка загрузкі wallet.dat: гаманец пашкоджаны</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin</source>
-        <translation>Памылка загрузкі wallet.dat: гаманец патрабуе новую версію Bitcoin</translation>
-    </message>
-    <message>
-        <source>Wallet needed to be rewritten: restart Bitcoin to complete</source>
-        <translation>Гаманец мае быць перазапісаны: патрэбны перазапуск Bitcoin для выканання</translation>
     </message>
     <message>
         <source>Error loading wallet.dat</source>
@@ -1113,5 +982,5 @@ Address: %4
         <source>Error</source>
         <translation>Памылка</translation>
     </message>
-    </context>
+</context>
 </TS>

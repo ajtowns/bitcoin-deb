@@ -1,7 +1,4 @@
-<TS language="ur_PK" version="2.1">
-<context>
-    <name>AboutDialog</name>
-    </context>
+<TS language="ur_PK" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -104,10 +101,6 @@
         <translation>رقم</translation>
     </message>
     <message>
-        <source>Address</source>
-        <translation> پتہ</translation>
-    </message>
-    <message>
         <source>Date</source>
         <translation>تاریخ</translation>
     </message>
@@ -145,7 +138,14 @@
     <name>PaymentServer</name>
     </context>
 <context>
+    <name>PeerTableModel</name>
+    </context>
+<context>
     <name>QObject</name>
+    <message>
+        <source>Amount</source>
+        <translation>رقم</translation>
+    </message>
     </context>
 <context>
     <name>QRImageWidget</name>
@@ -245,10 +245,6 @@
         <translation> پتہ</translation>
     </message>
     <message>
-        <source>Amount</source>
-        <translation>رقم</translation>
-    </message>
-    <message>
         <source>Sent to</source>
         <translation>کو بھیجا</translation>
     </message>
@@ -307,10 +303,9 @@
         <source>Address</source>
         <translation> پتہ</translation>
     </message>
-    <message>
-        <source>Amount</source>
-        <translation>رقم</translation>
-    </message>
+    </context>
+<context>
+    <name>UnitDisplayStatusBarControl</name>
     </context>
 <context>
     <name>WalletFrame</name>
@@ -343,5 +338,5 @@
         <source>Error</source>
         <translation>نقص</translation>
     </message>
-    </context>
+</context>
 </TS>
