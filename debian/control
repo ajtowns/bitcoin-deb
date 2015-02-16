@@ -23,7 +23,8 @@ Build-Depends: cdbs,
  icoutils,
  dh-autoreconf,
  libprotobuf-dev,
- protobuf-compiler
+ protobuf-compiler,
+ python
 Standards-Version: 3.9.6
 Homepage: http://www.bitcoin.org/
 Vcs-Git: git://anonscm.debian.org/collab-maint/bitcoin
