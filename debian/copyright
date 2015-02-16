@@ -16,6 +16,45 @@ Comment: According to http: www.bitcoin.org/ the Bitcoin Developers are
   * Wladimir J. van der Laan <laanwj@gmail.com>
   * Gregory Maxwell <gmaxwell@gmail.com>
 
+Files: contrib/macdeploy/*
+Copyright: 2011, Patrick "p2k" Schneider <me@p2k-network.org>
+License: GPL-3+
+
+Files: src/json/*
+Copyright: 2007-2009, John W. Wilkinson
+License: Expat
+
+Files: src/addrman.cpp
+ src/addrman.h
+Copyright: 2012, Pieter Wuille
+License: Expat
+
+Files: contrib/bitcoind.bash-completion
+Copyright: 2012, Christian von Roques <roques@mti.ag>
+License: Expat
+
+Files: src/secp256k1/src/*
+Copyright: 2013-2014, Pieter Wuille
+License: Expat
+
+Files: src/univalue/gen.cpp
+ src/univalue/univalue.cpp
+ src/univalue/univalue.h
+ src/univalue/univalue_read.cpp
+ src/univalue/univalue_write.cpp
+ src/test/bctest.py
+ src/test/bitcoin-util-test.py
+ src/test/univalue_tests.cpp
+Copyright: 2014, BitPay Inc
+License: Expat
+
+Files: build-aux/m4/ax_check_compile_flag.m4
+ build-aux/m4/ax_check_link_flag.m4
+ build-aux/m4/ax_check_preproc_flag.m4
+Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
+  2011, Maarten Bosmans <mkbosmans@gmail.com>
+License: GPL-3+
+
 Files: src/leveldb/*
 Copyright: (c) 2011 The LevelDB Authors
 License: BSD-3-clause
@@ -45,44 +84,20 @@ License: BSD-3-clause
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Files: contrib/macdeploy/*
-Copyright: 2011, Patrick "p2k" Schneider <me@p2k-network.org>
-License: GPL-3+
-
-Files: src/json/*
-Copyright: 2007-2009, John W. Wilkinson
-License: Expat
-
-Files: src/addrman.cpp
- src/addrman.h
-Copyright: 2012, Pieter Wuille
-License: Expat
-
-Files: contrib/bitcoind.bash-completion
-Copyright: 2012, Christian von Roques <roques@mti.ag>
-License: Expat
-
-Files: debian/*
-Copyright: 2010-2011, Jonas Smedegaard <dr@jones.dk>
-License: GPL-2+
-
 Files: contrib/debian/manpages/*
 Copyright: Micah Anderson <micah@debian.org>
 License: GPL-3+
 
-Files: src/m4/ax_check_compile_flag.m4
- src/m4/ax_check_link_flag.m4
- src/m4/ax_check_preproc_flag.m4
-Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-           2011, Maarten Bosmans <mkbosmans@gmail.com>
-License: GPL-3+
-
-Files: src/m4/ax_pthread.m4
+Files: build-aux/m4/ax_pthread.m4
 Copyright: 2008 Steven G. Johnson <stevenj@alum.mit.edu>
            2011 Daniel Richard G. <skunk@iSKUNK.ORG>
 License: GPL-3+
 
-Files: src/m4/ax_boost_filesystem.m4
+Files: share/seeds/generate-seeds.py
+Copyright: 2014, Wladmir J. van der Laan
+License: Expat
+
+Files: build-aux/m4/ax_boost_filesystem.m4
 Copyright: 2009, Michael Tindal
   2009, Roman Rybalko <libtorrent@romanr.info>
   2009, Thomas Porschberg <thomas@randspringer.de>
@@ -92,7 +107,7 @@ License: custom-license
    and this notice are preserved. This file is offered as-is, without any
    warranty.
 
-Files: src/m4/ax_boost_thread.m4
+Files: build-aux/m4/ax_boost_thread.m4
 Copyright: 2009, Michael Tindal
   2009, Thomas Porschberg <thomas@randspringer.de>
 License: custom-license
@@ -101,7 +116,7 @@ License: custom-license
    and this notice are preserved. This file is offered as-is, without any
    warranty.
 
-Files: src/m4/ax_boost_base.m4
+Files: build-aux/m4/ax_boost_base.m4
 Copyright: 2008, Thomas Porschberg <thomas@randspringer.de>
   2009, Peter Adolphs
 License: custom-license
@@ -110,7 +125,7 @@ License: custom-license
    and this notice are preserved. This file is offered as-is, without any
    warranty.
 
-Files: src/m4/ax_boost_chrono.m4
+Files: build-aux/m4/ax_boost_chrono.m4
 Copyright: 2012, Xiyue Deng <manphiz@gmail.com>
 License: custom-license
    Copying and distribution of this file, with or without modification, are
@@ -118,8 +133,8 @@ License: custom-license
    and this notice are preserved. This file is offered as-is, without any
    warranty.
 
-Files: src/m4/ax_boost_program_options.m4
- src/m4/ax_boost_unit_test_framework.m4
+Files: build-aux/m4/ax_boost_program_options.m4
+ build-aux/m4/ax_boost_unit_test_framework.m4
 Copyright: 2008, Thomas Porschberg <thomas@randspringer.de>
   2009, Thomas Porschberg <thomas@randspringer.de>
 License: custom-license
@@ -128,7 +143,7 @@ License: custom-license
    and this notice are preserved. This file is offered as-is, without any
    warranty.
 
-Files: src/m4/ax_boost_system.m4
+Files: build-aux/m4/ax_boost_system.m4
 Copyright: 2008, Daniel Casimiro <dan.casimiro@gmail.com>
   2008, Michael Tindal
   2008, Thomas Porschberg <thomas@randspringer.de>

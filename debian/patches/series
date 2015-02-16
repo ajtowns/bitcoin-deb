@@ -3,5 +3,4 @@
 #1005_use_system_leveldb.patch
 1006_libmemenv_kfrebsd.patch
 1007_libmemenv_hurd.patch
-1008_libmemenv_cstdatomic_renaming.patch
 2002_libmemenv_debian-ports.patch

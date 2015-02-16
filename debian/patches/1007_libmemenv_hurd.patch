@@ -8,9 +8,9 @@ Last-Update: 2014-03-19 by showard@debian.org, no longer makes msync() calls
 
 Index: bitcoin/src/leveldb/build_detect_platform
 ===================================================================
---- bitcoin.orig/src/leveldb/build_detect_platform	2014-03-19 15:51:33.170743743 -0400
-+++ bitcoin/src/leveldb/build_detect_platform	2014-03-19 15:51:33.162743743 -0400
-@@ -161,6 +161,12 @@
+--- bitcoin.orig/src/leveldb/build_detect_platform
++++ bitcoin/src/leveldb/build_detect_platform
+@@ -167,6 +167,12 @@ case "$TARGET_OS" in
          PLATFORM_LIBS="-lpthread -lrt"
          PORT_FILE=port/port_posix.cc
          ;;

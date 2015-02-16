@@ -3,9 +3,9 @@ Author: Nobuhiro Iwamatsu <iwamatsu@debian.org>
 
 Index: bitcoin/src/leveldb/port/atomic_pointer.h
 ===================================================================
---- bitcoin.orig/src/leveldb/port/atomic_pointer.h	2013-12-09 10:40:50.789950673 -0500
-+++ bitcoin/src/leveldb/port/atomic_pointer.h	2013-12-09 10:50:19.921964200 -0500
-@@ -38,6 +38,18 @@
+--- bitcoin.orig/src/leveldb/port/atomic_pointer.h
++++ bitcoin/src/leveldb/port/atomic_pointer.h
+@@ -37,6 +37,18 @@
  #define ARCH_CPU_ARM_FAMILY 1
  #elif defined(__ppc__) || defined(__powerpc__) || defined(__powerpc64__)
  #define ARCH_CPU_PPC_FAMILY 1
@@ -24,7 +24,7 @@ Index: bitcoin/src/leveldb/port/atomic_pointer.h
  #endif
  
  namespace leveldb {
-@@ -52,14 +64,25 @@
+@@ -51,14 +63,25 @@ namespace port {
  
  // Mac OS
  #elif defined(OS_MACOSX)
@@ -52,7 +52,7 @@ Index: bitcoin/src/leveldb/port/atomic_pointer.h
    // See http://gcc.gnu.org/ml/gcc/2003-04/msg01180.html for a discussion on
    // this idiom. Also see http://en.wikipedia.org/wiki/Memory_ordering.
    __asm__ __volatile__("" : : : "memory");
-@@ -88,17 +111,99 @@
+@@ -87,17 +110,99 @@ typedef void (*LinuxKernelMemoryBarrierF
  // shows that the extra function call cost is completely negligible on
  // multi-core devices.
  //
@@ -157,7 +157,7 @@ Index: bitcoin/src/leveldb/port/atomic_pointer.h
  }
  #define LEVELDB_HAVE_MEMORY_BARRIER
  
-@@ -116,11 +221,11 @@
+@@ -115,11 +220,11 @@ class AtomicPointer {
    inline void NoBarrier_Store(void* v) { rep_ = v; }
    inline void* Acquire_Load() const {
      void* result = rep_;
@@ -171,7 +171,7 @@ Index: bitcoin/src/leveldb/port/atomic_pointer.h
      rep_ = v;
    }
  };
-@@ -217,6 +322,12 @@
+@@ -216,6 +321,12 @@ class AtomicPointer {
  #undef ARCH_CPU_X86_FAMILY
  #undef ARCH_CPU_ARM_FAMILY
  #undef ARCH_CPU_PPC_FAMILY

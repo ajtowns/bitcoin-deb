@@ -1,6 +1,10 @@
 bitcoin (0.10.0-1) unstable; urgency=medium
 
   * New upstream release
+  * updated debian/copyright
+  * Refreshed patches
+    - dropped debian/patches/1008_libmemenv_cstdatomic_renaming.patch
+      (changed upstream)
 
  -- Scott Howard <showard@debian.org>  Mon, 16 Feb 2015 12:52:26 -0500
 
