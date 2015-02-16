@@ -1,7 +1,4 @@
-<TS language="ms_MY" version="2.1">
-<context>
-    <name>AboutDialog</name>
-    </context>
+<TS language="ms_MY" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -75,10 +72,6 @@
     </context>
 <context>
     <name>CoinControlDialog</name>
-    <message>
-        <source>Address</source>
-        <translation>Alamat</translation>
-    </message>
     </context>
 <context>
     <name>EditAddressDialog</name>
@@ -111,6 +104,9 @@
     </context>
 <context>
     <name>PaymentServer</name>
+    </context>
+<context>
+    <name>PeerTableModel</name>
     </context>
 <context>
     <name>QObject</name>
@@ -179,6 +175,9 @@
         <source>Address</source>
         <translation>Alamat</translation>
     </message>
+    </context>
+<context>
+    <name>UnitDisplayStatusBarControl</name>
     </context>
 <context>
     <name>WalletFrame</name>

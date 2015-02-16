@@ -1,34 +1,4 @@
-<TS language="ar" version="2.1">
-<context>
-    <name>AboutDialog</name>
-    <message>
-        <source>About Bitcoin Core</source>
-        <translation>عن جوهر البيت كوين</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Bitcoin Core&lt;/b&gt; version</source>
-        <translation>&lt;b&gt;جوهر البيت كوين&lt;/b&gt; إصدار</translation>
-    </message>
-    <message>
-        <source>
-This is experimental software.
-
-Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php.
-
-This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.</source>
-        <translation>هذا هو برنامج تجريبي .
- موزع تحت رخصة البرمجيات MIT / X11، انظر نسخ ملف أو المصاحب http://www.opensource.org/licenses/mit-license.php
- يشتمل هذا المنتج على برنامج تم تطويره من قبل بينسل مشروع للاستخدام في مجموعة أدوات OpenSSL (http://www.openssl.org/) وبرامج التشفير كتبه اريك يونغ (eay@cryptsoft.com) والبرمجيات بنب كتبه توماس برنارد.</translation>
-    </message>
-    <message>
-        <source>Copyright</source>
-        <translation>الحقوق محفوظة</translation>
-    </message>
-    <message>
-        <source>The Bitcoin Core developers</source>
-        <translation>مطوري جوهر البيت كوين</translation>
-    </message>
-    </context>
+<TS language="ar" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -158,10 +128,6 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>ادخل كلمة المرور الجديدة مرة أخرى</translation>
     </message>
     <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>أدخل كلمة مرور جديدة للمحفظة. &lt;br/&gt;الرجاء استخدام كلمة مرور تتكون &lt;b&gt;من 10 حروف عشوائية على الاقل&lt;/b&gt;, أو &lt;b&gt;أكثر من 7 كلمات&lt;/b&gt;. </translation>
-    </message>
-    <message>
         <source>Encrypt wallet</source>
         <translation>تشفير المحفظة</translation>
     </message>
@@ -212,6 +178,10 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <source>Wallet encrypted</source>
         <translation>محفظة مشفرة</translation>
+    </message>
+    <message>
+        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>أدخل عبارة مرور جديدة إلى المحفظة. الرجاء استخدام عبارة مرور تتكون من10 حروف عشوائية على الاقل, أو أكثر من 7 كلمات</translation>
     </message>
     <message>
         <source>Bitcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
@@ -285,10 +255,6 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>الخروج من التطبيق</translation>
     </message>
     <message>
-        <source>Show information about Bitcoin</source>
-        <translation>  إظهار معلومات حول بت كوين</translation>
-    </message>
-    <message>
         <source>About &amp;Qt</source>
         <translation>عن</translation>
     </message>
@@ -323,6 +289,10 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <source>Open &amp;URI...</source>
         <translation>افتح &amp;URI...</translation>
+    </message>
+    <message>
+        <source>Bitcoin Core client</source>
+        <translation>عميل bitcion core</translation>
     </message>
     <message>
         <source>Send coins to a Bitcoin address</source>
@@ -361,6 +331,10 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>&amp;استقبل</translation>
     </message>
     <message>
+        <source>Show information about Bitcoin Core</source>
+        <translation>  اظهار معلومات حول bitcion core</translation>
+    </message>
+    <message>
         <source>&amp;Show / Hide</source>
         <translation>&amp;عرض / اخفاء</translation>
     </message>
@@ -370,7 +344,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <source>Encrypt the private keys that belong to your wallet</source>
-        <translation>تشفير المفتاح الخاص بمحفظتك</translation>
+        <translation>تشفير المفتاح الخاص لمحفظتك</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -389,20 +363,12 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>شريط أدوات علامات التبويب</translation>
     </message>
     <message>
-        <source>[testnet]</source>
-        <translation>[testnet]</translation>
-    </message>
-    <message>
         <source>Bitcoin Core</source>
         <translation>جوهر البيت كوين</translation>
     </message>
     <message>
         <source>&amp;About Bitcoin Core</source>
         <translation>حول bitcoin core</translation>
-    </message>
-    <message>
-        <source>Bitcoin client</source>
-        <translation>عميل بت كوين</translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
@@ -452,7 +418,7 @@ This product includes software developed by the OpenSSL Project for use in the O
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>المحفظة &lt;b&gt;مشفرة&lt;/b&gt; و &lt;b&gt;مقفلة&lt;/b&gt; حاليا</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ClientModel</name>
     <message>
@@ -489,10 +455,6 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <source>Amount</source>
         <translation>المبلغ</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>عنوان</translation>
     </message>
     <message>
         <source>Date</source>
@@ -664,6 +626,10 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>النسخة</translation>
     </message>
     <message>
+        <source>About Bitcoin Core</source>
+        <translation>عن جوهر البيت كوين</translation>
+    </message>
+    <message>
         <source>Usage:</source>
         <translation>المستخدم</translation>
     </message>
@@ -687,16 +653,12 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>استخدام دليل بيانات مخصص:</translation>
     </message>
     <message>
-        <source>Bitcoin</source>
-        <translation>بت كوين</translation>
+        <source>Bitcoin Core</source>
+        <translation>جوهر البيت كوين</translation>
     </message>
     <message>
         <source>Error</source>
         <translation>خطأ</translation>
-    </message>
-    <message>
-        <source>GB of free space available</source>
-        <translation>قيقا بايت مساحة متاحة</translation>
     </message>
     </context>
 <context>
@@ -721,12 +683,12 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>&amp;الرئيسي</translation>
     </message>
     <message>
-        <source>Pay transaction &amp;fee</source>
-        <translation>ادفع &amp;رسوم المعاملة</translation>
-    </message>
-    <message>
         <source>MB</source>
         <translation>م ب</translation>
+    </message>
+    <message>
+        <source>Accept connections from outside</source>
+        <translation>إقبل التواصل من الخارج</translation>
     </message>
     <message>
         <source>Third party transaction URLs</source>
@@ -773,10 +735,6 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>واجهة المستخدم &amp;اللغة:</translation>
     </message>
     <message>
-        <source>&amp;Display addresses in transaction list</source>
-        <translation>عرض العناوين في قائمة الصفقة</translation>
-    </message>
-    <message>
         <source>&amp;OK</source>
         <translation>تم</translation>
     </message>
@@ -808,10 +766,6 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>نمودج</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>محفظة</translation>
-    </message>
-    <message>
         <source>Available:</source>
         <translation>متوفر</translation>
     </message>
@@ -832,10 +786,6 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>رصيدك الكلي الحالي</translation>
     </message>
     <message>
-        <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
-        <translation>اخر المعملات </translation>
-    </message>
-    <message>
         <source>out of sync</source>
         <translation>خارج المزامنه</translation>
     </message>
@@ -844,16 +794,23 @@ This product includes software developed by the OpenSSL Project for use in the O
     <name>PaymentServer</name>
     </context>
 <context>
+    <name>PeerTableModel</name>
+    </context>
+<context>
     <name>QObject</name>
     <message>
-        <source>Bitcoin</source>
-        <translation>بت كوين</translation>
+        <source>Amount</source>
+        <translation>المبلغ</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
-        <translation>إدخال عنوانBitcoin (مثال :1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+        <source>UNKNOWN</source>
+        <translation>غير معروف</translation>
     </message>
-</context>
+    <message>
+        <source>N/A</source>
+        <translation>غير معروف</translation>
+    </message>
+    </context>
 <context>
     <name>QRImageWidget</name>
     <message>
@@ -912,6 +869,30 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>عدد الاتصالات</translation>
     </message>
     <message>
+        <source>Received</source>
+        <translation>إستقبل</translation>
+    </message>
+    <message>
+        <source>Sent</source>
+        <translation>تم الإرسال</translation>
+    </message>
+    <message>
+        <source>Direction</source>
+        <translation>جهة</translation>
+    </message>
+    <message>
+        <source>Services</source>
+        <translation>خدمات</translation>
+    </message>
+    <message>
+        <source>Last Send</source>
+        <translation>آخر استقبال</translation>
+    </message>
+    <message>
+        <source>Last Receive</source>
+        <translation>آخر إرسال</translation>
+    </message>
+    <message>
         <source>&amp;Open</source>
         <translation>الفتح</translation>
     </message>
@@ -943,7 +924,15 @@ This product includes software developed by the OpenSSL Project for use in the O
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
         <translation>استخدم اسهم الاعلى و الاسفل للتنقل بين السجلات و &lt;b&gt;Ctrl-L&lt;/b&gt;  لمسح الشاشة</translation>
     </message>
-    </context>
+    <message>
+        <source>Unknown</source>
+        <translation>غير معرف</translation>
+    </message>
+    <message>
+        <source>Fetching...</source>
+        <translation>جاري الجلب...</translation>
+    </message>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -1261,10 +1250,6 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>تحقق &amp;الرسالة</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
-        <translation>إدخال عنوانBitcoin (مثال :1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
-    </message>
-    <message>
         <source>Click "Sign Message" to generate signature</source>
         <translation>اضغط  "توقيع الرسالة" لتوليد التوقيع</translation>
     </message>
@@ -1448,10 +1433,6 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>عنوان</translation>
     </message>
     <message>
-        <source>Amount</source>
-        <translation>المبلغ</translation>
-    </message>
-    <message>
         <source>This block was not received by any other nodes and will probably not be accepted!</source>
         <translation>لم يتم تلقى هذه الكتلة (Block) من قبل أي العقد الأخرى وربما لن تكون مقبولة!</translation>
     </message>
@@ -1623,10 +1604,6 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>عنوان</translation>
     </message>
     <message>
-        <source>Amount</source>
-        <translation>المبلغ</translation>
-    </message>
-    <message>
         <source>ID</source>
         <translation>العنوان</translation>
     </message>
@@ -1639,6 +1616,9 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>الى</translation>
     </message>
 </context>
+<context>
+    <name>UnitDisplayStatusBarControl</name>
+    </context>
 <context>
     <name>WalletFrame</name>
     </context>
@@ -1675,18 +1655,6 @@ This product includes software developed by the OpenSSL Project for use in the O
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Usage:</source>
-        <translation>المستخدم</translation>
-    </message>
-    <message>
-        <source>List commands</source>
-        <translation>اعرض الأوامر</translation>
-    </message>
-    <message>
-        <source>Get help for a command</source>
-        <translation>مساعدة في كتابة الاوامر</translation>
-    </message>
-    <message>
         <source>Options:</source>
         <translation>خيارات: </translation>
     </message>
@@ -1709,10 +1677,6 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <source>Error: Wallet locked, unable to create transaction!</source>
         <translation>تحذير: المحفظة مغلقة , لا تستطيع تنفيذ المعاملة</translation>
-    </message>
-    <message>
-        <source>Error: system error: </source>
-        <translation>خطأ: خطأ في النظام:</translation>
     </message>
     <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
@@ -1739,10 +1703,6 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>فشل توقيع المعاملة</translation>
     </message>
     <message>
-        <source>System error: </source>
-        <translation>خطأ في النظام :</translation>
-    </message>
-    <message>
         <source>Transaction amount too small</source>
         <translation>قيمة العملية صغيره جدا</translation>
     </message>
@@ -1763,16 +1723,8 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>تحذير : هذا الاصدار قديم , يتطلب التحديث</translation>
     </message>
     <message>
-        <source>version</source>
-        <translation>النسخة</translation>
-    </message>
-    <message>
         <source>Upgrade wallet to latest format</source>
         <translation>تحديث المحفظة للنسخة الاخيرة</translation>
-    </message>
-    <message>
-        <source>Server private key (default: server.pem)</source>
-        <translation>المفتاح الخاص بالسيرفر (default: server.pem)</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -1785,14 +1737,6 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <source>Error loading wallet.dat: Wallet corrupted</source>
         <translation>خطأ عند تنزيل wallet.dat: المحفظة تالفة</translation>
-    </message>
-    <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin</source>
-        <translation>خطأ عند تنزيل wallet.dat: المحفظة تتطلب نسخة أحدث من بتكوين</translation>
-    </message>
-    <message>
-        <source>Wallet needed to be rewritten: restart Bitcoin to complete</source>
-        <translation>المحفظة تحتاج لإعادة إنشاء: أعد تشغيل بتكوين للإتمام</translation>
     </message>
     <message>
         <source>Error loading wallet.dat</source>
@@ -1834,5 +1778,5 @@ This product includes software developed by the OpenSSL Project for use in the O
         <source>Error</source>
         <translation>خطأ</translation>
     </message>
-    </context>
+</context>
 </TS>
