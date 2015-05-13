@@ -1,3 +1,9 @@
+bitcoin (0.10.1-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Scott Howard <showard@debian.org>  Wed, 13 May 2015 01:42:43 -0400
+
 bitcoin (0.10.0-1) unstable; urgency=medium
 
   * New upstream release
