@@ -101,56 +101,13 @@ Files: share/seeds/generate-seeds.py
 Copyright: 2014, Wladmir J. van der Laan
 License: Expat
 
-Files: build-aux/m4/ax_boost_filesystem.m4
-Copyright: 2009, Michael Tindal
+Files: build-aux/m4/ax_boost_*
+Copyright: 2008-2009, Michael Tindal
   2009, Roman Rybalko <libtorrent@romanr.info>
-  2009, Thomas Porschberg <thomas@randspringer.de>
-License: custom-license
-   Copying and distribution of this file, with or without modification, are
-   permitted in any medium without royalty provided the copyright notice
-   and this notice are preserved. This file is offered as-is, without any
-   warranty.
-
-Files: build-aux/m4/ax_boost_thread.m4
-Copyright: 2009, Michael Tindal
-  2009, Thomas Porschberg <thomas@randspringer.de>
-License: custom-license
-   Copying and distribution of this file, with or without modification, are
-   permitted in any medium without royalty provided the copyright notice
-   and this notice are preserved. This file is offered as-is, without any
-   warranty.
-
-Files: build-aux/m4/ax_boost_base.m4
-Copyright: 2008, Thomas Porschberg <thomas@randspringer.de>
+  2008-2009, Thomas Porschberg <thomas@randspringer.de>
   2009, Peter Adolphs
-License: custom-license
-   Copying and distribution of this file, with or without modification, are
-   permitted in any medium without royalty provided the copyright notice
-   and this notice are preserved. This file is offered as-is, without any
-   warranty.
-
-Files: build-aux/m4/ax_boost_chrono.m4
-Copyright: 2012, Xiyue Deng <manphiz@gmail.com>
-License: custom-license
-   Copying and distribution of this file, with or without modification, are
-   permitted in any medium without royalty provided the copyright notice
-   and this notice are preserved. This file is offered as-is, without any
-   warranty.
-
-Files: build-aux/m4/ax_boost_program_options.m4
- build-aux/m4/ax_boost_unit_test_framework.m4
-Copyright: 2008, Thomas Porschberg <thomas@randspringer.de>
-  2009, Thomas Porschberg <thomas@randspringer.de>
-License: custom-license
-   Copying and distribution of this file, with or without modification, are
-   permitted in any medium without royalty provided the copyright notice
-   and this notice are preserved. This file is offered as-is, without any
-   warranty.
-
-Files: build-aux/m4/ax_boost_system.m4
-Copyright: 2008, Daniel Casimiro <dan.casimiro@gmail.com>
-  2008, Michael Tindal
-  2008, Thomas Porschberg <thomas@randspringer.de>
+  2012, Xiyue Deng <manphiz@gmail.com>
+  2008, Daniel Casimiro <dan.casimiro@gmail.com>
 License: custom-license
    Copying and distribution of this file, with or without modification, are
    permitted in any medium without royalty provided the copyright notice

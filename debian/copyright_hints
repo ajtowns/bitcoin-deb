@@ -103,7 +103,6 @@ Files: INSTALL
  debian/patches/1005_use_system_leveldb.patch
  debian/patches/1006_libmemenv_kfrebsd.patch
  debian/patches/1007_libmemenv_hurd.patch
- debian/patches/1008_libmemenv_cstdatomic_renaming.patch
  debian/patches/2002_libmemenv_debian-ports.patch
  debian/patches/README
  debian/patches/series
@@ -177,6 +176,7 @@ Files: INSTALL
  doc/init.md
  doc/multiwallet-qt.md
  doc/release-notes.md
+ doc/release-notes/release-notes-0.10.0.md
  doc/release-notes/release-notes-0.3.12.md
  doc/release-notes/release-notes-0.3.13.md
  doc/release-notes/release-notes-0.3.14.md
@@ -780,6 +780,7 @@ Files: qa/pull-tester/run-bitcoind-for-test.sh.in
  qa/rpc-tests/getblocktemplate_proposals.py
  qa/rpc-tests/getchaintips.py
  qa/rpc-tests/httpbasics.py
+ qa/rpc-tests/invalidateblock.py
  qa/rpc-tests/keypool.py
  qa/rpc-tests/listtransactions.py
  qa/rpc-tests/mempool_coinbase_spends.py
@@ -787,6 +788,7 @@ Files: qa/pull-tester/run-bitcoind-for-test.sh.in
  qa/rpc-tests/mempool_spendcoinbase.py
  qa/rpc-tests/netutil.py
  qa/rpc-tests/receivedby.py
+ qa/rpc-tests/reindex.py
  qa/rpc-tests/rest.py
  qa/rpc-tests/rpcbind_test.py
  qa/rpc-tests/send.sh
@@ -818,6 +820,7 @@ Files: qa/pull-tester/run-bitcoind-for-test.sh.in
  src/test/hash_tests.cpp
  src/test/key_tests.cpp
  src/test/main_tests.cpp
+ src/test/mempool_tests.cpp
  src/test/miner_tests.cpp
  src/test/mruset_tests.cpp
  src/test/multisig_tests.cpp
