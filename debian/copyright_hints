@@ -87,17 +87,22 @@ Files: INSTALL
  debian/bitcoin-qt.desktop
  debian/bitcoin-qt.install
  debian/bitcoin-qt.lintian-overrides
+ debian/bitcoin-qt.manpages
  debian/bitcoin-qt.menu
  debian/bitcoin-qt.protocol
  debian/bitcoind.bash-completion
  debian/bitcoind.examples
  debian/bitcoind.install
  debian/bitcoind.lintian-overrides
+ debian/bitcoind.manpages
  debian/clean
  debian/compat
  debian/control
- debian/control.in
  debian/gbp.conf
+ debian/libbitcoinconsensus-dev.install
+ debian/libbitcoinconsensus0.install
+ debian/libbitcoinconsensus0.lintian-overrides
+ debian/libbitcoinconsensus0.symbols
  debian/patches/1001_use_system_json-spirit.patch
  debian/patches/1002_libdb-squeeze.patch
  debian/patches/1005_use_system_leveldb.patch
@@ -106,7 +111,6 @@ Files: INSTALL
  debian/patches/2002_libmemenv_debian-ports.patch
  debian/patches/README
  debian/patches/series
- debian/source.lintian-overrides
  debian/source/format
  debian/watch
  depends/.gitignore
@@ -1042,6 +1046,7 @@ License: GPL GPL-3+
 
 Files: debian/rules
 Copyright: 2010-2011, Jonas Smedegaard <dr@jones.dk>
+  2012-2015, Scott Howard <showard@debian.org>
 License: GPL-2+
  FIXME
 
