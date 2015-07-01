@@ -1,5 +1,5 @@
 #1001_use_system_json-spirit.patch
-1002_libdb-squeeze.patch
+#1002_libdb-squeeze.patch
 #1005_use_system_leveldb.patch
 1006_libmemenv_kfrebsd.patch
 1007_libmemenv_hurd.patch

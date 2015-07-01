@@ -79,6 +79,7 @@ License: Expat
 
 Files: debian/*
 Copyright: 2010-2011, Jonas Smedegaard <dr@jones.dk>
+           2012-2015, Scott Howard <showard@debian.org>
 License: GPL-2+
 
 Files: contrib/debian/manpages/*

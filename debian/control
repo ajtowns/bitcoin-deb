@@ -4,10 +4,8 @@ Priority: optional
 Maintainer: Debian Bitcoin Packaging Team <pkg-bitcoin-devel@lists.alioth.debian.org>
 Uploaders: Jonas Smedegaard <dr@jones.dk>, Micah Anderson <micah@debian.org>,
  Scott Howard <showard@debian.org>
-Build-Depends: cdbs,
+Build-Depends: autotools-dev, bash-completion, dh-exec,
  debhelper (>= 9),
- dh-buildinfo,
- devscripts,
  libminiupnpc-dev,
  libboost-chrono-dev,
  libboost-system-dev,
@@ -15,12 +13,11 @@ Build-Depends: cdbs,
  libboost-program-options-dev,
  libboost-thread-dev,
  libboost-test-dev,
- libdb++-dev | libdb4.8++-dev,
+ libdb++-dev,
  libssl-dev,
  pkg-config,
  libqt4-dev,
  libqrencode-dev,
- icoutils,
  dh-autoreconf,
  libprotobuf-dev,
  protobuf-compiler,
@@ -33,7 +30,6 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/bitcoin.git
 Package: bitcoind
 Architecture: any-alpha any-amd64 any-arm any-i386 any-ia64 any-mipsel any-sh4
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Suggests: ${cdbs:Suggests}
 Description: peer-to-peer network based digital currency - daemon
  Bitcoin is a free open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
@@ -44,13 +40,12 @@ Description: peer-to-peer network based digital currency - daemon
  Full transaction history is stored locally at each client.  This
  requires several GB of space, slowly growing.
  .
- This package provides bitcoind, a combined daemon and CLI tool to
- interact with the daemon.
+ This package provides the daemon, bitcoind, and the CLI tool,
+ bitcoin-cli, to interact with the daemon.
 
 Package: bitcoin-qt
 Architecture: any-alpha any-amd64 any-arm any-i386 any-ia64 any-mipsel any-sh4
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Suggests: ${cdbs:Suggests}
 Description: peer-to-peer network based digital currency - GUI
  Bitcoin is a free open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
@@ -59,6 +54,35 @@ Description: peer-to-peer network based digital currency - GUI
  check for double-spending.
  .
  Full transaction history is stored locally at each client.  This
- requires several GB of space, slowly growing.
+ requires 20+ GB of space, slowly growing.
  .
  This package provides Bitcoin-Qt, a GUI for Bitcoin based on Qt.
+
+Package: libbitcoinconsensus0
+Section: libs
+Multi-Arch: same
+Architecture: any-alpha any-amd64 any-arm any-i386 any-ia64 any-mipsel any-sh4
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: bitcoin blockchain library
+ Bitcoin is a free open source peer-to-peer electronic cash system that
+ is completely decentralized, without the need for a central server or
+ trusted parties.  Users hold the crypto keys to their own money and
+ transact directly with each other, with the help of a P2P network to
+ check for double-spending.
+ .
+ This package provides a library useful for blockchcain operations.
+
+Package: libbitcoinconsensus-dev
+Section: libdevel
+Multi-Arch: same
+Architecture: any-alpha any-amd64 any-arm any-i386 any-ia64 any-mipsel any-sh4
+Depends: ${shlibs:Depends}, ${misc:Depends}, libbitcoinconsensus0 (=${binary:Version})
+Description: bitcoin blockchain library development files
+ Bitcoin is a free open source peer-to-peer electronic cash system that
+ is completely decentralized, without the need for a central server or
+ trusted parties.  Users hold the crypto keys to their own money and
+ transact directly with each other, with the help of a P2P network to
+ check for double-spending.
+ .
+ This package provides a header files and static library useful
+ for blockchcain operations.
