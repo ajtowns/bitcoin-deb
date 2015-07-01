@@ -25,15 +25,13 @@ DEB_COPYRIGHT_CHECK_IGNORE_REGEX = ^(.*\.png|src/qt/res/icons/bitcoin_testnet.ic
 
 # Fixes some FTBFS, see http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=730423
 # and http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=726989
-XDG_CONFIG_DIRS := $(shell echo $(XDG_CONFIG_DIRS)):/usr/lib/$(DEB_HOST_MULTIARCH)
-export XDF_CONFIG_DIRS
+# Disable workaround to see if it is fixed, 2015/06/01
+# XDG_CONFIG_DIRS := $(shell echo $(XDG_CONFIG_DIRS)):/usr/lib/$(DEB_HOST_MULTIARCH)
+# export XDF_CONFIG_DIRS
 
 #testsuite needs writable $HOME (see bug#696262)
 fakehome = $(CURDIR)/debian/home
 DEB_MAKE_ENVVARS:= HOME=$(fakehome)
-
-
-DEB_UPSTREAM_VERSION = $(shell dpkg-parsechangelog | sed -rne 's,^Version: ([^-]+).*,\1,p')
 
 %:
 	dh $@ --parallel --with autotools-dev --with autoreconf --with bash-completion
@@ -58,4 +56,9 @@ override_dh_install:
 
 override_dh_makeshlibs:
 	dh_makeshlibs -V -- -c0 -v$(DEB_UPSTREAM_VERSION)
-	
+
+override_dh_auto_test:
+	xvfb-run -a dh_auto_test
+
+get-orig-source:
+	uscan --download-current-version
