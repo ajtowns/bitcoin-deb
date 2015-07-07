@@ -1,3 +1,10 @@
+bitcoin (0.10.2-3) unstable; urgency=medium
+
+  * Try running tests with writable ${HOME} and ${TMPDIR}, drop build 
+    dependency on xvfb and xauth
+
+ -- Scott Howard <showard@debian.org>  Tue, 07 Jul 2015 13:15:55 -0400
+
 bitcoin (0.10.2-2) unstable; urgency=medium
 
   * Debugging 790403, output contents of src/test-suite.log

@@ -29,20 +29,19 @@ DEB_COPYRIGHT_CHECK_IGNORE_REGEX = ^(.*\.png|src/qt/res/icons/bitcoin_testnet.ic
 # XDG_CONFIG_DIRS := $(shell echo $(XDG_CONFIG_DIRS)):/usr/lib/$(DEB_HOST_MULTIARCH)
 # export XDF_CONFIG_DIRS
 
-#testsuite needs writable $HOME (see bug#696262)
-fakehome = $(CURDIR)/debian/home
-DEB_MAKE_ENVVARS:= HOME=$(fakehome)
+#testsuite needs writable $HOME and $TMPDIR (see bug#696262 #790403)
+FAKETMP = $(CURDIR)/debian/faketmp
 
 %:
 	dh $@ --parallel --with autotools-dev --with autoreconf --with bash-completion
 
 override_dh_auto_configure:
-	mkdir -p "$(fakehome)"
+	mkdir -p "$(FAKETMP)"
 	mkdir -p src/obj/nogui
 	dh_auto_configure -- --with-incompatible-bdb
 
 override_dh_auto_clean:
-	rm -rf "$(fakehome)"/convert
+	rm -rf "$(FAKETMP)"
 	find src/obj -type f -not -name .gitignore -delete
 	-rmdir --ignore-fail-on-non-empty build
 	rm -f src/bitcoind
@@ -59,7 +58,7 @@ override_dh_makeshlibs:
 	dh_makeshlibs -V -- -c0 -v$(DEB_UPSTREAM_VERSION)
 
 override_dh_auto_test:
-	xvfb-run -a dh_auto_test || ( cat src/test-suite.log && false )
+	HOME=${FAKETMP} TMPDIR=${FAKETMP} dh_auto_test || ( cat src/test-suite.log && false )
 
 get-orig-source:
 	uscan --download-current-version
