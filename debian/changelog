@@ -1,3 +1,9 @@
+bitcoin (0.10.2-2) unstable; urgency=medium
+
+  * Debugging 790403, output contents of src/test-suite.log
+
+ -- Scott Howard <showard@debian.org>  Tue, 07 Jul 2015 11:00:21 -0400
+
 bitcoin (0.10.2-1) unstable; urgency=medium
 
   * New upstream release
