@@ -1,7 +1,7 @@
-# SymbolsHelper-Confirmed: 0.10.1 amd64
+# SymbolsHelper-Confirmed: 0.10.1 amd64 armel armhf i386 kfreebsd-i386 mipsel x32
 libbitcoinconsensus.so.0 libbitcoinconsensus0 #MINVER#
  (optional=templinst)_ZNKSt5ctypeIcE8do_widenEc@Base 0.10.1
- (optional=templinst)_ZNKSt6vectorIS_IhSaIhEESaIS1_EE14_M_range_checkEm@Base 0.10.1
+ (optional=templinst|subst)_ZNKSt6vectorIS_IhSaIhEESaIS1_EE14_M_range_checkE{size_t}@Base 0.10.1
  (optional=templinst)_ZNSs12_S_constructIPcEES0_T_S1_RKSaIcESt20forward_iterator_tag@Base 0.10.1
  _ZNSt14_Bit_referenceaSEb@Base 0.10.1
  (optional=templinst)_ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEED0Ev@Base 0.10.1
@@ -14,12 +14,17 @@ libbitcoinconsensus.so.0 libbitcoinconsensus0 #MINVER#
  (optional=templinst)_ZNSt6vectorIS_IhSaIhEESaIS1_EED2Ev@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIS_IhSaIhEESaIS1_EEaSERKS3_@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIbSaIbEE13_M_insert_auxESt13_Bit_iteratorb@Base 0.10.1
+ (optional=templinst|arch=mipsel)_ZNSt6vectorIbSaIbEE9push_backEb@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPhS1_EERKh@Base 0.10.1
- (optional=templinst)_ZNSt6vectorIhSaIhEE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPhS1_EEmRKh@Base 0.10.1
+ (optional=templinst|subst)_ZNSt6vectorIhSaIhEE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPhS1_EE{size_t}RKh@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEE15_M_range_insertIN9__gnu_cxx17__normal_iteratorIPKhS1_EEEEvNS4_IPhS1_EET_SA_St20forward_iterator_tag@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEE15_M_range_insertIPhEEvN9__gnu_cxx17__normal_iteratorIS3_S1_EET_S7_St20forward_iterator_tag@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEE6insertEN9__gnu_cxx17__normal_iteratorIPhS1_EERKh@Base 0.10.1
- (optional=templinst)_ZNSt6vectorIhSaIhEE7reserveEm@Base 0.10.1
+ (optional=templinst|subst)_ZNSt6vectorIhSaIhEE7reserveE{size_t}@Base 0.10.1
+ (optional=templinst|arch=mipsel)_ZNSt6vectorIhSaIhEEC1ERKS1_@Base 0.10.1
+ (optional=templinst|arch=mipsel)_ZNSt6vectorIhSaIhEEC1IN9__gnu_cxx17__normal_iteratorIPKhS1_EEEET_S8_RKS0_@Base 0.10.1
+ (optional=templinst|arch=mipsel)_ZNSt6vectorIhSaIhEEC2ERKS1_@Base 0.10.1
+ (optional=templinst|arch=mipsel)_ZNSt6vectorIhSaIhEEC2IN9__gnu_cxx17__normal_iteratorIPKhS1_EEEET_S8_RKS0_@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEED1Ev@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEED2Ev@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEEaSERKS1_@Base 0.10.1
