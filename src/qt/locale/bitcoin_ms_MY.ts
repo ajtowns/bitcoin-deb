@@ -1,4 +1,4 @@
-<TS language="ms_MY" version="2.1">
+<TS language="ms_MY" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -156,10 +156,6 @@
     </context>
 <context>
     <name>TransactionTableModel</name>
-    <message>
-        <source>Address</source>
-        <translation>Alamat</translation>
-    </message>
     </context>
 <context>
     <name>TransactionView</name>

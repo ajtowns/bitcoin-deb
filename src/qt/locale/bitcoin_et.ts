@@ -1,4 +1,4 @@
-<TS language="et" version="2.1">
+<TS language="et" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -23,7 +23,7 @@
     </message>
     <message>
         <source>&amp;Copy Address</source>
-        <translation>&amp;Aadressi kopeerimine</translation>
+        <translation>&amp;Kopeeri Aadress</translation>
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
@@ -124,10 +124,6 @@
         <translation>Muuda salafraasi</translation>
     </message>
     <message>
-        <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>Sisesta rahakoti vana ning uus salafraas.</translation>
-    </message>
-    <message>
         <source>Confirm wallet encryption</source>
         <translation>Kinnita rahakoti krüpteering</translation>
     </message>
@@ -150,10 +146,6 @@
     <message>
         <source>Wallet encrypted</source>
         <translation>Rahakott krüpteeritud</translation>
-    </message>
-    <message>
-        <source>Bitcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>Bitcoin sulgub krüpteeringu lõpetamiseks. Pea meeles, et rahakoti krüpteerimine ei välista bitcoinide vargust, kui sinu arvuti on nakatunud pahavaraga.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -259,10 +251,6 @@
         <translation>Saada münte Bitcoini aadressile</translation>
     </message>
     <message>
-        <source>Modify configuration options for Bitcoin</source>
-        <translation>Muuda Bitcoini seadeid</translation>
-    </message>
-    <message>
         <source>Backup wallet to another location</source>
         <translation>Varunda rahakott teise asukohta</translation>
     </message>
@@ -339,10 +327,6 @@
         <translation>Bitcoini tuumik</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n aktiivne ühendus Bitcoini võrku</numerusform><numerusform>%n aktiivset ühendust Bitcoini võrku</numerusform></translation>
-    </message>
-    <message numerus="yes">
         <source>%n hour(s)</source>
         <translation><numerusform>%n tund</numerusform><numerusform>%n tundi</numerusform></translation>
     </message>
@@ -357,6 +341,10 @@
     <message>
         <source>%1 and %2</source>
         <translation>%1 ja %2</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n year(s)</source>
+        <translation><numerusform>%n aasta</numerusform><numerusform>%n aastat</numerusform></translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -391,23 +379,42 @@
         <translation>Jõuan...</translation>
     </message>
     <message>
+        <source>Date: %1
+</source>
+        <translation>Kuupäev: %1
+</translation>
+    </message>
+    <message>
+        <source>Amount: %1
+</source>
+        <translation>Summa: %1
+</translation>
+    </message>
+    <message>
+        <source>Type: %1
+</source>
+        <translation>Tüüp: %1
+</translation>
+    </message>
+    <message>
+        <source>Label: %1
+</source>
+        <translation>&amp;Märgis: %1
+</translation>
+    </message>
+    <message>
+        <source>Address: %1
+</source>
+        <translation>Aadress: %1
+</translation>
+    </message>
+    <message>
         <source>Sent transaction</source>
         <translation>Saadetud tehing</translation>
     </message>
     <message>
         <source>Incoming transaction</source>
         <translation>Sisenev tehing</translation>
-    </message>
-    <message>
-        <source>Date: %1
-Amount: %2
-Type: %3
-Address: %4
-</source>
-        <translation>Kuupäev: %1⏎
-Summa: %2⏎
-Tüüp: %3⏎
-Aadress: %4⏎</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -596,23 +603,7 @@ Aadress: %4⏎</translation>
         <source>command-line options</source>
         <translation>käsurea valikud</translation>
     </message>
-    <message>
-        <source>UI options</source>
-        <translation>UI valikud</translation>
-    </message>
-    <message>
-        <source>Set language, for example "de_DE" (default: system locale)</source>
-        <translation>Keele valik, nt "ee_ET" (vaikeväärtus: system locale)</translation>
-    </message>
-    <message>
-        <source>Start minimized</source>
-        <translation>Käivitu tegumiribale</translation>
-    </message>
-    <message>
-        <source>Show splash screen on startup (default: 1)</source>
-        <translation>Käivitamisel teabeakna kuvamine (vaikeväärtus: 1)</translation>
-    </message>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
@@ -644,14 +635,6 @@ Aadress: %4⏎</translation>
     <message>
         <source>Options</source>
         <translation>Valikud</translation>
-    </message>
-    <message>
-        <source>Automatically start Bitcoin after logging in to the system.</source>
-        <translation>Käivita Bitcoin süsteemi logimisel.</translation>
-    </message>
-    <message>
-        <source>&amp;Start Bitcoin on system login</source>
-        <translation>&amp;Start Bitcoin sisselogimisel</translation>
     </message>
     <message>
         <source>MB</source>
@@ -710,10 +693,6 @@ Aadress: %4⏎</translation>
         <translation>&amp;Minimeeri systray alale</translation>
     </message>
     <message>
-        <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
-        <translation>Sulgemise asemel minimeeri aken. Selle valiku tegemisel suletakse programm Menüüst "Välju" käsuga.</translation>
-    </message>
-    <message>
         <source>M&amp;inimize on close</source>
         <translation>M&amp;inimeeri sulgemisel</translation>
     </message>
@@ -724,10 +703,6 @@ Aadress: %4⏎</translation>
     <message>
         <source>User Interface &amp;language:</source>
         <translation>Kasutajaliidese &amp;keel:</translation>
-    </message>
-    <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting Bitcoin.</source>
-        <translation>Kasutajaliidese keele valimise koht. Valik rakendub Bitcoini käivitamisel.</translation>
     </message>
     <message>
         <source>&amp;Unit to show amounts in:</source>
@@ -780,11 +755,7 @@ Aadress: %4⏎</translation>
         <source>Recent transactions</source>
         <translation>Hiljutised tehingud</translation>
     </message>
-    <message>
-        <source>out of sync</source>
-        <translation>sünkimata</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>PaymentServer</name>
     <message>
@@ -908,16 +879,8 @@ Aadress: %4⏎</translation>
         <translation>Debugimise logifail</translation>
     </message>
     <message>
-        <source>Open the Bitcoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Ava Bitcoini logifail praegusest andmekaustast. Toiminguks võib kuluda kuni mõni sekund.</translation>
-    </message>
-    <message>
         <source>Clear console</source>
         <translation>Puhasta konsool</translation>
-    </message>
-    <message>
-        <source>Welcome to the Bitcoin RPC console.</source>
-        <translation>Teretulemast Bitcoini RPC konsooli.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
@@ -1060,6 +1023,10 @@ Aadress: %4⏎</translation>
         <translation>Vali...</translation>
     </message>
     <message>
+        <source>Hide</source>
+        <translation>Peida</translation>
+    </message>
+    <message>
         <source>Recommended:</source>
         <translation>Soovitatud:</translation>
     </message>
@@ -1112,10 +1079,6 @@ Aadress: %4⏎</translation>
         <translation>või</translation>
     </message>
     <message>
-        <source>The recipient address is not valid, please recheck.</source>
-        <translation>Saaja aadress ei ole kehtiv, palun kontrolli.</translation>
-    </message>
-    <message>
         <source>The amount to pay must be larger than 0.</source>
         <translation>Makstav summa peab olema suurem kui 0.</translation>
     </message>
@@ -1126,10 +1089,6 @@ Aadress: %4⏎</translation>
     <message>
         <source>The total exceeds your balance when the %1 transaction fee is included.</source>
         <translation>Summa koos tehingu tasuga %1 ületab sinu jääki.</translation>
-    </message>
-    <message>
-        <source>Duplicate address found, can only send to each address once per send operation.</source>
-        <translation>Ühe saatmisega topelt-adressaati olla ei tohi.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1185,10 +1144,6 @@ Aadress: %4⏎</translation>
         <translation>&amp;Allkirjastamise teade</translation>
     </message>
     <message>
-        <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Omandiõigsuse tõestamiseks saad sõnumeid allkirjastada oma aadressiga. Ettevaatust petturitega, kes üritavad saada sinu allkirja endale saada. Allkirjasta ainult korralikult täidetud avaldusi, millega nõustud.</translation>
-    </message>
-    <message>
         <source>Alt+A</source>
         <translation>Alt+A</translation>
     </message>
@@ -1231,10 +1186,6 @@ Aadress: %4⏎</translation>
     <message>
         <source>&amp;Verify Message</source>
         <translation>&amp;Kinnita Sõnum</translation>
-    </message>
-    <message>
-        <source>Enter the signing address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack.</source>
-        <translation>Kinnitamiseks sisesta allkirjastamise aadress, sõnum (kindlasti kopeeri täpselt ka reavahetused, tühikud, tabulaatorid jms) ning allolev signatuur.</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
@@ -1341,10 +1292,6 @@ Aadress: %4⏎</translation>
         <source>Status</source>
         <translation>Staatus</translation>
     </message>
-    <message numerus="yes">
-        <source>, broadcast through %n node(s)</source>
-        <translation><numerusform>, levita läbi %n node'i</numerusform><numerusform>, levita läbi %n node'i</numerusform></translation>
-    </message>
     <message>
         <source>Date</source>
         <translation>Kuupäev</translation>
@@ -1376,10 +1323,6 @@ Aadress: %4⏎</translation>
     <message>
         <source>Credit</source>
         <translation>Krediit</translation>
-    </message>
-    <message numerus="yes">
-        <source>matures in %n more block(s)</source>
-        <translation><numerusform>aegub %n bloki pärast</numerusform><numerusform>aegub %n bloki pärast</numerusform></translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -1437,10 +1380,6 @@ Aadress: %4⏎</translation>
         <source>, has not been successfully broadcast yet</source>
         <translation>, veel esitlemata</translation>
     </message>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation><numerusform>Avaneb %n bloki pärast</numerusform><numerusform>Avaneb %n bloki pärast</numerusform></translation>
-    </message>
     <message>
         <source>unknown</source>
         <translation>tundmatu</translation>
@@ -1468,14 +1407,6 @@ Aadress: %4⏎</translation>
         <translation>Tüüp</translation>
     </message>
     <message>
-        <source>Address</source>
-        <translation>Aadress</translation>
-    </message>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation><numerusform>Avaneb %n bloki pärast</numerusform><numerusform>Avaneb %n bloki pärast</numerusform></translation>
-    </message>
-    <message>
         <source>Open until %1</source>
         <translation>Avatud kuni %1</translation>
     </message>
@@ -1490,6 +1421,10 @@ Aadress: %4⏎</translation>
     <message>
         <source>Generated but not accepted</source>
         <translation>Loodud, kuid aktsepteerimata</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Silt</translation>
     </message>
     <message>
         <source>Received with</source>
@@ -1526,10 +1461,6 @@ Aadress: %4⏎</translation>
     <message>
         <source>Type of transaction.</source>
         <translation>Tehingu tüüp.</translation>
-    </message>
-    <message>
-        <source>Destination address of transaction.</source>
-        <translation>Tehingu saaja aadress.</translation>
     </message>
     <message>
         <source>Amount removed from or added to balance.</source>
@@ -1774,10 +1705,6 @@ Aadress: %4⏎</translation>
         <translation>Tuvastati vigane bloki andmebaas</translation>
     </message>
     <message>
-        <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
-        <translation>Leia oma IP aadress (vaikeväärtus: 1, kui kuulatakse ning puudub -externalip)</translation>
-    </message>
-    <message>
         <source>Do you want to rebuild the block database now?</source>
         <translation>Kas soovid bloki andmebaasi taastada?</translation>
     </message>
@@ -1804,10 +1731,6 @@ Aadress: %4⏎</translation>
     <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
         <translation>Pordi kuulamine nurjus. Soovikorral kasuta -listen=0.</translation>
-    </message>
-    <message>
-        <source>Rebuild block chain index from current blk000??.dat files</source>
-        <translation>Taasta bloki jada indeks blk000??.dat failist</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -1838,6 +1761,14 @@ Aadress: %4⏎</translation>
         <translation>Saada jälitus/debug, debug.log faili asemel, konsooli</translation>
     </message>
     <message>
+        <source>Set language, for example "de_DE" (default: system locale)</source>
+        <translation>Keele valik, nt "ee_ET" (vaikeväärtus: system locale)</translation>
+    </message>
+    <message>
+        <source>Show splash screen on startup (default: 1)</source>
+        <translation>Käivitamisel teabeakna kuvamine (vaikeväärtus: 1)</translation>
+    </message>
+    <message>
         <source>Shrink debug.log file on client startup (default: 1 when no -debug)</source>
         <translation>Kahanda programmi käivitamisel debug.log faili (vaikeväärtus: 1, kui ei ole -debug)</translation>
     </message>
@@ -1846,12 +1777,24 @@ Aadress: %4⏎</translation>
         <translation>Tehingu allkirjastamine ebaõnnestus</translation>
     </message>
     <message>
+        <source>Start minimized</source>
+        <translation>Käivitu tegumiribale</translation>
+    </message>
+    <message>
+        <source>The transaction amount is too small to pay the fee</source>
+        <translation>Tehingu summa on tasu maksmiseks liiga väikene</translation>
+    </message>
+    <message>
         <source>Transaction amount too small</source>
         <translation>Tehingu summa liiga väikene</translation>
     </message>
     <message>
         <source>Transaction too large</source>
         <translation>Tehing liiga suur</translation>
+    </message>
+    <message>
+        <source>UI Options:</source>
+        <translation>UI Valikud:</translation>
     </message>
     <message>
         <source>Use UPnP to map the listening port (default: 1 when listening)</source>
@@ -1864,10 +1807,6 @@ Aadress: %4⏎</translation>
     <message>
         <source>Warning</source>
         <translation>Hoiatus</translation>
-    </message>
-    <message>
-        <source>Warning: This version is obsolete, upgrade required!</source>
-        <translation>Hoiatus: versioon on aegunud, uuendus on nõutav!</translation>
     </message>
     <message>
         <source>on startup</source>

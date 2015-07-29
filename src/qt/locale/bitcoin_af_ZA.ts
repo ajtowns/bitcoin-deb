@@ -1,4 +1,4 @@
-<TS language="af_ZA" version="2.1">
+<TS language="af_ZA" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -66,10 +66,6 @@
     <message>
         <source>Change passphrase</source>
         <translation>Verander wagwoord</translation>
-    </message>
-    <message>
-        <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>Tik asseblief die ou en nuwe wagwoord vir die beursie in.</translation>
     </message>
     <message>
         <source>Confirm wallet encryption</source>
@@ -485,8 +481,8 @@
         <translation>Tipe</translation>
     </message>
     <message>
-        <source>Address</source>
-        <translation>Adres</translation>
+        <source>Label</source>
+        <translation>Etiket</translation>
     </message>
     <message>
         <source>Received with</source>

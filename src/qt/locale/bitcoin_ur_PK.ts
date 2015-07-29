@@ -1,4 +1,4 @@
-<TS language="ur_PK" version="2.1">
+<TS language="ur_PK" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -237,8 +237,8 @@
         <translation>ٹائپ</translation>
     </message>
     <message>
-        <source>Address</source>
-        <translation> پتہ</translation>
+        <source>Label</source>
+        <translation>چٹ</translation>
     </message>
     <message>
         <source>Sent to</source>

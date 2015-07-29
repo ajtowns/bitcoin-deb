@@ -1,5 +1,5 @@
-// Copyright (c) 2011-2014 The Bitcoin developers
-// Distributed under the MIT/X11 software license, see the accompanying
+// Copyright (c) 2011-2014 The Bitcoin Core developers
+// Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "bitcoinamountfield.h"
@@ -166,11 +166,12 @@ protected:
 
     StepEnabled stepEnabled() const
     {
-        StepEnabled rv = 0;
         if (isReadOnly()) // Disable steps when AmountSpinBox is read-only
             return StepNone;
-        if(text().isEmpty()) // Allow step-up with empty field
+        if (text().isEmpty()) // Allow step-up with empty field
             return StepUpEnabled;
+
+        StepEnabled rv = 0;
         bool valid = false;
         CAmount val = value(&valid);
         if(valid)
@@ -277,7 +278,6 @@ void BitcoinAmountField::setValue(const CAmount& value)
 void BitcoinAmountField::setReadOnly(bool fReadOnly)
 {
     amount->setReadOnly(fReadOnly);
-    unit->setEnabled(!fReadOnly);
 }
 
 void BitcoinAmountField::unitChanged(int idx)

@@ -1,10 +1,12 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2014 The Bitcoin developers
+// Copyright (c) 2009-2014 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "checkpoints.h"
+#include "consensus/validation.h"
 #include "main.h"
+#include "primitives/transaction.h"
 #include "rpcserver.h"
 #include "sync.h"
 #include "util.h"
@@ -70,7 +72,7 @@ Object blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool txDe
         if(txDetails)
         {
             Object objTx;
-            TxToJSON(tx, uint256(0), objTx);
+            TxToJSON(tx, uint256(), objTx);
             txs.push_back(objTx);
         }
         else
@@ -105,6 +107,7 @@ Value getblockcount(const Array& params, bool fHelp)
             + HelpExampleRpc("getblockcount", "")
         );
 
+    LOCK(cs_main);
     return chainActive.Height();
 }
 
@@ -121,6 +124,7 @@ Value getbestblockhash(const Array& params, bool fHelp)
             + HelpExampleRpc("getbestblockhash", "")
         );
 
+    LOCK(cs_main);
     return chainActive.Tip()->GetBlockHash().GetHex();
 }
 
@@ -137,6 +141,7 @@ Value getdifficulty(const Array& params, bool fHelp)
             + HelpExampleRpc("getdifficulty", "")
         );
 
+    LOCK(cs_main);
     return GetDifficulty();
 }
 
@@ -167,11 +172,13 @@ Value getrawmempool(const Array& params, bool fHelp)
             "        \"transactionid\",    (string) parent transaction id\n"
             "       ... ]\n"
             "  }, ...\n"
-            "]\n"
+            "}\n"
             "\nExamples\n"
             + HelpExampleCli("getrawmempool", "true")
             + HelpExampleRpc("getrawmempool", "true")
         );
+
+    LOCK(cs_main);
 
     bool fVerbose = false;
     if (params.size() > 0)
@@ -233,6 +240,8 @@ Value getblockhash(const Array& params, bool fHelp)
             + HelpExampleRpc("getblockhash", "1000")
         );
 
+    LOCK(cs_main);
+
     int nHeight = params[0].get_int();
     if (nHeight < 0 || nHeight > chainActive.Height())
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Block height out of range");
@@ -277,8 +286,10 @@ Value getblock(const Array& params, bool fHelp)
             + HelpExampleRpc("getblock", "\"00000000c937983704a73af28acdec37b049d214adbda81d7e2a3dd146f6ed09\"")
         );
 
+    LOCK(cs_main);
+
     std::string strHash = params[0].get_str();
-    uint256 hash(strHash);
+    uint256 hash(uint256S(strHash));
 
     bool fVerbose = true;
     if (params.size() > 1)
@@ -289,6 +300,9 @@ Value getblock(const Array& params, bool fHelp)
 
     CBlock block;
     CBlockIndex* pblockindex = mapBlockIndex[hash];
+
+    if (fHavePruned && !(pblockindex->nStatus & BLOCK_HAVE_DATA) && pblockindex->nTx > 0)
+        throw JSONRPCError(RPC_INTERNAL_ERROR, "Block not available (pruned data)");
 
     if(!ReadBlockFromDisk(block, pblockindex))
         throw JSONRPCError(RPC_INTERNAL_ERROR, "Can't read block from disk");
@@ -325,6 +339,8 @@ Value gettxoutsetinfo(const Array& params, bool fHelp)
             + HelpExampleCli("gettxoutsetinfo", "")
             + HelpExampleRpc("gettxoutsetinfo", "")
         );
+
+    LOCK(cs_main);
 
     Object ret;
 
@@ -380,10 +396,12 @@ Value gettxout(const Array& params, bool fHelp)
             + HelpExampleRpc("gettxout", "\"txid\", 1")
         );
 
+    LOCK(cs_main);
+
     Object ret;
 
     std::string strHash = params[0].get_str();
-    uint256 hash(strHash);
+    uint256 hash(uint256S(strHash));
     int n = params[1].get_int();
     bool fMempool = true;
     if (params.size() > 2)
@@ -436,6 +454,8 @@ Value verifychain(const Array& params, bool fHelp)
             + HelpExampleRpc("verifychain", "")
         );
 
+    LOCK(cs_main);
+
     int nCheckLevel = GetArg("-checklevel", 3);
     int nCheckDepth = GetArg("-checkblocks", 288);
     if (params.size() > 0)
@@ -467,14 +487,25 @@ Value getblockchaininfo(const Array& params, bool fHelp)
             + HelpExampleRpc("getblockchaininfo", "")
         );
 
+    LOCK(cs_main);
+
     Object obj;
     obj.push_back(Pair("chain",                 Params().NetworkIDString()));
     obj.push_back(Pair("blocks",                (int)chainActive.Height()));
     obj.push_back(Pair("headers",               pindexBestHeader ? pindexBestHeader->nHeight : -1));
     obj.push_back(Pair("bestblockhash",         chainActive.Tip()->GetBlockHash().GetHex()));
     obj.push_back(Pair("difficulty",            (double)GetDifficulty()));
-    obj.push_back(Pair("verificationprogress",  Checkpoints::GuessVerificationProgress(chainActive.Tip())));
+    obj.push_back(Pair("verificationprogress",  Checkpoints::GuessVerificationProgress(Params().Checkpoints(), chainActive.Tip())));
     obj.push_back(Pair("chainwork",             chainActive.Tip()->nChainWork.GetHex()));
+    obj.push_back(Pair("pruned",                fPruneMode));
+    if (fPruneMode)
+    {
+        CBlockIndex *block = chainActive.Tip();
+        while (block && block->pprev && (block->pprev->nStatus & BLOCK_HAVE_DATA))
+            block = block->pprev;
+
+        obj.push_back(Pair("pruneheight",        block->nHeight));
+    }
     return obj;
 }
 
@@ -525,6 +556,8 @@ Value getchaintips(const Array& params, bool fHelp)
             + HelpExampleCli("getchaintips", "")
             + HelpExampleRpc("getchaintips", "")
         );
+
+    LOCK(cs_main);
 
     /* Build up a list of chain tips.  We start with the list of all
        known blocks, and successively remove blocks that appear as pprev
@@ -619,7 +652,7 @@ Value invalidateblock(const Array& params, bool fHelp)
         );
 
     std::string strHash = params[0].get_str();
-    uint256 hash(strHash);
+    uint256 hash(uint256S(strHash));
     CValidationState state;
 
     {
@@ -658,7 +691,7 @@ Value reconsiderblock(const Array& params, bool fHelp)
         );
 
     std::string strHash = params[0].get_str();
-    uint256 hash(strHash);
+    uint256 hash(uint256S(strHash));
     CValidationState state;
 
     {
