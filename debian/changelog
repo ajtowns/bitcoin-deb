@@ -3,6 +3,8 @@ bitcoin (0.11.0-1) unstable; urgency=medium
   * New upstream release (Closes: #793622)
     - build on all archs, big endian is now supported
   * Updated symbols file
+  * Added bitcoin-cli.1 manpage from contrib/debian/manpages
+  * Updated debian/copyright
 
  -- Scott Howard <showard@debian.org>  Wed, 29 Jul 2015 15:45:52 -0400
 

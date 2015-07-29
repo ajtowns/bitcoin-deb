@@ -17,7 +17,9 @@ Comment: According to http: www.bitcoin.org/ the Bitcoin Developers are
   * Gregory Maxwell <gmaxwell@gmail.com>
 
 Files: src/secp256k1/src/*
-Copyright: 2013-2014, Pieter Wuille
+Copyright: 2013-2015, Pieter Wuille
+           2015, Gregory Maxwell
+           2013-2014, Diederik Huys
 License: Expat
 
 Files: src/univalue/gen.cpp
@@ -98,7 +100,7 @@ Copyright: 2008 Steven G. Johnson <stevenj@alum.mit.edu>
            2011 Daniel Richard G. <skunk@iSKUNK.ORG>
 License: GPL-3+
 
-Files: share/seeds/generate-seeds.py
+Files: contrib/seeds/generate-seeds.py
 Copyright: 2014, Wladmir J. van der Laan
 License: Expat
 
@@ -142,10 +144,14 @@ License: BSL-1
   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
   DEALINGS IN THE SOFTWARE.
 
-Files: qa/rpc-tests/python-bitcoinrpc/*
+Files: qa/rpc-tests/test_framework/*
 Copyright: 2011 Jeff Garzik <jgarzik@exmulti.com>
            2007 Jan-Klaas Kollhof
 License: LGPL-2.1+
+
+Files: contrib/devtools/git-subtree-check.sh
+Copyright: 2009, Avery Pennarun <apenwarr@gmail.com>
+License: Expat
 
 Files: 	src/qt/res/icons/clock*.png src/qt/res/icons/tx*.png
 	src/qt/res/src/clock_green.svg src/qt/res/src/clock1.svg
