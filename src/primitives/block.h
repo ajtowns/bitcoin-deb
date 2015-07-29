@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2013 The Bitcoin developers
-// Distributed under the MIT/X11 software license, see the accompanying
+// Copyright (c) 2009-2013 The Bitcoin Core developers
+// Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_PRIMITIVES_BLOCK_H
@@ -9,9 +9,6 @@
 #include "primitives/transaction.h"
 #include "serialize.h"
 #include "uint256.h"
-
-/** The maximum allowed size for a serialized block, in bytes (network rule) */
-static const unsigned int MAX_BLOCK_SIZE = 1000000;
 
 /** Nodes collect new transactions into a block, hash them into a hash tree,
  * and scan through nonce values to make the block's hash satisfy proof-of-work
@@ -53,8 +50,8 @@ public:
     void SetNull()
     {
         nVersion = CBlockHeader::CURRENT_VERSION;
-        hashPrevBlock = 0;
-        hashMerkleRoot = 0;
+        hashPrevBlock.SetNull();
+        hashMerkleRoot.SetNull();
         nTime = 0;
         nBits = 0;
         nNonce = 0;
@@ -162,7 +159,7 @@ struct CBlockLocator
         vHave.clear();
     }
 
-    bool IsNull()
+    bool IsNull() const
     {
         return vHave.empty();
     }

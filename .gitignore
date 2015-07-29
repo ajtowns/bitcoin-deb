@@ -113,3 +113,5 @@ qa/pull-tester/test.*/*
 src/*.exe
 
 /doc/doxygen/
+
+libbitcoinconsensus.pc

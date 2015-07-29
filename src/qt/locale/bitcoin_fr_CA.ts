@@ -1,4 +1,4 @@
-<TS language="fr_CA" version="2.1">
+<TS language="fr_CA" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -169,8 +169,8 @@
 <context>
     <name>TransactionTableModel</name>
     <message>
-        <source>Address</source>
-        <translation>Addresse</translation>
+        <source>Label</source>
+        <translation>Record</translation>
     </message>
     </context>
 <context>

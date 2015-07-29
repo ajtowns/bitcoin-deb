@@ -1,4 +1,4 @@
-<TS language="vi" version="2.1">
+<TS language="vi" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -161,8 +161,8 @@
 <context>
     <name>TransactionTableModel</name>
     <message>
-        <source>Address</source>
-        <translation>Địa chỉ</translation>
+        <source>Label</source>
+        <translation>Nhãn dữ liệu</translation>
     </message>
     </context>
 <context>

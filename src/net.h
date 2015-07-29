@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2014 The Bitcoin developers
-// Distributed under the MIT/X11 software license, see the accompanying
+// Copyright (c) 2009-2014 The Bitcoin Core developers
+// Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_NET_H
@@ -32,6 +32,7 @@
 
 class CAddrMan;
 class CBlockIndex;
+class CScheduler;
 class CNode;
 
 namespace boost {
@@ -63,7 +64,6 @@ unsigned int ReceiveFloodSize();
 unsigned int SendBufferSize();
 
 void AddOneShot(std::string strDest);
-bool RecvLine(SOCKET hSocket, std::string& strLine);
 void AddressCurrentlyConnected(const CService& addr);
 CNode* FindNode(const CNetAddr& ip);
 CNode* FindNode(const std::string& addrName);
@@ -73,18 +73,33 @@ bool OpenNetworkConnection(const CAddress& addrConnect, CSemaphoreGrant *grantOu
 void MapPort(bool fUseUPnP);
 unsigned short GetListenPort();
 bool BindListenPort(const CService &bindAddr, std::string& strError, bool fWhitelisted = false);
-void StartNode(boost::thread_group& threadGroup);
+void StartNode(boost::thread_group& threadGroup, CScheduler& scheduler);
 bool StopNode();
 void SocketSendData(CNode *pnode);
 
 typedef int NodeId;
 
+struct CombinerAll
+{
+    typedef bool result_type;
+
+    template<typename I>
+    bool operator()(I first, I last) const
+    {
+        while (first != last) {
+            if (!(*first)) return false;
+            ++first;
+        }
+        return true;
+    }
+};
+
 // Signals for message handling
 struct CNodeSignals
 {
     boost::signals2::signal<int ()> GetHeight;
-    boost::signals2::signal<bool (CNode*)> ProcessMessages;
-    boost::signals2::signal<bool (CNode*, bool)> SendMessages;
+    boost::signals2::signal<bool (CNode*), CombinerAll> ProcessMessages;
+    boost::signals2::signal<bool (CNode*, bool), CombinerAll> SendMessages;
     boost::signals2::signal<void (NodeId, const CNode*)> InitializeNode;
     boost::signals2::signal<void (NodeId)> FinalizeNode;
 };
@@ -156,6 +171,7 @@ public:
     int64_t nLastSend;
     int64_t nLastRecv;
     int64_t nTimeConnected;
+    int64_t nTimeOffset;
     std::string addrName;
     int nVersion;
     std::string cleanSubVer;
@@ -185,7 +201,7 @@ public:
 
     int64_t nTime;                  // time (in microseconds) of message receipt.
 
-    CNetMessage(int nTypeIn, int nVersionIn) : hdrbuf(nTypeIn, nVersionIn), vRecv(nTypeIn, nVersionIn) {
+    CNetMessage(const CMessageHeader::MessageStartChars& pchMessageStartIn, int nTypeIn, int nVersionIn) : hdrbuf(nTypeIn, nVersionIn), hdr(pchMessageStartIn), vRecv(nTypeIn, nVersionIn) {
         hdrbuf.resize(24);
         in_data = false;
         nHdrPos = 0;
@@ -237,6 +253,7 @@ public:
     int64_t nLastSend;
     int64_t nLastRecv;
     int64_t nTimeConnected;
+    int64_t nTimeOffset;
     CAddress addr;
     std::string addrName;
     CService addrLocal;
@@ -255,8 +272,8 @@ public:
     bool fDisconnect;
     // We use fRelayTxes for two purposes -
     // a) it allows us to not relay tx invs before receiving the peer's version message
-    // b) the peer may tell us in their version message that we should not relay tx invs
-    //    until they have initialized their bloom filter.
+    // b) the peer may tell us in its version message that we should not relay tx invs
+    //    until it has initialized its bloom filter.
     bool fRelayTxes;
     CSemaphoreGrant grantOutbound;
     CCriticalSection cs_filter;
@@ -284,7 +301,7 @@ public:
 
     // flood relay
     std::vector<CAddress> vAddrToSend;
-    mruset<CAddress> setAddrKnown;
+    CRollingBloomFilter addrKnown;
     bool fGetAddr;
     std::set<uint256> setKnown;
 
@@ -364,7 +381,7 @@ public:
 
     void AddAddressKnown(const CAddress& addr)
     {
-        setAddrKnown.insert(addr);
+        addrKnown.insert(addr.GetKey());
     }
 
     void PushAddress(const CAddress& addr)
@@ -372,7 +389,7 @@ public:
         // Known checking here is only to save space from duplicates.
         // SendMessages will filter it again for knowns that were added
         // after addresses were pushed.
-        if (addr.IsValid() && !setAddrKnown.count(addr)) {
+        if (addr.IsValid() && !addrKnown.contains(addr.GetKey())) {
             if (vAddrToSend.size() >= MAX_ADDR_TO_SEND) {
                 vAddrToSend[insecure_rand() % vAddrToSend.size()] = addr;
             } else {
@@ -571,9 +588,6 @@ public:
         }
     }
 
-    bool IsSubscribed(unsigned int nChannel);
-    void Subscribe(unsigned int nChannel, unsigned int nHops=0);
-    void CancelSubscribe(unsigned int nChannel);
     void CloseSocketDisconnect();
 
     // Denial-of-service detection/prevention

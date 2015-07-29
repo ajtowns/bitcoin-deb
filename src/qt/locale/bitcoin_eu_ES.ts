@@ -1,4 +1,4 @@
-<TS language="eu_ES" version="2.1">
+<TS language="eu_ES" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -70,10 +70,6 @@
     <message>
         <source>Change passphrase</source>
         <translation>Aldatu pasahitza</translation>
-    </message>
-    <message>
-        <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>Sartu zorroaren pasahitz zaharra eta berria.</translation>
     </message>
     <message>
         <source>Confirm wallet encryption</source>
@@ -509,10 +505,6 @@
         <translation>Mota</translation>
     </message>
     <message>
-        <source>Address</source>
-        <translation>Helbidea</translation>
-    </message>
-    <message>
         <source>Open until %1</source>
         <translation>Zabalik %1 arte</translation>
     </message>
@@ -527,6 +519,10 @@
     <message>
         <source>Generated but not accepted</source>
         <translation>Sortua, baina ez onartua</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Etiketa</translation>
     </message>
     <message>
         <source>Received with</source>
@@ -559,10 +555,6 @@
     <message>
         <source>Type of transaction.</source>
         <translation>Transakzio mota.</translation>
-    </message>
-    <message>
-        <source>Destination address of transaction.</source>
-        <translation>Transakzioaren xede-helbidea.</translation>
     </message>
     <message>
         <source>Amount removed from or added to balance.</source>

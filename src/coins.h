@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2014 The Bitcoin developers
+// Copyright (c) 2009-2014 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,9 +7,9 @@
 #define BITCOIN_COINS_H
 
 #include "compressor.h"
+#include "memusage.h"
 #include "serialize.h"
 #include "uint256.h"
-#include "undo.h"
 
 #include <assert.h>
 #include <stdint.h>
@@ -237,11 +237,8 @@ public:
         Cleanup();
     }
 
-    //! mark an outpoint spent, and construct undo information
-    bool Spend(const COutPoint &out, CTxInUndo &undo);
-
     //! mark a vout spent
-    bool Spend(int nPos);
+    bool Spend(uint32_t nPos);
 
     //! check whether a particular output is still available
     bool IsAvailable(unsigned int nPos) const {
@@ -255,6 +252,15 @@ public:
             if (!out.IsNull())
                 return false;
         return true;
+    }
+
+    size_t DynamicMemoryUsage() const {
+        size_t ret = memusage::DynamicUsage(vout);
+        BOOST_FOREACH(const CTxOut &out, vout) {
+            const std::vector<unsigned char> *script = &out.scriptPubKey;
+            ret += memusage::DynamicUsage(*script);
+        }
+        return ret;
     }
 };
 
@@ -301,7 +307,7 @@ struct CCoinsStats
     uint256 hashSerialized;
     CAmount nTotalAmount;
 
-    CCoinsStats() : nHeight(0), hashBlock(0), nTransactions(0), nTransactionOutputs(0), nSerializedSize(0), hashSerialized(0), nTotalAmount(0) {}
+    CCoinsStats() : nHeight(0), nTransactions(0), nTransactionOutputs(0), nSerializedSize(0), nTotalAmount(0) {}
 };
 
 
@@ -360,7 +366,8 @@ class CCoinsModifier
 private:
     CCoinsViewCache& cache;
     CCoinsMap::iterator it;
-    CCoinsModifier(CCoinsViewCache& cache_, CCoinsMap::iterator it_);
+    size_t cachedCoinUsage; // Cached memory usage of the CCoins object before modification
+    CCoinsModifier(CCoinsViewCache& cache_, CCoinsMap::iterator it_, size_t usage);
 
 public:
     CCoins* operator->() { return &it->second.coins; }
@@ -376,12 +383,16 @@ protected:
     /* Whether this cache has an active modifier. */
     bool hasModifier;
 
+
     /**
      * Make mutable so that we can "fill the cache" even from Get-methods
      * declared as "const".  
      */
     mutable uint256 hashBlock;
     mutable CCoinsMap cacheCoins;
+
+    /* Cached dynamic memory usage for the inner CCoins objects. */
+    mutable size_t cachedCoinsUsage;
 
 public:
     CCoinsViewCache(CCoinsView *baseIn);
@@ -418,6 +429,9 @@ public:
     //! Calculate the size of the cache (in number of transactions)
     unsigned int GetCacheSize() const;
 
+    //! Calculate the size of the cache (in bytes)
+    size_t DynamicMemoryUsage() const;
+
     /** 
      * Amount of bitcoins coming in to a transaction
      * Note that lightweight clients may not know anything besides the hash of previous transactions,
@@ -441,6 +455,11 @@ public:
 private:
     CCoinsMap::iterator FetchCoins(const uint256 &txid);
     CCoinsMap::const_iterator FetchCoins(const uint256 &txid) const;
+
+    /**
+     * By making the copy constructor private, we prevent accidentally using it when one intends to create a cache on top of a base cache.
+     */
+    CCoinsViewCache(const CCoinsViewCache &);
 };
 
 #endif // BITCOIN_COINS_H

@@ -1,4 +1,4 @@
-<TS language="es_UY" version="2.1">
+<TS language="es_UY" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -70,10 +70,6 @@
     <message>
         <source>Change passphrase</source>
         <translation>Cambiar contraseña</translation>
-    </message>
-    <message>
-        <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>Ingrese la contraseña anterior y la nueva de acceso a el monedero</translation>
     </message>
     <message>
         <source>Confirm wallet encryption</source>
@@ -157,10 +153,6 @@
     <message>
         <source>Tabs toolbar</source>
         <translation>Barra de herramientas</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n conexión activa a la red Bitcoin </numerusform><numerusform>%n conexiones activas a la red Bitcoin</numerusform></translation>
     </message>
     <message>
         <source>Up to date</source>
@@ -429,12 +421,12 @@
         <translation>Fecha</translation>
     </message>
     <message>
-        <source>Address</source>
-        <translation>Direccion </translation>
-    </message>
-    <message>
         <source>Open until %1</source>
         <translation>Abrir hasta %1</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Etiqueta</translation>
     </message>
     </context>
 <context>

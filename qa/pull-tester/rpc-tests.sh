@@ -15,18 +15,65 @@ fi
 
 #Run the tests
 
+testScripts=(
+    'wallet.py'
+    'listtransactions.py'
+    'mempool_resurrect_test.py'
+    'txn_doublespend.py'
+    'txn_doublespend.py --mineblock'
+    'getchaintips.py'
+    'rawtransactions.py'
+    'rest.py'
+    'mempool_spendcoinbase.py'
+    'mempool_coinbase_spends.py'
+    'httpbasics.py'
+    'zapwallettxes.py'
+    'proxy_test.py'
+    'merkle_blocks.py'
+    'signrawtransactions.py'
+    'walletbackup.py'
+);
+testScriptsExt=(
+    'bipdersig-p2p.py'
+    'bipdersig.py'
+    'getblocktemplate_longpoll.py'
+    'getblocktemplate_proposals.py'
+    'pruning.py'
+    'forknotify.py'
+    'invalidateblock.py'
+    'keypool.py'
+    'receivedby.py'
+    'reindex.py'
+    'rpcbind_test.py'
+#   'script_test.py'
+    'smartfees.py'
+    'maxblocksinflight.py'
+    'invalidblockrequest.py'
+    'rawtransactions.py'
+#    'forknotify.py'
+    'p2p-acceptblock.py'
+);
+
+extArg="-extended"
+passOn=${@#$extArg}
+
 if [ "x${ENABLE_BITCOIND}${ENABLE_UTILS}${ENABLE_WALLET}" = "x111" ]; then
-  ${BUILDDIR}/qa/rpc-tests/wallet.py --srcdir "${BUILDDIR}/src"
-  ${BUILDDIR}/qa/rpc-tests/listtransactions.py --srcdir "${BUILDDIR}/src"
-  ${BUILDDIR}/qa/rpc-tests/mempool_resurrect_test.py --srcdir "${BUILDDIR}/src"
-  ${BUILDDIR}/qa/rpc-tests/txn_doublespend.py --srcdir "${BUILDDIR}/src"
-  ${BUILDDIR}/qa/rpc-tests/txn_doublespend.py --mineblock --srcdir "${BUILDDIR}/src"
-  ${BUILDDIR}/qa/rpc-tests/getchaintips.py --srcdir "${BUILDDIR}/src"
-  ${BUILDDIR}/qa/rpc-tests/rest.py --srcdir "${BUILDDIR}/src"
-  ${BUILDDIR}/qa/rpc-tests/mempool_spendcoinbase.py --srcdir "${BUILDDIR}/src"
-  ${BUILDDIR}/qa/rpc-tests/httpbasics.py --srcdir "${BUILDDIR}/src"
-  ${BUILDDIR}/qa/rpc-tests/mempool_coinbase_spends.py --srcdir "${BUILDDIR}/src"
-  #${BUILDDIR}/qa/rpc-tests/forknotify.py --srcdir "${BUILDDIR}/src"
+    for (( i = 0; i < ${#testScripts[@]}; i++ ))
+    do
+        if [ -z "$1" ] || [ "${1:0:1}" == "-" ] || [ "$1" == "${testScripts[$i]}" ] || [ "$1.py" == "${testScripts[$i]}" ]
+        then
+            echo -e "Running testscript \033[1m${testScripts[$i]}...\033[0m"
+            ${BUILDDIR}/qa/rpc-tests/${testScripts[$i]} --srcdir "${BUILDDIR}/src" ${passOn}
+        fi
+    done
+    for (( i = 0; i < ${#testScriptsExt[@]}; i++ ))
+    do
+        if [ "$1" == $extArg ] || [ "$1" == "${testScriptsExt[$i]}" ] || [ "$1.py" == "${testScriptsExt[$i]}" ]
+        then
+            echo -e "Running \033[1m2nd level\033[0m testscript \033[1m${testScriptsExt[$i]}...\033[0m"
+            ${BUILDDIR}/qa/rpc-tests/${testScriptsExt[$i]} --srcdir "${BUILDDIR}/src" ${passOn}
+        fi
+    done
 else
   echo "No rpc tests to run. Wallet, utils, and bitcoind must all be enabled"
 fi

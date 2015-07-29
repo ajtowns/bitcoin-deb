@@ -1,4 +1,4 @@
-<TS language="kk_KZ" version="2.1">
+<TS language="kk_KZ" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -373,8 +373,8 @@
         <translation>Күні</translation>
     </message>
     <message>
-        <source>Address</source>
-        <translation>Адрес</translation>
+        <source>Label</source>
+        <translation>таңба</translation>
     </message>
     </context>
 <context>

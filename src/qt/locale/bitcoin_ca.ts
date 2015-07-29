@@ -1,4 +1,4 @@
-<TS language="ca" version="2.1">
+<TS language="ca" version="2.0">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -156,10 +156,6 @@
         <translation>Canvia la contrasenya</translation>
     </message>
     <message>
-        <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>Introduïu tant la contrasenya antiga com la nova del moneder.</translation>
-    </message>
-    <message>
         <source>Confirm wallet encryption</source>
         <translation>Confirma l'encriptació del moneder</translation>
     </message>
@@ -170,6 +166,10 @@
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Esteu segur que voleu encriptar el vostre moneder?</translation>
+    </message>
+    <message>
+        <source>Bitcoin Core will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>Ara es tancarà el Bitcoin Core per finalitzar el procés d'encriptació. Tingueu present que encriptar el vostre moneder no garanteix que les vostres bitcoins no puguin ser robades per programari maliciós que infecti l'ordinador.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -188,8 +188,8 @@
         <translation>Introduïu la contrasenya nova al moneder.&lt;br/&gt;Utilitzeu una contrasenya de &lt;b&gt;deu o més caràcters aleatoris&lt;/b&gt;, o &lt;b&gt;vuit o més paraules&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>Bitcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>Bitcoin es tancarà ara per acabar el procés d'encriptació. Recordeu que encriptar el moneder no protegeix completament els bitcoins de ser robats per programari maliciós instal·lat a l'ordinador.</translation>
+        <source>Enter the old passphrase and new passphrase to the wallet.</source>
+        <translation>Introduïu la contrasenya antiga i la contrasenya nova al moneder.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -311,10 +311,6 @@
         <translation>Envia monedes a una adreça Bitcoin</translation>
     </message>
     <message>
-        <source>Modify configuration options for Bitcoin</source>
-        <translation>Modifica les opcions de configuració per bitcoin</translation>
-    </message>
-    <message>
         <source>Backup wallet to another location</source>
         <translation>Realitza una còpia de seguretat del moneder a una altra ubicació</translation>
     </message>
@@ -403,6 +399,10 @@
         <translation>&amp;Quant al Bitcoin Core</translation>
     </message>
     <message>
+        <source>Modify configuration options for Bitcoin Core</source>
+        <translation>Modifica les opcions de configuració del Bitcoin Core</translation>
+    </message>
+    <message>
         <source>Show the list of used sending addresses and labels</source>
         <translation>Mostra la llista d'adreces d'enviament i etiquetes utilitzades</translation>
     </message>
@@ -429,6 +429,10 @@
     <message>
         <source>No block source available...</source>
         <translation>No hi ha cap font de bloc disponible...</translation>
+    </message>
+    <message numerus="yes">
+        <source>Processed %n block(s) of transaction history.</source>
+        <translation><numerusform>S'han processat %n bloc de l'historial de transacció.</numerusform><numerusform>S'han processat %n blocs de l'historial de transacció.</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
@@ -478,13 +482,39 @@
         <source>Up to date</source>
         <translation>Al dia</translation>
     </message>
-    <message numerus="yes">
-        <source>Processed %n blocks of transaction history.</source>
-        <translation><numerusform>S'ha processat %n bloc de l'historial de transacció.</numerusform><numerusform>S'han processat %n blocs de l'historial de transacció.</numerusform></translation>
-    </message>
     <message>
         <source>Catching up...</source>
         <translation>S'està posant al dia ...</translation>
+    </message>
+    <message>
+        <source>Date: %1
+</source>
+        <translation>Data: %1
+</translation>
+    </message>
+    <message>
+        <source>Amount: %1
+</source>
+        <translation>Import: %1
+</translation>
+    </message>
+    <message>
+        <source>Type: %1
+</source>
+        <translation>Tipus: %1
+</translation>
+    </message>
+    <message>
+        <source>Label: %1
+</source>
+        <translation>Etiqueta: %1
+</translation>
+    </message>
+    <message>
+        <source>Address: %1
+</source>
+        <translation>Adreça: %1
+</translation>
     </message>
     <message>
         <source>Sent transaction</source>
@@ -493,14 +523,6 @@
     <message>
         <source>Incoming transaction</source>
         <translation>Transacció entrant</translation>
-    </message>
-    <message>
-        <source>Date: %1
-Amount: %2
-Type: %3
-Address: %4
-</source>
-        <translation>Data: %1\nImport: %2\n Tipus: %3\n Adreça: %4\n</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -693,6 +715,18 @@ Address: %4
         <translation>cap</translation>
     </message>
     <message>
+        <source>This label turns red if the transaction size is greater than 1000 bytes.</source>
+        <translation>Aquesta etiqueta es torna en vermell si la transacció és superior a 1000 bytes.</translation>
+    </message>
+    <message>
+        <source>This label turns red if the priority is smaller than "medium".</source>
+        <translation>Aquesta etiqueta es torna en vermell si la propietat és inferior que la «mitjana».</translation>
+    </message>
+    <message>
+        <source>This label turns red if any recipient receives an amount smaller than %1.</source>
+        <translation>Aquesta etiqueta es torna vermella si el destinatari rep un import inferior de %1.</translation>
+    </message>
+    <message>
         <source>Can vary +/- %1 satoshi(s) per input.</source>
         <translation>Pot variar +/- %1 satoshi(s) per entrada.</translation>
     </message>
@@ -705,10 +739,6 @@ Address: %4
         <translation>no</translation>
     </message>
     <message>
-        <source>This label turns red, if the transaction size is greater than 1000 bytes.</source>
-        <translation>Aquesta etiqueta es posa de color vermell si la mida de la transacció és més gran de 1000 bytes.</translation>
-    </message>
-    <message>
         <source>This means a fee of at least %1 per kB is required.</source>
         <translation>Això comporta una comissió d'almenys %1 per kB.</translation>
     </message>
@@ -719,14 +749,6 @@ Address: %4
     <message>
         <source>Transactions with higher priority are more likely to get included into a block.</source>
         <translation>Les transaccions amb una major prioritat són més propenses a ser incloses en un bloc.</translation>
-    </message>
-    <message>
-        <source>This label turns red, if the priority is smaller than "medium".</source>
-        <translation>Aquesta etiqueta es torna vermella si la prioritat és menor que «mitjana».</translation>
-    </message>
-    <message>
-        <source>This label turns red, if any recipient receives an amount smaller than %1.</source>
-        <translation>Aquesta etiqueta es torna vermella si qualsevol destinatari rep un import inferior a %1.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -849,30 +871,6 @@ Address: %4
         <source>command-line options</source>
         <translation>Opcions de la línia d'ordres</translation>
     </message>
-    <message>
-        <source>UI options</source>
-        <translation>Opcions de IU</translation>
-    </message>
-    <message>
-        <source>Set language, for example "de_DE" (default: system locale)</source>
-        <translation>Defineix un idioma, per exemple «de_DE» (per defecte: preferències locals de sistema)</translation>
-    </message>
-    <message>
-        <source>Start minimized</source>
-        <translation>Inicia minimitzat</translation>
-    </message>
-    <message>
-        <source>Set SSL root certificates for payment request (default: -system-)</source>
-        <translation>Defineix certificats arrel SSL per a la sol·licitud de pagament (per defecte: -sistema-)</translation>
-    </message>
-    <message>
-        <source>Show splash screen on startup (default: 1)</source>
-        <translation>Mostra la finestra de benvinguda a l'inici (per defecte: 1)</translation>
-    </message>
-    <message>
-        <source>Choose data directory on startup (default: 0)</source>
-        <translation>Tria el directori de dades a l'inici (per defecte: 0)</translation>
-    </message>
 </context>
 <context>
     <name>Intro</name>
@@ -955,14 +953,6 @@ Address: %4
         <translation>&amp;Principal</translation>
     </message>
     <message>
-        <source>Automatically start Bitcoin after logging in to the system.</source>
-        <translation>Inicia automàticament el Bitcoin després de l'inici de sessió del sistema.</translation>
-    </message>
-    <message>
-        <source>&amp;Start Bitcoin on system login</source>
-        <translation>&amp;Inicia el Bitcoin a l'inici de sessió del sistema.</translation>
-    </message>
-    <message>
         <source>Size of &amp;database cache</source>
         <translation>Mida de la memòria cau de la base de &amp;dades</translation>
     </message>
@@ -987,6 +977,14 @@ Address: %4
         <translation>Adreça IP del proxy (p. ex. IPv4: 127.0.0.1 / IPv6: ::1)</translation>
     </message>
     <message>
+        <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
+        <translation>Minimitza en comptes de sortir de l'aplicació quan la finestra es tanca. Quan s'habilita aquesta opció l'aplicació es tancara només quan se selecciona Surt del menú. </translation>
+    </message>
+    <message>
+        <source>The user interface language can be set here. This setting will take effect after restarting Bitcoin Core.</source>
+        <translation>La interfície d'usuari pot definir-se des d'aquí. El paràmetre tindrà efecte després de reiniciar el Bitcoin Core.</translation>
+    </message>
+    <message>
         <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
         <translation>URL de terceres parts (p. ex. explorador de blocs) que apareix en la pestanya de transaccions com elements del menú contextual. %s en l'URL es reemplaçat pel resum de la transacció. Diferents URL estan separades per una barra vertical |.</translation>
     </message>
@@ -1009,6 +1007,14 @@ Address: %4
     <message>
         <source>&amp;Network</source>
         <translation>&amp;Xarxa</translation>
+    </message>
+    <message>
+        <source>Automatically start Bitcoin Core after logging in to the system.</source>
+        <translation>Inicia el Bitcoin Core automàticament després d'iniciar una sessió en el sistema.</translation>
+    </message>
+    <message>
+        <source>&amp;Start Bitcoin Core on system login</source>
+        <translation>&amp;Inicia el Bitcoin Core en inciar el sistema</translation>
     </message>
     <message>
         <source>(0 = auto, &lt;0 = leave that many cores free)</source>
@@ -1075,10 +1081,6 @@ Address: %4
         <translation>&amp;Minimitza a la barra d'aplicacions en comptes de la barra de tasques</translation>
     </message>
     <message>
-        <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
-        <translation>Minimitza en comptes de sortir de la aplicació al tancar la finestra. Quan aquesta opció està activa, la aplicació només es tancarà al seleccionar Sortir al menú.</translation>
-    </message>
-    <message>
         <source>M&amp;inimize on close</source>
         <translation>M&amp;inimitza en tancar</translation>
     </message>
@@ -1089,10 +1091,6 @@ Address: %4
     <message>
         <source>User Interface &amp;language:</source>
         <translation>&amp;Llengua de la interfície d'usuari:</translation>
-    </message>
-    <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting Bitcoin.</source>
-        <translation>Aquí podeu definir la llengua de l'aplicació. Aquesta configuració tindrà efecte una vegada es reiniciï Bitcoin.</translation>
     </message>
     <message>
         <source>&amp;Unit to show amounts in:</source>
@@ -1131,8 +1129,8 @@ Address: %4
         <translation>Cal reiniciar el client per activar els canvis.</translation>
     </message>
     <message>
-        <source>Client will be shutdown, do you want to proceed?</source>
-        <translation>S'aturarà el client, voleu procedir?</translation>
+        <source>Client will be shut down. Do you want to proceed?</source>
+        <translation>S'aturarà el client. Voleu procedir?</translation>
     </message>
     <message>
         <source>This change would require a client restart.</source>
@@ -1217,10 +1215,6 @@ Address: %4
         <source>Current total balance in watch-only addresses</source>
         <translation>Balanç total actual en adreces de només lectura</translation>
     </message>
-    <message>
-        <source>out of sync</source>
-        <translation>Fora de sincronia</translation>
-    </message>
 </context>
 <context>
     <name>PaymentServer</name>
@@ -1239,10 +1233,6 @@ Address: %4
     <message>
         <source>Payment request network doesn't match client network.</source>
         <translation>La xarxa de la sol·licitud de pagament no coincideix amb la xarxa del client.</translation>
-    </message>
-    <message>
-        <source>Payment request has expired.</source>
-        <translation>La sol·licitud de pagament ha caducat.</translation>
     </message>
     <message>
         <source>Payment request is not initialized.</source>
@@ -1277,8 +1267,16 @@ Address: %4
         <translation>No es pot llegir el fitxer de la sol·licitud de pagament. Això pot ser causat per un fitxer de sol·licitud de pagament no vàlid.</translation>
     </message>
     <message>
+        <source>Payment request expired.</source>
+        <translation>La sol·licitud de pagament ha vençut.</translation>
+    </message>
+    <message>
         <source>Unverified payment requests to custom payment scripts are unsupported.</source>
         <translation>No s'accepten sol·licituds de pagament no verificades a scripts de pagament personalitzats.</translation>
+    </message>
+    <message>
+        <source>Invalid payment request.</source>
+        <translation>Sol·licitud de pagament no vàlida.</translation>
     </message>
     <message>
         <source>Refund from %1</source>
@@ -1320,8 +1318,8 @@ Address: %4
         <translation>Agent d'usuari</translation>
     </message>
     <message>
-        <source>Address/Hostname</source>
-        <translation>Adreça / nom de l'ordinador</translation>
+        <source>Node/Service</source>
+        <translation>Node/Servei</translation>
     </message>
     <message>
         <source>Ping Time</source>
@@ -1353,14 +1351,6 @@ Address: %4
     <message>
         <source>%1 s</source>
         <translation>%1 s</translation>
-    </message>
-    <message>
-        <source>NETWORK</source>
-        <translation>XARXA</translation>
-    </message>
-    <message>
-        <source>UNKNOWN</source>
-        <translation>DESCONEGUT</translation>
     </message>
     <message>
         <source>None</source>
@@ -1453,6 +1443,10 @@ Address: %4
         <translation>Nombre de blocs actuals</translation>
     </message>
     <message>
+        <source>Open the Bitcoin Core debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Obre el fitxer de registre de depuració del Bitcoin Core del directori de dades actual. Pot portar uns quants segons per a fitxers de registre grans.</translation>
+    </message>
+    <message>
         <source>Received</source>
         <translation>Rebut</translation>
     </message>
@@ -1521,6 +1515,10 @@ Address: %4
         <translation>Temps de ping</translation>
     </message>
     <message>
+        <source>Time Offset</source>
+        <translation>Diferència horària</translation>
+    </message>
+    <message>
         <source>Last block time</source>
         <translation>Últim temps de bloc</translation>
     </message>
@@ -1561,16 +1559,12 @@ Address: %4
         <translation>Fitxer de registre de depuració</translation>
     </message>
     <message>
-        <source>Open the Bitcoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Obre el fitxer de registre de depuració de Bitcoin del directori de dades actual. Això pot trigar uns quants segons per a fitxers de registre grans.</translation>
-    </message>
-    <message>
         <source>Clear console</source>
         <translation>Neteja la consola</translation>
     </message>
     <message>
-        <source>Welcome to the Bitcoin RPC console.</source>
-        <translation>Us donem la benvinguda a la consola RPC de Bitcoin</translation>
+        <source>Welcome to the Bitcoin Core RPC console.</source>
+        <translation>Us donem la benviguda a la consola RPC del Bitcoin Core.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
@@ -1861,20 +1855,16 @@ Address: %4
         <translation>redueix els paràmetres de comissió</translation>
     </message>
     <message>
-        <source>Minimize</source>
-        <translation>Minimitza</translation>
-    </message>
-    <message>
-        <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then "per kilobyte" only pays 250 satoshis in fee, while "at least" pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Si la comissió personalitzada es defineix a 1000 satoshis i la transacció és de només 250 bytes, llavors «per kilobyte» només es paguen 250 satoshis en una comissió, mentre que amb la de «com a mínim» es pagarien 1000 satoshis. Per a transaccions superiors al kilobyte, en tots dos casos es paga per kilobyte.</translation>
-    </message>
-    <message>
         <source>per kilobyte</source>
         <translation>per kilobyte</translation>
     </message>
     <message>
         <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then "per kilobyte" only pays 250 satoshis in fee, while "total at least" pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>Si la comissió personalitzada es defineix a 1000 satoshis i la transacció és de només 250 bytes, llavors «per kilobyte» només es paguen 250 satoshis en una comissió, mentre que amb la de «total com a mínim» es pagarien 1000 satoshis. Per a transaccions superiors al kilobyte, en tots dos casos es paga per kilobyte.</translation>
+    </message>
+    <message>
+        <source>Hide</source>
+        <translation>Amaga</translation>
     </message>
     <message>
         <source>total at least</source>
@@ -1997,10 +1987,6 @@ Address: %4
         <translation>o</translation>
     </message>
     <message>
-        <source>The recipient address is not valid, please recheck.</source>
-        <translation>L'adreça de destinatari no és vàlida, si us plau comprovi-la.</translation>
-    </message>
-    <message>
         <source>The amount to pay must be larger than 0.</source>
         <translation>L'import a pagar ha de ser major que 0.</translation>
     </message>
@@ -2013,10 +1999,6 @@ Address: %4
         <translation>El total excedeix el teu balanç quan s'afegeix la comissió a la transacció %1.</translation>
     </message>
     <message>
-        <source>Duplicate address found, can only send to each address once per send operation.</source>
-        <translation>S'ha trobat una adreça duplicada, tan sols es pot enviar a cada adreça un cop per ordre de enviament.</translation>
-    </message>
-    <message>
         <source>Transaction creation failed!</source>
         <translation>Ha fallat la creació de la transacció!</translation>
     </message>
@@ -2025,16 +2007,28 @@ Address: %4
         <translation>S'ha rebutjat la transacció! Això pot passar si alguna de les monedes del vostre moneder ja s'han gastat; per exemple, si heu fet servir una còpia de seguretat del fitxer wallet.dat i s'haguessin gastat monedes de la còpia però sense marcar-les-hi com a gastades.</translation>
     </message>
     <message>
-        <source>A fee higher than %1 is considered an insanely high fee.</source>
-        <translation>Una comissió superior a %1 es considera una comissió excessiva.</translation>
+        <source>A fee higher than %1 is considered an absurdly high fee.</source>
+        <translation>Una comissió superior a %1 es considera una comissió absurdament alta.</translation>
+    </message>
+    <message>
+        <source>Payment request expired.</source>
+        <translation>La sol·licitud de pagament ha vençut.</translation>
+    </message>
+    <message numerus="yes">
+        <source>Estimated to begin confirmation within %n block(s).</source>
+        <translation><numerusform>Estimat per començar la confirmació en %n bloc.</numerusform><numerusform>Estimat per començar la confirmació en %n blocs.</numerusform></translation>
     </message>
     <message>
         <source>Pay only the minimum fee of %1</source>
         <translation>Paga només la comissió mínima de %1</translation>
     </message>
     <message>
-        <source>Estimated to begin confirmation within %1 block(s).</source>
-        <translation>Estimat per a començar la confirmació en %1 bloc(s).</translation>
+        <source>The recipient address is not valid. Please recheck.</source>
+        <translation>L'adreça de destinatari no és vàlida. Torneu-la a comprovar.</translation>
+    </message>
+    <message>
+        <source>Duplicate address found: addresses should only be used once each.</source>
+        <translation>S'ha trobat una adreça duplicada: cal utilitzar les adreces només un cop cada vegada.</translation>
     </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
@@ -2108,12 +2102,24 @@ Address: %4
         <translation>Elimina aquesta entrada</translation>
     </message>
     <message>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation>La comissió es deduirà de l'import que s'enviarà. El destinatari rebrà menys bitcoins que les que introduïu al camp d'import. Si se seleccionen múltiples destinataris, la comissió es dividirà per igual.</translation>
+    </message>
+    <message>
+        <source>S&amp;ubtract fee from amount</source>
+        <translation>S&amp;ubstreu la comissió de l'import</translation>
+    </message>
+    <message>
         <source>Message:</source>
         <translation>Missatge:</translation>
     </message>
     <message>
-        <source>This is a verified payment request.</source>
-        <translation>Aquesta és una sol·licitud de pagament verificada.</translation>
+        <source>This is an unauthenticated payment request.</source>
+        <translation>Aquesta és una sol·licitud de pagament no autenticada.</translation>
+    </message>
+    <message>
+        <source>This is an authenticated payment request.</source>
+        <translation>Aquesta és una sol·licitud de pagament autenticada.</translation>
     </message>
     <message>
         <source>Enter a label for this address to add it to the list of used addresses</source>
@@ -2122,10 +2128,6 @@ Address: %4
     <message>
         <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
         <translation>Un missatge que s'ha adjuntat al bitcoin: URI que s'emmagatzemarà amb la transacció per a la vostra referència. Nota: el missatge no s'enviarà a través de la xarxa Bitcoin.</translation>
-    </message>
-    <message>
-        <source>This is an unverified payment request.</source>
-        <translation>Aquesta és una sol·licitud de pagament no verificada.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2158,8 +2160,8 @@ Address: %4
         <translation>&amp;Signa el missatge</translation>
     </message>
     <message>
-        <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Podeu signar missatges amb la vostra adreça per provar que són vostres. Aneu amb compte no signar qualsevol cosa, ja que els atacs de pesca electrònica (phishing) poden provar de confondre-us perquè els signeu amb la vostra identitat. Només signeu als documents completament detallats amb què hi esteu d'acord.</translation>
+        <source>You can sign messages/agreements with your addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>Podeu signar missatges/acords amb les vostres adreces per provar que rebeu les bitcoins que s'hi envien. Aneu amb compte no signar res que sigui vague o aleatori, perquè en alguns atacs de suplantació es pot provar que hi signeu la vostra identitat. Només signeu aquelles declaracions completament detallades en què hi esteu d'acord. </translation>
     </message>
     <message>
         <source>The Bitcoin address to sign the message with</source>
@@ -2212,10 +2214,6 @@ Address: %4
     <message>
         <source>&amp;Verify Message</source>
         <translation>&amp;Verifica el missatge</translation>
-    </message>
-    <message>
-        <source>Enter the signing address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack.</source>
-        <translation>Introdueixi l'adreça signant, missatge (assegura't que copies salts de línia, espais, tabuladors, etc excactament tot el text) i la signatura a sota per verificar el missatge. Per evitar ser enganyat per un atac home-entre-mig, vés amb compte de no llegir més en la signatura del que hi ha al missatge signat mateix.</translation>
     </message>
     <message>
         <source>The Bitcoin address the message was signed with</source>
@@ -2481,10 +2479,6 @@ Address: %4
         <translation>Tipus</translation>
     </message>
     <message>
-        <source>Address</source>
-        <translation>Adreça</translation>
-    </message>
-    <message>
         <source>Immature (%1 confirmations, will be available after %2)</source>
         <translation>Immadur (%1 confirmacions, serà disponible després de %2)</translation>
     </message>
@@ -2511,6 +2505,10 @@ Address: %4
     <message>
         <source>Offline</source>
         <translation>Fora de línia</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <source>Unconfirmed</source>
@@ -2569,8 +2567,8 @@ Address: %4
         <translation>Si està implicada o no una adreça només de lectura en la transacció.</translation>
     </message>
     <message>
-        <source>Destination address of transaction.</source>
-        <translation>Adreça del destinatari de la transacció.</translation>
+        <source>User-defined intent/purpose of the transaction.</source>
+        <translation>Intenció/propòsit de la transacció definida per l'usuari.</translation>
     </message>
     <message>
         <source>Amount removed from or added to balance.</source>
@@ -2823,16 +2821,12 @@ Address: %4
         <translation>Distribuït sota llicència de programari MIT. Vegeu el fitxer acompanyant COPYING o &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
     <message>
-        <source>Enter regression test mode, which uses a special chain in which blocks can be solved instantly.</source>
-        <translation>Entra en el mode de proves de regressió, que utilitza una cadena especial en què els blocs poden resoldre's al moment.</translation>
-    </message>
-    <message>
         <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>
         <translation>Executa una ordre quan una transacció del moneder canviï (%s en cmd es canvia per TxID)</translation>
     </message>
     <message>
-        <source>In this mode -genproclimit controls how many blocks are generated immediately.</source>
-        <translation>En aquest mode -genproclimit controla quants blocs es generen immediatament.</translation>
+        <source>Maximum total fees to use in a single wallet transaction; setting this too low may abort large transactions (default: %s)</source>
+        <translation>Comissions totals màximes que s'utilitzaran en una única transacció de moneder; si s'estableix un valor massa baix es poden interrompre transaccions grans (per defecte: %s)</translation>
     </message>
     <message>
         <source>Set the number of script verification threads (%u to %d, 0 = auto, &lt;0 = leave that many cores free, default: %d)</source>
@@ -2903,10 +2897,6 @@ Address: %4
         <translation>Opcions de depuració/proves:</translation>
     </message>
     <message>
-        <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
-        <translation>Descobreix la pròpia adreça IP (per defecte: 1 quan escoltant i no -externalip)</translation>
-    </message>
-    <message>
         <source>Do not load the wallet and disable wallet RPC calls</source>
         <translation>No carreguis el moneder i inhabilita les crides RPC del moneder</translation>
     </message>
@@ -2967,10 +2957,6 @@ Address: %4
         <translation>Només connecta als nodes de la xarxa &lt;net&gt; (ipv4, ipv6 o onion)</translation>
     </message>
     <message>
-        <source>Rebuild block chain index from current blk000??.dat files</source>
-        <translation>Reconstrueix l'índex de la cadena de blocs dels fitxers actuals blk000??.dat</translation>
-    </message>
-    <message>
         <source>Set database cache size in megabytes (%d to %d, default: %d)</source>
         <translation>Defineix la mida de la memòria cau de la base de dades en megabytes (%d a %d, per defecte: %d)</translation>
     </message>
@@ -2981,10 +2967,6 @@ Address: %4
     <message>
         <source>Specify wallet file (within data directory)</source>
         <translation>Especifica un fitxer de moneder (dins del directori de dades)</translation>
-    </message>
-    <message>
-        <source>This is intended for regression testing tools and app development.</source>
-        <translation>Això es així per a eines de proves de regressió per al desenvolupament d'aplicacions.</translation>
     </message>
     <message>
         <source>Use UPnP to map the listening port (default: %u)</source>
@@ -3005,6 +2987,10 @@ Address: %4
     <message>
         <source>Wallet options:</source>
         <translation>Opcions de moneder:</translation>
+    </message>
+    <message>
+        <source>Warning: This version is obsolete; upgrade required!</source>
+        <translation>Avís: aquesta versió és obsoleta; cal actualitzar-la!</translation>
     </message>
     <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
@@ -3031,12 +3017,12 @@ Address: %4
         <translation>No es pot obtenir un bloqueig del directori de dades %s. El Bitcoin Core probablement ja s'estigui executant.</translation>
     </message>
     <message>
-        <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
-        <translation>Limita contínuament la freqüència de les transaccions gratuïtes a &lt;n&gt;*1000 bytes per minut (per defecte: %u)</translation>
-    </message>
-    <message>
         <source>Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)</source>
         <translation>Crea fitxers nous amb els permisos per defecte del sistema, en comptes de l'umask 077 (només efectiu amb la funcionalitat de moneder inhabilitada)</translation>
+    </message>
+    <message>
+        <source>Discover own IP addresses (default: 1 when listening and no -externalip or -proxy)</source>
+        <translation>Descobreix l'adreça IP pròpia (per defecte: 1 quan s'escolta i no -externalip o -proxy)</translation>
     </message>
     <message>
         <source>Error: Listening for incoming connections failed (listen returned error %s)</source>
@@ -3055,10 +3041,6 @@ Address: %4
         <translation>Comissions (en BTC/Kb) inferiors a això es consideren de comissió zero per a la transmissió (per defecte: %s)</translation>
     </message>
     <message>
-        <source>Fees (in BTC/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Comissions (en BTC/Kb) inferiors a això es consideren de comissió zero per a la creació de la transacció (per defecte: %s)</translation>
-    </message>
-    <message>
         <source>If paytxfee is not set, include enough fee so transactions begin confirmation on average within n blocks (default: %u)</source>
         <translation>Si no s'especifica una paytxfee (comissió de transacció de pagament), inclogueu suficient comissió per tal que les transaccions comencin a confirmar-se en una mitja de n blocs (per defecte: %u)</translation>
     </message>
@@ -3071,16 +3053,8 @@ Address: %4
         <translation>Mida màxima de les dades en les transaccions de l'operador en què confiem i en les meves (per defecte: %u)</translation>
     </message>
     <message>
-        <source>Maximum total fees to use in a single wallet transaction, setting too low may abort large transactions (default: %s)</source>
-        <translation>Comissions totals màximes que s'utilitzaran en una transacció d'un únic moneder. Si es defineix un valor massa baix les transaccions més grans poden interrompre's (per defecte: %s)</translation>
-    </message>
-    <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect)</source>
         <translation>Consulta a adreces d'iguals a través de DNS, si es troba baix en adreces (per defecte: 1 a menys que -connect)</translation>
-    </message>
-    <message>
-        <source>Require high priority for relaying free or low-fee transactions (default:%u)</source>
-        <translation>Es requereix una prioritat alta per retransmetre transaccions gratuïtes o de baixa comissió (per defecte:%u)</translation>
     </message>
     <message>
         <source>Set maximum size of high-priority/low-fee transactions in bytes (default: %d)</source>
@@ -3136,6 +3110,10 @@ per exemple: alertnotify=echo %%s | mail -s "Avís de Bitcoin" admin@foo.com</tr
     <message>
         <source>Cannot resolve -whitebind address: '%s'</source>
         <translation>No es pot resoldre l'adreça -whitebind: «%s»</translation>
+    </message>
+    <message>
+        <source>Choose data directory on startup (default: 0)</source>
+        <translation>Tria el directori de dades a l'inici (per defecte: 0)</translation>
     </message>
     <message>
         <source>Connect through SOCKS5 proxy</source>
@@ -3218,14 +3196,6 @@ per exemple: alertnotify=echo %%s | mail -s "Avís de Bitcoin" admin@foo.com</tr
         <translation>Suport RPC per a connexions HTTP persistents (per defecte: %d)</translation>
     </message>
     <message>
-        <source>Randomly drop 1 of every &lt;n&gt; network messages</source>
-        <translation>Descarta a l'atzar 1 de cada &lt;n&gt; missatges de la xarxa</translation>
-    </message>
-    <message>
-        <source>Randomly fuzz 1 of every &lt;n&gt; network messages</source>
-        <translation>Introdueix incertesa en 1 de cada &lt;n&gt; missatges de la xarxa</translation>
-    </message>
-    <message>
         <source>Send trace/debug info to console instead of debug.log file</source>
         <translation>Envia informació de traça/depuració a la consola en comptes del fitxer debug.log</translation>
     </message>
@@ -3234,8 +3204,20 @@ per exemple: alertnotify=echo %%s | mail -s "Avís de Bitcoin" admin@foo.com</tr
         <translation>Envia les transaccions com a transaccions de comissió zero sempre que sigui possible (per defecte: %u) </translation>
     </message>
     <message>
+        <source>Set SSL root certificates for payment request (default: -system-)</source>
+        <translation>Defineix certificats arrel SSL per a la sol·licitud de pagament (per defecte: -sistema-)</translation>
+    </message>
+    <message>
+        <source>Set language, for example "de_DE" (default: system locale)</source>
+        <translation>Defineix un idioma, per exemple «de_DE» (per defecte: preferències locals de sistema)</translation>
+    </message>
+    <message>
         <source>Show all debugging options (usage: --help -help-debug)</source>
         <translation>Mostra totes les opcions de depuració (ús: --help  --help-debug)</translation>
+    </message>
+    <message>
+        <source>Show splash screen on startup (default: 1)</source>
+        <translation>Mostra la finestra de benvinguda a l'inici (per defecte: 1)</translation>
     </message>
     <message>
         <source>Shrink debug.log file on client startup (default: 1 when no -debug)</source>
@@ -3244,6 +3226,14 @@ per exemple: alertnotify=echo %%s | mail -s "Avís de Bitcoin" admin@foo.com</tr
     <message>
         <source>Signing transaction failed</source>
         <translation>Ha fallat la signatura de la transacció</translation>
+    </message>
+    <message>
+        <source>Start minimized</source>
+        <translation>Inicia minimitzat</translation>
+    </message>
+    <message>
+        <source>The transaction amount is too small to pay the fee</source>
+        <translation>L'import de la transacció és massa petit per pagar-ne una comissió</translation>
     </message>
     <message>
         <source>This is experimental software.</source>
@@ -3266,6 +3256,10 @@ per exemple: alertnotify=echo %%s | mail -s "Avís de Bitcoin" admin@foo.com</tr
         <translation>La transacció és massa gran</translation>
     </message>
     <message>
+        <source>UI Options:</source>
+        <translation>Opcions d'interfície:</translation>
+    </message>
+    <message>
         <source>Unable to bind to %s on this computer (bind returned error %s)</source>
         <translation>No s'ha pogut vincular a %s en aquest ordinador (la vinculació ha retornat l'error %s)</translation>
     </message>
@@ -3284,10 +3278,6 @@ per exemple: alertnotify=echo %%s | mail -s "Avís de Bitcoin" admin@foo.com</tr
     <message>
         <source>Warning</source>
         <translation>Avís</translation>
-    </message>
-    <message>
-        <source>Warning: This version is obsolete, upgrade required!</source>
-        <translation>Avís: aquesta versió està obsoleta. És necessari actualitzar-la!</translation>
     </message>
     <message>
         <source>Warning: Unsupported argument -benchmark ignored, use -debug=bench.</source>
@@ -3350,16 +3340,8 @@ per exemple: alertnotify=echo %%s | mail -s "Avís de Bitcoin" admin@foo.com</tr
         <translation>(1 = manté les metadades de les tx, p. ex., propietari del compte i informació de sol·licitud del pagament, 2 = prescindeix de les metadades de les tx)</translation>
     </message>
     <message>
-        <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
-        <translation>Buida l'activitat de la base de dades de la memòria disponible al registre del disc cada &lt;n&gt; megabytes (per defecte: %u)</translation>
-    </message>
-    <message>
         <source>How thorough the block verification of -checkblocks is (0-4, default: %u)</source>
         <translation>Com d'exhaustiva és la verificació de blocs del -checkblocks (0-4, per defecte: %u)</translation>
-    </message>
-    <message>
-        <source>Log transaction priority and fee per kB when mining blocks (default: %u)</source>
-        <translation>Enregistreu la prioritat de la transacció i la comissió per kB en minar blocs (per defecte: %u)</translation>
     </message>
     <message>
         <source>Maintain a full transaction index, used by the getrawtransaction rpc call (default: %u)</source>
@@ -3390,16 +3372,8 @@ per exemple: alertnotify=echo %%s | mail -s "Avís de Bitcoin" admin@foo.com</tr
         <translation>Demana sempre les adreces dels iguals a través de consultes DNS (per defecte: %u)</translation>
     </message>
     <message>
-        <source>Disable safemode, override a real safe mode event (default: %u)</source>
-        <translation>Inhabilita el mode segur, sobreescriu un esdeveniment de mode segur real (per defecte: %u) </translation>
-    </message>
-    <message>
         <source>Error loading wallet.dat</source>
         <translation>Error en carregar wallet.dat</translation>
-    </message>
-    <message>
-        <source>Force safe mode (default: %u)</source>
-        <translation>Força el mode segur (per defecte: %u)</translation>
     </message>
     <message>
         <source>Generate coins (default: %u)</source>
@@ -3418,10 +3392,6 @@ per exemple: alertnotify=echo %%s | mail -s "Avís de Bitcoin" admin@foo.com</tr
         <translation>Adreça -proxy invalida: '%s'</translation>
     </message>
     <message>
-        <source>Limit size of signature cache to &lt;n&gt; entries (default: %u)</source>
-        <translation>Limita la mida de la cau de signatura a &lt;n&gt; entrades (per defecte: %u)</translation>
-    </message>
-    <message>
         <source>Listen for JSON-RPC connections on &lt;port&gt; (default: %u or testnet: %u)</source>
         <translation>Escolta les connexions JSON-RPC en &lt;port&gt; (per defecte: %u o testnet: %u)</translation>
     </message>
@@ -3434,16 +3404,16 @@ per exemple: alertnotify=echo %%s | mail -s "Avís de Bitcoin" admin@foo.com</tr
         <translation>Manté com a màxim &lt;n&gt; connexions a iguals (per defecte: %u)</translation>
     </message>
     <message>
+        <source>Make the wallet broadcast transactions</source>
+        <translation>Fes que el moneder faci difusió de les transaccions</translation>
+    </message>
+    <message>
         <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: %u)</source>
         <translation>Memòria intermèdia màxima de recepció per connexió, &lt;n&gt;*1000 bytes (per defecte: %u)</translation>
     </message>
     <message>
         <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: %u)</source>
         <translation>Memòria intermèdia màxima d'enviament per connexió, &lt;n&gt;*1000 bytes (per defecte: %u)</translation>
-    </message>
-    <message>
-        <source>Only accept block chain matching built-in checkpoints (default: %u)</source>
-        <translation>Només accepta els punts de control integrats que coincideixen amb la cadena de blocs (per defecte: %u)</translation>
     </message>
     <message>
         <source>Prepend debug output with timestamp (default: %u)</source>
@@ -3456,10 +3426,6 @@ per exemple: alertnotify=echo %%s | mail -s "Avís de Bitcoin" admin@foo.com</tr
     <message>
         <source>Relay non-P2SH multisig (default: %u)</source>
         <translation>Retransmet multisig no P2SH (per defecte: %u)</translation>
-    </message>
-    <message>
-        <source>Run a thread to flush wallet periodically (default: %u)</source>
-        <translation>Executa un fil per buidar el moneder periòdicament (per defecte: %u)</translation>
     </message>
     <message>
         <source>Server certificate file (default: %s)</source>
@@ -3482,10 +3448,6 @@ per exemple: alertnotify=echo %%s | mail -s "Avís de Bitcoin" admin@foo.com</tr
         <translation>Defineix el nombre de fils a crides de servei RPC (per defecte: %d)</translation>
     </message>
     <message>
-        <source>Sets the DB_PRIVATE flag in the wallet db environment (default: %u)</source>
-        <translation>Defineix el senyalador DB_PRIVATE en l'entorn db del moneder (per defecte: %u)</translation>
-    </message>
-    <message>
         <source>Specify configuration file (default: %s)</source>
         <translation>Especifica el fitxer de configuració (per defecte: %s)</translation>
     </message>
@@ -3500,10 +3462,6 @@ per exemple: alertnotify=echo %%s | mail -s "Avís de Bitcoin" admin@foo.com</tr
     <message>
         <source>Spend unconfirmed change when sending transactions (default: %u)</source>
         <translation>Gasta el canvi no confirmat en enviar les transaccions (per defecte: %u)</translation>
-    </message>
-    <message>
-        <source>Stop running after importing blocks from disk (default: %u)</source>
-        <translation>Atura l'execució després d'importar blocs del disc (per defecte: %u)</translation>
     </message>
     <message>
         <source>Threshold for disconnecting misbehaving peers (default: %u)</source>

@@ -1,5 +1,5 @@
 ---
-name: "bitcoin-win-0.10"
+name: "bitcoin-win-0.11"
 enable_cache: true
 suites:
 - "precise"
@@ -18,7 +18,7 @@ packages:
 - "g++-mingw-w64"
 - "nsis"
 - "zip"
-reference_datetime: "2013-06-01 00:00:00"
+reference_datetime: "2015-06-01 00:00:00"
 remotes:
 - "url": "https://github.com/bitcoin/bitcoin.git"
   "dir": "bitcoin"
@@ -26,7 +26,7 @@ files: []
 script: |
   WRAP_DIR=$HOME/wrapped
   HOSTS="x86_64-w64-mingw32 i686-w64-mingw32"
-  CONFIGFLAGS="--enable-upnp-default"
+  CONFIGFLAGS="--enable-upnp-default --enable-reduce-exports"
   FAKETIME_HOST_PROGS="g++ ar ranlib nm windres strip"
   FAKETIME_PROGS="date makensis zip"
 
@@ -84,6 +84,8 @@ script: |
   pushd temp
   tar xf ../$SOURCEDIST
   find bitcoin-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
+  mkdir -p $OUTDIR/src
+  cp ../$SOURCEDIST $OUTDIR/src
   popd
 
   ORIGPATH="$PATH"
@@ -109,7 +111,8 @@ script: |
     find ${DISTNAME} -type f | sort | zip -X@ ${OUTDIR}/${DISTNAME}-${i}.zip
     cd ../..
   done
-  mkdir -p $OUTDIR/src
-  mv $SOURCEDIST $OUTDIR/src
+  cd $OUTDIR
+  rename 's/-setup\.exe$/-setup-unsigned.exe/' *-setup.exe
+  find . -name "*-setup-unsigned.exe" | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ${OUTDIR}/${DISTNAME}-win-unsigned.tar.gz
   mv ${OUTDIR}/${DISTNAME}-x86_64-*.zip ${OUTDIR}/${DISTNAME}-win64.zip
   mv ${OUTDIR}/${DISTNAME}-i686-*.zip ${OUTDIR}/${DISTNAME}-win32.zip
