@@ -28,7 +28,7 @@ Vcs-Git: git://anonscm.debian.org/collab-maint/bitcoin
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/bitcoin.git
 
 Package: bitcoind
-Architecture: any-alpha any-amd64 any-arm any-i386 any-ia64 any-mipsel any-sh4
+Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
  Bitcoin is a free open source peer-to-peer electronic cash system that
@@ -44,7 +44,7 @@ Description: peer-to-peer network based digital currency - daemon
  bitcoin-cli, to interact with the daemon.
 
 Package: bitcoin-qt
-Architecture: any-alpha any-amd64 any-arm any-i386 any-ia64 any-mipsel any-sh4
+Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - GUI
  Bitcoin is a free open source peer-to-peer electronic cash system that
@@ -61,7 +61,7 @@ Description: peer-to-peer network based digital currency - GUI
 Package: libbitcoinconsensus0
 Section: libs
 Multi-Arch: same
-Architecture: any-alpha any-amd64 any-arm any-i386 any-ia64 any-mipsel any-sh4
+Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: bitcoin blockchain library
  Bitcoin is a free open source peer-to-peer electronic cash system that
@@ -75,7 +75,7 @@ Description: bitcoin blockchain library
 Package: libbitcoinconsensus-dev
 Section: libdevel
 Multi-Arch: same
-Architecture: any-alpha any-amd64 any-arm any-i386 any-ia64 any-mipsel any-sh4
+Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libbitcoinconsensus0 (=${binary:Version})
 Description: bitcoin blockchain library development files
  Bitcoin is a free open source peer-to-peer electronic cash system that

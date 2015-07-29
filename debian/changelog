@@ -1,8 +1,10 @@
-bitcoin (0.10.2-4) UNRELEASED; urgency=medium
+bitcoin (0.11.0-1) unstable; urgency=medium
 
+  * New upstream release (Closes: #793622)
+    - build on all archs, big endian is now supported
   * Updated symbols file
 
- -- Scott Howard <showard@debian.org>  Wed, 08 Jul 2015 11:13:14 -0400
+ -- Scott Howard <showard@debian.org>  Wed, 29 Jul 2015 15:45:52 -0400
 
 bitcoin (0.10.2-3) unstable; urgency=medium
 
