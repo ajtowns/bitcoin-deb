@@ -70,11 +70,6 @@ Files: src/json/*
 Copyright: 2007-2009, John W. Wilkinson
 License: Expat
 
-Files: src/addrman.cpp
- src/addrman.h
-Copyright: 2012, Pieter Wuille
-License: Expat
-
 Files: contrib/bitcoind.bash-completion
 Copyright: 2012, Christian von Roques <roques@mti.ag>
 License: Expat
@@ -177,7 +172,8 @@ License: md2k7
  You are free to do with these icons as you wish, including selling, copying, modifying etc.
 
 Files:  src/qt/res/icons/quit.png
-	src/qt/res/icons/editcopy.png src/qt/res/icons/editpaste.png
+	src/qt/res/icons/editcopy.png
+        src/qt/res/icons/editpaste.png
 	src/qt/res/icons/add.png src/qt/res/icons/edit.png
 	src/qt/res/icons/remove.png
 Copyright: Everaldo Coelho http://www.everaldo.com
@@ -193,6 +189,14 @@ License: LGPL-2.1+ or CC-BY-SA-3.0
 
 Files: 	src/qt/res/icons/bitcoin.icns src/qt/res/src/bitcoin.svg
 Copyright: Jonas Schnelli (based on the original bitcoin logo from Bitboy)
+License: Expat
+
+Files: src/qt/splashscreen.cpp
+Copyright: 2011-2014, The Bitcoin Core developers
+License: Expat
+
+Files: src/addrman.cpp src/addrman.h
+Copyright: 2012-2013 Pieter Wuille
 License: Expat
 
 License: LGPL-2.1+

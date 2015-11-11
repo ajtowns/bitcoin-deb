@@ -32,7 +32,6 @@ Files: INSTALL
  contrib/debian/gbp.conf
  contrib/debian/manpages/bitcoin-cli.1
  contrib/debian/manpages/bitcoin-qt.1
- contrib/debian/manpages/bitcoin.conf.5
  contrib/debian/patches/README
  contrib/debian/patches/series
  contrib/debian/rules
@@ -102,9 +101,11 @@ Files: INSTALL
  debian/bitcoin-qt.manpages
  debian/bitcoin-qt.menu
  debian/bitcoin-qt.protocol
+ debian/bitcoin-tx.install
  debian/bitcoind.bash-completion
  debian/bitcoind.examples
  debian/bitcoind.install
+ debian/bitcoind.install~
  debian/bitcoind.lintian-overrides
  debian/bitcoind.manpages
  debian/clean
@@ -174,8 +175,7 @@ Files: INSTALL
  depends/patches/native_cdrkit/cdrkit-deterministic.patch
  depends/patches/qt/fix-xcb-include-order.patch
  depends/patches/qt/mac-qmake.conf
- depends/patches/qt/qt5-tablet-osx.patch
- depends/patches/qt/qt5-yosemite.patch
+ depends/patches/qt/mingw-uuidof.patch
  depends/patches/qt46/stlfix.patch
  doc/Doxyfile
  doc/README_osx.txt
@@ -279,6 +279,7 @@ Files: INSTALL
  share/pixmaps/send16masknoshadow.bmp
  share/pixmaps/send20.bmp
  share/pixmaps/send20mask.bmp
+ share/qt/Info.plist.in
  share/qt/extract_strings_qt.py
  share/qt/img/reload.xcf
  share/qt/make_spinner.py
@@ -392,7 +393,6 @@ Files: COPYING
  qa/pull-tester/run-bitcoind-for-test.sh.in
  qa/pull-tester/tests-config.sh.in
  qa/rpc-tests/bipdersig.py
- qa/rpc-tests/conflictedbalance.sh
  qa/rpc-tests/forknotify.py
  qa/rpc-tests/getblocktemplate_longpoll.py
  qa/rpc-tests/getblocktemplate_proposals.py
@@ -412,7 +412,6 @@ Files: COPYING
  qa/rpc-tests/reindex.py
  qa/rpc-tests/rest.py
  qa/rpc-tests/rpcbind_test.py
- qa/rpc-tests/send.sh
  qa/rpc-tests/signrawtransactions.py
  qa/rpc-tests/smartfees.py
  qa/rpc-tests/test_framework/netutil.py
@@ -420,7 +419,6 @@ Files: COPYING
  qa/rpc-tests/test_framework/test_framework.py
  qa/rpc-tests/test_framework/util.py
  qa/rpc-tests/txn_doublespend.py
- qa/rpc-tests/util.sh
  qa/rpc-tests/wallet.py
  qa/rpc-tests/walletbackup.py
  qa/rpc-tests/zapwallettxes.py
@@ -569,6 +567,7 @@ Files: COPYING
  src/qt/walletview.h
  src/qt/winshutdownmonitor.cpp
  src/qt/winshutdownmonitor.h
+ src/reverselock.h
  src/rpcnet.cpp
  src/scheduler.cpp
  src/scheduler.h
@@ -601,6 +600,7 @@ Files: COPYING
  src/test/pmt_tests.cpp
  src/test/policyestimator_tests.cpp
  src/test/pow_tests.cpp
+ src/test/reverselock_tests.cpp
  src/test/rpc_tests.cpp
  src/test/rpc_wallet_tests.cpp
  src/test/sanity_tests.cpp
@@ -669,6 +669,7 @@ Files: src/leveldb/db/autocompact_test.cc
  src/leveldb/db/log_writer.h
  src/leveldb/db/memtable.cc
  src/leveldb/db/memtable.h
+ src/leveldb/db/repair.cc
  src/leveldb/db/skiplist.h
  src/leveldb/db/skiplist_test.cc
  src/leveldb/db/snapshot.h
@@ -888,7 +889,10 @@ Copyright: 2009-2010, Satoshi Nakamoto
 License: Expat
  FIXME
 
-Files: src/secp256k1/src/bench.h
+Files: src/addrman.cpp
+ src/addrman.h
+ src/secp256k1/COPYING
+ src/secp256k1/src/bench.h
  src/secp256k1/src/bench_internal.c
  src/secp256k1/src/bench_recover.c
  src/secp256k1/src/bench_sign.c
@@ -925,10 +929,12 @@ Files: src/secp256k1/src/bench.h
  src/secp256k1/src/testrand.h
  src/secp256k1/src/testrand_impl.h
  src/secp256k1/src/util.h
-Copyright: 2013-2014, Pieter Wuille *
-  2013-2015, Pieter Wuille *
-  2014, Pieter Wuille *
-  2014-2015, Pieter Wuille *
+Copyright: 2012, Pieter Wuille
+  2013, Pieter Wuille
+  2013-2014, Pieter Wuille
+  2013-2015, Pieter Wuille
+  2014, Pieter Wuille
+  2014-2015, Pieter Wuille
 License: Expat
  FIXME
 
@@ -963,7 +969,7 @@ Files: src/json/json_spirit.h
  src/json/json_spirit_writer.cpp
  src/json/json_spirit_writer.h
  src/json/json_spirit_writer_template.h
-Copyright: John W. Wilkinson 2007, - 2009
+Copyright: John W. Wilkinson 2007, - 2009, Distributed under the MIT License, see accompanying file LICENSE.txt
 License: UNKNOWN
  FIXME
 
@@ -1012,25 +1018,17 @@ Copyright: 2014, BitPay, Inc
 License: Expat
  FIXME
 
-Files: src/addrman.cpp
- src/addrman.h
- src/secp256k1/COPYING
-Copyright: 2012, Pieter Wuille
-  2013, Pieter Wuille
-License: Expat
- FIXME
-
 Files: build-aux/m4/ax_check_compile_flag.m4
  build-aux/m4/ax_check_link_flag.m4
  build-aux/m4/ax_check_preproc_flag.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
   2011, Maarten Bosmans <mkbosmans@gmail.com>
-License: GPL GPL-3+
+License: GPL-3+ GPL-3 or later
  FIXME
 
 Files: src/secp256k1/src/ecmult_gen_impl.h
  src/secp256k1/src/tests.c
-Copyright: 2013-2015, Pieter Wuille, Gregory Maxwell *
+Copyright: 2013-2015, Pieter Wuille, Gregory Maxwell
 License: Expat
  FIXME
 
@@ -1040,10 +1038,29 @@ Copyright: 2014, Wladimir J. van der Laan
 License: Expat
  FIXME
 
+Files: contrib/debian/manpages/bitcoin.conf.5
+ contrib/debian/manpages/bitcoind.1
+Copyright: *No copyright*
+License: GPL-3
+ FIXME
+
 Files: depends/config.guess
  depends/config.sub
 Copyright: 1992-2015, Free Software Foundation, Inc
-License: GPL GPL-3
+License: GPL-3
+ FIXME
+
+Files: contrib/gitian-downloader/jonasschnelli-key.pgp
+ share/setup.nsi.in
+Copyright: 
+License: UNKNOWN
+ FIXME
+
+Files: build-aux/m4/ax_boost_filesystem.m4
+ build-aux/m4/ax_boost_thread.m4
+Copyright: 2009, Michael Tindal
+  2009, Thomas Porschberg <thomas@randspringer.de>
+License: UNKNOWN
  FIXME
 
 Files: build-aux/m4/ax_boost_program_options.m4
@@ -1055,7 +1072,7 @@ License: UNKNOWN
 
 Files: src/tinyformat.h
 Copyright: 2011, Chris Foster [chris42f (at) gmail (d0t) com
-License: BSL-1
+License: BSL
  FIXME
 
 Files: src/qt/bitcoinstrings.cpp
@@ -1076,20 +1093,12 @@ License: Expat
  FIXME
 
 Files: src/secp256k1/src/field_5x52_asm_impl.h
-Copyright: 2013-2014, Diederik Huys, Pieter Wuille *
+Copyright: 2013-2014, Diederik Huys, Pieter Wuille
 License: Expat
  FIXME
 
 Files: src/json/LICENSE.txt
 Copyright: 2007, - 2009, John W. Wilkinson
-License: Expat
- FIXME
-
-Files: src/clientversion.h
-Copyright: 2009-2014, The Bitcoin Core developers
-  comments in the source
-  year
-  year (2009-this)
 License: Expat
  FIXME
 
@@ -1099,20 +1108,16 @@ Copyright: 2011-2014, The Bitcoin Core developers
 License: Expat
  FIXME
 
-Files: contrib/seeds/generate-seeds.py
-Copyright: 2014, Wladmir J. van der Laan
+Files: src/clientversion.h
+Copyright: 2009-2014, The Bitcoin Core developers
+  year
+  year (2009-this)
 License: Expat
  FIXME
 
-Files: contrib/debian/manpages/bitcoind.1
-Copyright: *No copyright*
-License: GPL
- FIXME
-
-Files: build-aux/m4/ax_pthread.m4
-Copyright: 2008, Steven G. Johnson <stevenj@alum.mit.edu>
-  2011, Daniel Richard G. <skunk@iSKUNK.ORG>
-License: GPL GPL-3+
+Files: contrib/seeds/generate-seeds.py
+Copyright: 2014, Wladmir J. van der Laan
+License: Expat
  FIXME
 
 Files: debian/rules
@@ -1126,8 +1131,14 @@ Copyright: 2011, Patrick "p2k" Schneider <me@p2k-network.org>
 License: GPL-3+
  FIXME
 
+Files: build-aux/m4/ax_pthread.m4
+Copyright: 2008, Steven G. Johnson <stevenj@alum.mit.edu>
+  2011, Daniel Richard G. <skunk@iSKUNK.ORG>
+License: GPL-3+ GPL-3 or later
+ FIXME
+
 Files: contrib/macdeploy/LICENSE
-Copyright: 2007, Free Software Foundation, Inc. <http://fsf.org/>
+Copyright: 2007, Free Software Foundation, Inc. <http:fsf.org/>
   <year> <name of author>
   are not
   disclaimer" for the program, if necessary
@@ -1139,7 +1150,7 @@ Copyright: 2007, Free Software Foundation, Inc. <http://fsf.org/>
   permission
   permission, other than the making of an
   treaty adopted on 20 December 1996, or
-License: GPL-ever
+License: GPL-ever GPL (vever)
  FIXME
 
 Files: qa/rpc-tests/test_framework/authproxy.py
@@ -1158,19 +1169,14 @@ Copyright: 2007-2009, John W. Wilkinson
   Everaldo (Everaldo Coelho)
   Micah Anderson <micah@debian.org>
   Wladimir van der Laan
-  http://www.everaldo.com
-  md2k7
+  http:www.everaldo.com
+  md2k7 License: Expat
   schollidesign
-License: Public domain ISC MIT/X11 (BSD like) GPL GPL-2+
- FIXME
-
-Files: share/setup.nsi.in
-Copyright: 
-License: UNKNOWN
+License: Public domain ISC MIT/X11 (BSD like) GPL-2 GPL (v2)
  FIXME
 
 Files: contrib/macdeploy/DS_Store
-Copyright:  úR úQ d  UMacintosh HD:Users: jonasschnelli: Documents: bitcoin: bitcoin: Bitcoin-Core.temp.dmg   ,  B i t c o i n - C o r e . t e m p . d m g    M a c i n t o s h   H D  CUsers/jonasschnelli/Documents/bitcoin/bitcoin/Bitcoin-Core.temp.dmg   /    ÿÿ  ÿÿ  #@Y      #@(      #?ğ      #?ğ      #        #        	Tnone	#@X        ) ? V b k €  ¦ ² ¾ Ë à î ø
+Copyright:  ÃºR ÃºQ dÂ  UMacintosh HD:Users: jonasschnelli: Documents: bitcoin: bitcoin: Bitcoin-Core.temp.dmg   ,  B i t c o i n - C o r e . t e m p . d m g     M a c i n t o s h   H D  CUsers/jonasschnelli/Documents/bitcoin/bitcoin/Bitcoin-Core.temp.dmg   /    Ã¿Ã¿  Ã¿Ã¿  #@Y      #@(      #?Ã°      #?Ã°      #        #         Tnone #@X        ) ? V b k Â€ Â Â¦ Â² Â¾ Ã‹ Ã  Ã® Ã¸
 License: UNKNOWN
  FIXME
 
@@ -1182,11 +1188,6 @@ License: UNKNOWN
 
 Files: contrib/testgen/base58.py
 Copyright: * (__b58base**i)
-License: UNKNOWN
- FIXME
-
-Files: share/qt/Info.plist.in
-Copyright: 2009-@_YEAR@ The Bitcoin Core developers</string>
 License: UNKNOWN
  FIXME
 
@@ -1209,12 +1210,6 @@ Copyright: 2011, The LevelDB Authors.
 License: UNKNOWN
  FIXME
 
-Files: src/leveldb/db/repair.cc
-Copyright: 2011, The LevelDB Authors.
-  For each table: if it overlaps earlier table, place in level-0
-License: UNKNOWN
- FIXME
-
 Files: build-aux/m4/ax_gcc_func_attribute.m4
 Copyright: 2013, Gabriele Svelto <gabriele.svelto@gmail.com>
 License: UNKNOWN
@@ -1222,19 +1217,6 @@ License: UNKNOWN
 
 Files: src/json/json_spirit_value.cpp
 Copyright: 2007, John W Wilkinson
-License: UNKNOWN
- FIXME
-
-Files: build-aux/m4/ax_boost_filesystem.m4
-Copyright: 2009, Michael Tindal
-  2009, Roman Rybalko <libtorrent@romanr.info>
-  2009, Thomas Porschberg <thomas@randspringer.de>
-License: UNKNOWN
- FIXME
-
-Files: build-aux/m4/ax_boost_thread.m4
-Copyright: 2009, Michael Tindal
-  2009, Thomas Porschberg <thomas@randspringer.de>
 License: UNKNOWN
  FIXME
 
@@ -1251,11 +1233,6 @@ Copyright: 2011, The LevelDB Authors.
 License: UNKNOWN
  FIXME
 
-Files: contrib/macdeploy/background.tiff
-Copyright: RÃ«4PÁÛ¸Ãşî[¡ ¨y ¡@Tj|ôŸR‰@°jUºæŞ3Ín‘¼ÆÇ”šÔ+5PÕUÇFİ—”~GN=>È7.Ø!”1ŒÎ‘s9‰ ßTKRñ&MÉ9%œ¤RrA„%3¹*bë­HîÜ÷fñ£ñbŒBB7xï¥cÔ˜“cLy‘2fTË™“6gLù¡4fy> ˆXm®5ÊN²±h€O4ŒúÁó” Mi°5	ÚèˆÕ@nR\Û!SfÇé;eœ”òV“8k=¡|a’SÊp¥!9	<bÄÁsrnˆ(7à|á Â$“T	wM¬iQğ >) ”•ÿ“¶’ÒÁ #‡¬öĞvA8œ\G1òÃiTgçAÊîø 6–Ô
-License: UNKNOWN
- FIXME
-
 Files: contrib/devtools/fix-copyright-headers.py
 Copyright: 2009-2013, The Bitcoin Core developers
   2009-2014, The Bitcoin Core developers
@@ -1267,7 +1244,6 @@ Files: contrib/devtools/README.md
 Copyright: 2009-2013, The Bitcoin Core developers```
   2009-2014, The Bitcoin Core developers```
   header for all
-  headers updated to reflect the current year
 License: UNKNOWN
  FIXME
 
@@ -1286,14 +1262,12 @@ Copyright: file files excluded from repackaged source
   file using draft svn166 of DEP5 format
   file:
   file: Drop notes on longer included sources
-  format to Subversion candidate draft 162 of DEP5
   listing
-  years in rules file header
 License: UNKNOWN
  FIXME
 
-Files: contrib/gitian-downloader/jonasschnelli-key.pgp
-Copyright: vCgÕ{eÀİÉ¹r£Û üŠSpS!`Ü8·!S h6OÖì¾oÇ­“aêE•ÓÓIÇşîíF=!Îw5¸^GQ‹X49:ø·[`AHhUDLPl ¨ İ®ªhiÂa~ÜˆH¸ªpªŠ{:Ü-­B$“?ˆ=!ƒFp|ÆèAˆ;v–¦S¸Ä¢…äÖxÑL¨óËy×0iï
+Files: contrib/macdeploy/background.tiff
+Copyright: Ãª?Ã‹Ã­NÂ‚Â«m(Ã©ÂšjMÃ•5 7NÂgÃKÂ­ÂŠRÂªÂ‡FEÃ“Â§2uXÂ›Â‰9rÃªÂ‰3Ã‘Ã´eÃ¬S,Â¬Â›Â±hJ.pÃ—6bÂ†dÂ™Ã„Ã§ZÂšÃ–Ã•ÂºÃ©Â¶_\Ã‹Â« ÃÃ¥vÂ)Â‚Ã­7ÂhÃ§Ã„_ÃÂ’#YÃ¨Â™ gÂ¢Ã/Â¼6RÂ¦gÂ•ÃÂ®ÃµÂ±TÂ€p4Â±.ZEÂ¯Â‡Ã«:Â¨ ÂÃ™Ã·Â¶t{Â}Ã‰Â²Â­ÂÃŒÃœÃ‹Ã„))tYÃ¤Ãµ}n=Â®Ã”N5NjÂ³P\)9Ã…ÃÃ¯Â•Ã·Â¦Â·q Â£2Â«Â±"Ã‘2Â˜Ã­Ã†Ã• Â±vb-ÃšÃ›Ã¥Â¡_ Â°Ã¯EÃ¥ÃŸÂ°Ã›M{ÂŠhuÃ€ÃˆÂº[Ã®ÂÂ£9eÂšOÂ¸Â¿aH7GÂ£Ã¯{ÃºÃŸÂ­K{ÃµÂ“Ã­Â«ÃªFfK[cÃ•Â²NÂ—Â°Â–rÃ)Â_LÃªÂºÂŸ-OÃ”D.Ã¢ÃÂ®Â¤Ã¹Ã–
 License: UNKNOWN
  FIXME
 

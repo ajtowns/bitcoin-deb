@@ -5,7 +5,5 @@ share/pixmaps/bitcoin32.png => usr/share/pixmaps/hicolor/32x32/apps/bitcoin.png
 share/pixmaps/bitcoin64.png => usr/share/pixmaps/hicolor/64x64/apps/bitcoin.png
 share/pixmaps/bitcoin128.png => usr/share/pixmaps/hicolor/128x128/apps/bitcoin.png
 share/pixmaps/bitcoin256.png => usr/share/pixmaps/hicolor/256x256/apps/bitcoin.png
-share/pixmaps/bitcoin16.xpm usr/share/pixmaps
-share/pixmaps/bitcoin32.xpm usr/share/pixmaps
 debian/bitcoin-qt.desktop usr/share/applications
 debian/bitcoin-qt.protocol usr/share/kde4/services/

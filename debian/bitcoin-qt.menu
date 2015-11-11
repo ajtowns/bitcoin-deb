@@ -1,4 +1,0 @@
-?package(bitcoin-qt):needs="X11" section="Applications/Office"\
-  title="Bitcoin P2P Cryptocurrency" command="/usr/bin/bitcoin-qt"\
-  icon16x16="/usr/share/pixmaps/bitcoin16.xpm"\
-  icon32x32="/usr/share/pixmaps/bitcoin32.xpm"
