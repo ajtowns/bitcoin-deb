@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 0.11.1 amd64 arm64 armel armhf i386 kfreebsd-amd64 kfreebsd-i386 mips mips64el mipsel powerpc ppc64 ppc64el s390x
+# SymbolsHelper-Confirmed: 0.11.2 amd64
 libbitcoinconsensus.so.0 libbitcoinconsensus0 #MINVER#
  _Z10CastToBoolRKSt6vectorIhSaIhEE@Base 0.11.0
  _Z10EvalScriptRSt6vectorIS_IhSaIhEESaIS1_EERK7CScriptjRK20BaseSignatureCheckerP13ScriptError_t@Base 0.11.0
@@ -40,14 +40,13 @@ libbitcoinconsensus.so.0 libbitcoinconsensus0 #MINVER#
  _ZN10CRIPEMD1608FinalizeEPh@Base 0.11.0
  _ZN10CRIPEMD160C1Ev@Base 0.11.0
  _ZN10CRIPEMD160C2Ev@Base 0.11.0
- _ZN10CScriptNumC1ERKSt6vectorIhSaIhEEb@Base 0.11.0
- _ZN10CScriptNumC2ERKSt6vectorIhSaIhEEb@Base 0.11.0
+ _ZN10CScriptNumC1ERKSt6vectorIhSaIhEEbm@Base 0.11.2
+ _ZN10CScriptNumC2ERKSt6vectorIhSaIhEEbm@Base 0.11.2
  _ZN10tinyformat6detail14FormatIterator21streamStateFromFormatERSoRjPKcii@Base 0.11.0
  (optional=templinst)_ZN10tinyformat6detail14FormatIterator6acceptINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKT_@Base 0.11.1
  (optional=templinst)_ZN10tinyformat6detail14FormatIterator6acceptIiEEvRKT_@Base 0.11.0
  (optional=templinst)_ZN10tinyformat6detail14FormatIterator6acceptIjEEvRKT_@Base 0.11.0
  (optional=templinst|arch=amd64 arm64 kfreebsd-amd64 mips64el ppc64 ppc64el s390x)_ZN10tinyformat6detail14FormatIterator6acceptImEEvRKT_@Base 0.11.0
- (optional=templinst|subst)_ZN10tinyformat6detail14FormatIterator6acceptI{int64_t}EEvRKT_@Base 0.11.0
  _ZN10tinyformat6detail14FormatIteratorD1Ev@Base 0.11.0
  _ZN10tinyformat6detail14FormatIteratorD2Ev@Base 0.11.0
  (optional=templinst)_ZN10tinyformat6formatINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEES6_PKcRKT_@Base 0.11.1
@@ -126,7 +125,9 @@ libbitcoinconsensus.so.0 libbitcoinconsensus0 #MINVER#
  _ZNK12CTransaction21CalculateModifiedSizeEj@Base 0.11.0
  _ZNK12CTransaction8ToStringB5cxx11Ev@Base 0.11.1
  _ZNK19CMutableTransaction7GetHashEv@Base 0.11.0
+ _ZNK20BaseSignatureChecker13CheckLockTimeERK10CScriptNum@Base 0.11.2
  _ZNK20BaseSignatureChecker8CheckSigERKSt6vectorIhSaIhEES4_RK7CScript@Base 0.11.0
+ _ZNK27TransactionSignatureChecker13CheckLockTimeERK10CScriptNum@Base 0.11.2
  _ZNK27TransactionSignatureChecker15VerifySignatureERKSt6vectorIhSaIhEERK7CPubKeyRK7uint256@Base 0.11.0
  _ZNK27TransactionSignatureChecker8CheckSigERKSt6vectorIhSaIhEES4_RK7CScript@Base 0.11.0
  _ZNK5CTxIn8ToStringB5cxx11Ev@Base 0.11.1
@@ -162,11 +163,9 @@ libbitcoinconsensus.so.0 libbitcoinconsensus0 #MINVER#
  (optional=templinst)_ZNSt6vectorIbSaIbEE13_M_insert_auxESt13_Bit_iteratorb@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEE13_M_assign_auxIN9__gnu_cxx17__normal_iteratorIPKhS1_EEEEvT_S8_St20forward_iterator_tag@Base 0.11.1
  (optional=templinst)_ZNSt6vectorIhSaIhEE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPhS1_EERKh@Base 0.10.1
- (optional=templinst|subst)_ZNSt6vectorIhSaIhEE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPhS1_EE{size_t}RKh@Base 0.11.0
  (optional=templinst)_ZNSt6vectorIhSaIhEE15_M_range_insertIN9__gnu_cxx17__normal_iteratorIPKhS1_EEEEvNS4_IPhS1_EET_SA_St20forward_iterator_tag@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEE15_M_range_insertIPhEEvN9__gnu_cxx17__normal_iteratorIS3_S1_EET_S7_St20forward_iterator_tag@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEE6insertEN9__gnu_cxx17__normal_iteratorIPhS1_EERKh@Base 0.10.1
- (optional=templinst|subst)_ZNSt6vectorIhSaIhEE7reserveE{size_t}@Base 0.11.0
  (optional=templinst)_ZNSt6vectorIhSaIhEED1Ev@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEED2Ev@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEEaSERKS1_@Base 0.10.1
