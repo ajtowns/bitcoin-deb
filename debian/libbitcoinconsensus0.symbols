@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 0.11.1 amd64 arm64 armel armhf i386 kfreebsd-amd64 kfreebsd-i386 mips mips64el mipsel powerpc ppc64 ppc64el s390x
+# SymbolsHelper-Confirmed: 0.11.2 arm64 armel armhf i386 kfreebsd-amd64 kfreebsd-i386 mips mips64el mipsel powerpc ppc64el s390x sh4 sparc64
 libbitcoinconsensus.so.0 libbitcoinconsensus0 #MINVER#
  _Z10CastToBoolRKSt6vectorIhSaIhEE@Base 0.11.0
  _Z10EvalScriptRSt6vectorIS_IhSaIhEESaIS1_EERK7CScriptjRK20BaseSignatureCheckerP13ScriptError_t@Base 0.11.0
@@ -8,55 +8,49 @@ libbitcoinconsensus.so.0 libbitcoinconsensus0 #MINVER#
  _Z12DecodeBase32RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE@Base 0.11.1
  _Z12DecodeBase64PKcPb@Base 0.11.0
  _Z12DecodeBase64RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE@Base 0.11.1
- (arch=armel armhf i386 kfreebsd-i386 mips mipsel powerpc)_Z12EncodeBase32B5cxx11PKhj@Base 0.11.1
- _Z12EncodeBase32B5cxx11PKhm@Base 0.11.1
+ (arch=armel armhf i386 kfreebsd-i386 mips mipsel powerpc sh4)_Z12EncodeBase32B5cxx11PKhj@Base 0.11.2
+ (arch=arm64 kfreebsd-amd64 mips64el ppc64el s390x sparc64)_Z12EncodeBase32B5cxx11PKhm@Base 0.11.2
  _Z12EncodeBase32RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE@Base 0.11.1
- (arch=armel armhf i386 kfreebsd-i386 mips mipsel powerpc)_Z12EncodeBase64B5cxx11PKhj@Base 0.11.1
- _Z12EncodeBase64B5cxx11PKhm@Base 0.11.1
+ (arch=armel armhf i386 kfreebsd-i386 mips mipsel powerpc sh4)_Z12EncodeBase64B5cxx11PKhj@Base 0.11.2
+ (arch=arm64 kfreebsd-amd64 mips64el ppc64el s390x sparc64)_Z12EncodeBase64B5cxx11PKhm@Base 0.11.2
  _Z12EncodeBase64RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE@Base 0.11.1
  _Z12VerifyScriptRK7CScriptS1_jRK20BaseSignatureCheckerP13ScriptError_t@Base 0.11.0
  _Z13SignatureHashRK7CScriptRK12CTransactionji@Base 0.11.0
  _Z14SanitizeStringRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE@Base 0.11.1
- (arch=armel armhf i386 kfreebsd-i386 mips mipsel powerpc)_Z15FormatParagraphNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEjj@Base 0.11.1
- _Z15FormatParagraphNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEmm@Base 0.11.1
- (optional=templinst|arch=!amd64|subst)_Z16WriteCompactSizeI11CHashWriterEvRT_{uint64_t}@Base 0.11.1
- (optional=templinst|arch=!amd64|subst)_Z16WriteCompactSizeI13CSizeComputerEvRT_{uint64_t}@Base 0.11.1
+ (arch=armel armhf i386 kfreebsd-i386 mips mipsel powerpc sh4)_Z15FormatParagraphNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEjj@Base 0.11.2
+ (arch=arm64 kfreebsd-amd64 mips64el ppc64el s390x sparc64)_Z15FormatParagraphNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEmm@Base 0.11.2
  _Z4atoiRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE@Base 0.11.1
  _Z5IsHexRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE@Base 0.11.1
  _Z6atoi64PKc@Base 0.11.0
  _Z6atoi64RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE@Base 0.11.1
  _Z6itostrB5cxx11i@Base 0.11.1
- (optional=templinst)_Z7Hash160IPKhE7uint160T_S3_@Base 0.11.0
+ (optional=templinst|arch=!sparc64)_Z7Hash160IPKhE7uint160T_S3_@Base 0.11.0
  _Z8HexDigitc@Base 0.11.0
  _Z8ParseHexPKc@Base 0.11.0
  _Z8ParseHexRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE@Base 0.11.1
- _Z8i64tostrB5cxx11l@Base 0.11.1
- (arch=armel armhf i386 kfreebsd-i386 mips mipsel powerpc)_Z8i64tostrB5cxx11x@Base 0.11.1
+ (arch=arm64 kfreebsd-amd64 mips64el ppc64el s390x sparc64)_Z8i64tostrB5cxx11l@Base 0.11.2
+ (arch=armel armhf i386 kfreebsd-i386 mips mipsel powerpc sh4)_Z8i64tostrB5cxx11x@Base 0.11.2
  _Z9BIP32HashRK7uint256jhPKhPh@Base 0.11.0
  _Z9GetOpName10opcodetype@Base 0.11.0
  _ZN10CExtPubKey6DecodeEPKh@Base 0.11.0
  _ZN10CRIPEMD1605ResetEv@Base 0.11.0
- (arch=!amd64|subst)_ZN10CRIPEMD1605WriteEPKh{size_t}@Base 0.11.1
  _ZN10CRIPEMD1608FinalizeEPh@Base 0.11.0
  _ZN10CRIPEMD160C1Ev@Base 0.11.0
  _ZN10CRIPEMD160C2Ev@Base 0.11.0
- _ZN10CScriptNumC1ERKSt6vectorIhSaIhEEb@Base 0.11.0
- _ZN10CScriptNumC2ERKSt6vectorIhSaIhEEb@Base 0.11.0
+ (subst)_ZN10CScriptNumC1ERKSt6vectorIhSaIhEEb{size_t}@Base 0.11.2
+ (subst)_ZN10CScriptNumC2ERKSt6vectorIhSaIhEEb{size_t}@Base 0.11.2
  _ZN10tinyformat6detail14FormatIterator21streamStateFromFormatERSoRjPKcii@Base 0.11.0
  (optional=templinst)_ZN10tinyformat6detail14FormatIterator6acceptINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvRKT_@Base 0.11.1
  (optional=templinst)_ZN10tinyformat6detail14FormatIterator6acceptIiEEvRKT_@Base 0.11.0
  (optional=templinst)_ZN10tinyformat6detail14FormatIterator6acceptIjEEvRKT_@Base 0.11.0
- (optional=templinst|arch=amd64 arm64 kfreebsd-amd64 mips64el ppc64 ppc64el s390x)_ZN10tinyformat6detail14FormatIterator6acceptImEEvRKT_@Base 0.11.0
- (optional=templinst|subst)_ZN10tinyformat6detail14FormatIterator6acceptI{int64_t}EEvRKT_@Base 0.11.0
+ (optional=templinst|arch=amd64 arm64 kfreebsd-amd64 mips64el ppc64 ppc64el s390x sparc64)_ZN10tinyformat6detail14FormatIterator6acceptImEEvRKT_@Base 0.11.0
  _ZN10tinyformat6detail14FormatIteratorD1Ev@Base 0.11.0
  _ZN10tinyformat6detail14FormatIteratorD2Ev@Base 0.11.0
  (optional=templinst)_ZN10tinyformat6formatINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEES6_PKcRKT_@Base 0.11.1
- (optional=templinst)_ZN10tinyformat6formatIiEENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPKcRKT_@Base 0.11.1
+ (optional=templinst|arch=arm64 kfreebsd-amd64 mips64el ppc64el s390x sparc64)_ZN10tinyformat6formatIiEENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPKcRKT_@Base 0.11.1
  (optional=templinst)_ZN10tinyformat6formatIiEEvRSoPKcRKT_@Base 0.11.0
- (optional=templinst)_ZN10tinyformat6formatIlEENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPKcRKT_@Base 0.11.1
+ (optional=templinst|arch=arm64 kfreebsd-amd64 mips64el ppc64el s390x sparc64)_ZN10tinyformat6formatIlEENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPKcRKT_@Base 0.11.1
  _ZN12CHMAC_SHA5128FinalizeEPh@Base 0.11.0
- (arch=!amd64|subst)_ZN12CHMAC_SHA512C1EPKh{size_t}@Base 0.11.1
- (arch=!amd64|subst)_ZN12CHMAC_SHA512C2EPKh{size_t}@Base 0.11.1
  _ZN12CTransactionC1ERK19CMutableTransaction@Base 0.11.0
  _ZN12CTransactionC1Ev@Base 0.11.0
  _ZN12CTransactionC2ERK19CMutableTransaction@Base 0.11.0
@@ -76,7 +70,6 @@ libbitcoinconsensus.so.0 libbitcoinconsensus0 #MINVER#
  _ZN27TransactionSignatureCheckerD1Ev@Base 0.11.0
  _ZN27TransactionSignatureCheckerD2Ev@Base 0.11.0
  _ZN5CSHA15ResetEv@Base 0.11.0
- (arch=!amd64|subst)_ZN5CSHA15WriteEPKh{size_t}@Base 0.11.1
  _ZN5CSHA18FinalizeEPh@Base 0.11.0
  _ZN5CSHA1C1Ev@Base 0.11.0
  _ZN5CSHA1C2Ev@Base 0.11.0
@@ -89,22 +82,17 @@ libbitcoinconsensus.so.0 libbitcoinconsensus0 #MINVER#
  _ZN6CECKey6VerifyERK7uint256RKSt6vectorIhSaIhEE@Base 0.11.0
  _ZN6CECKey7RecoverERK7uint256PKhi@Base 0.11.0
  _ZN6CECKey9GetPubKeyERSt6vectorIhSaIhEEb@Base 0.11.0
- (arch=!amd64|subst)_ZN6CECKey9SetPubKeyEPKh{size_t}@Base 0.11.1
  _ZN6CECKeyC1Ev@Base 0.11.0
  _ZN6CECKeyC2Ev@Base 0.11.0
  _ZN6CECKeyD1Ev@Base 0.11.0
  _ZN6CECKeyD2Ev@Base 0.11.0
- (arch=!amd64|subst)_ZN6CTxOutC1ERK{int64_t}7CScript@Base 0.11.1
- (arch=!amd64|subst)_ZN6CTxOutC2ERK{int64_t}7CScript@Base 0.11.1
  _ZN7CPubKey10DecompressEv@Base 0.11.0
  _ZN7CPubKey14RecoverCompactERK7uint256RKSt6vectorIhSaIhEE@Base 0.11.0
  _ZN7CSHA2565ResetEv@Base 0.11.0
- (arch=!amd64|subst)_ZN7CSHA2565WriteEPKh{size_t}@Base 0.11.1
  _ZN7CSHA2568FinalizeEPh@Base 0.11.0
  _ZN7CSHA256C1Ev@Base 0.11.0
  _ZN7CSHA256C2Ev@Base 0.11.0
  _ZN7CSHA5125ResetEv@Base 0.11.0
- (arch=!amd64|subst)_ZN7CSHA5125WriteEPKh{size_t}@Base 0.11.1
  _ZN7CSHA5128FinalizeEPh@Base 0.11.0
  _ZN7CSHA512C1Ev@Base 0.11.0
  _ZN7CSHA512C2Ev@Base 0.11.0
@@ -126,7 +114,9 @@ libbitcoinconsensus.so.0 libbitcoinconsensus0 #MINVER#
  _ZNK12CTransaction21CalculateModifiedSizeEj@Base 0.11.0
  _ZNK12CTransaction8ToStringB5cxx11Ev@Base 0.11.1
  _ZNK19CMutableTransaction7GetHashEv@Base 0.11.0
+ _ZNK20BaseSignatureChecker13CheckLockTimeERK10CScriptNum@Base 0.11.2
  _ZNK20BaseSignatureChecker8CheckSigERKSt6vectorIhSaIhEES4_RK7CScript@Base 0.11.0
+ _ZNK27TransactionSignatureChecker13CheckLockTimeERK10CScriptNum@Base 0.11.2
  _ZNK27TransactionSignatureChecker15VerifySignatureERKSt6vectorIhSaIhEERK7CPubKeyRK7uint256@Base 0.11.0
  _ZNK27TransactionSignatureChecker8CheckSigERKSt6vectorIhSaIhEES4_RK7CScript@Base 0.11.0
  _ZNK5CTxIn8ToStringB5cxx11Ev@Base 0.11.1
@@ -147,11 +137,9 @@ libbitcoinconsensus.so.0 libbitcoinconsensus0 #MINVER#
  (optional=templinst)_ZNK9base_blobILj256EE6GetHexEv@Base 0.11.0
  (optional=templinst)_ZNK9base_blobILj256EE8ToStringEv@Base 0.11.0
  (optional=templinst)_ZNKSt5ctypeIcE8do_widenEc@Base 0.10.1
- (optional=templinst|arch=!amd64|subst)_ZNSt6vectorI5CTxInSaIS0_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS0_S2_EE{size_t}RKS0_@Base 0.11.1
  (optional=templinst)_ZNSt6vectorI5CTxInSaIS0_EED1Ev@Base 0.11.0
  (optional=templinst)_ZNSt6vectorI5CTxInSaIS0_EED2Ev@Base 0.11.0
  (optional=templinst)_ZNSt6vectorI5CTxInSaIS0_EEaSERKS2_@Base 0.11.0
- (optional=templinst|arch=!amd64|subst)_ZNSt6vectorI6CTxOutSaIS0_EE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPS0_S2_EE{size_t}RKS0_@Base 0.11.1
  (optional=templinst)_ZNSt6vectorI6CTxOutSaIS0_EEaSERKS2_@Base 0.11.0
  (optional=templinst)_ZNSt6vectorIS_IhSaIhEESaIS1_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS1_S3_EERKS1_@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIS_IhSaIhEESaIS1_EE8_M_eraseEN9__gnu_cxx17__normal_iteratorIPS1_S3_EE@Base 0.10.1
@@ -162,11 +150,9 @@ libbitcoinconsensus.so.0 libbitcoinconsensus0 #MINVER#
  (optional=templinst)_ZNSt6vectorIbSaIbEE13_M_insert_auxESt13_Bit_iteratorb@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEE13_M_assign_auxIN9__gnu_cxx17__normal_iteratorIPKhS1_EEEEvT_S8_St20forward_iterator_tag@Base 0.11.1
  (optional=templinst)_ZNSt6vectorIhSaIhEE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPhS1_EERKh@Base 0.10.1
- (optional=templinst|subst)_ZNSt6vectorIhSaIhEE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPhS1_EE{size_t}RKh@Base 0.11.0
  (optional=templinst)_ZNSt6vectorIhSaIhEE15_M_range_insertIN9__gnu_cxx17__normal_iteratorIPKhS1_EEEEvNS4_IPhS1_EET_SA_St20forward_iterator_tag@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEE15_M_range_insertIPhEEvN9__gnu_cxx17__normal_iteratorIS3_S1_EET_S7_St20forward_iterator_tag@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEE6insertEN9__gnu_cxx17__normal_iteratorIPhS1_EERKh@Base 0.10.1
- (optional=templinst|subst)_ZNSt6vectorIhSaIhEE7reserveE{size_t}@Base 0.11.0
  (optional=templinst)_ZNSt6vectorIhSaIhEED1Ev@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEED2Ev@Base 0.10.1
  (optional=templinst)_ZNSt6vectorIhSaIhEEaSERKS1_@Base 0.10.1
