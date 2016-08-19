@@ -20,8 +20,9 @@
 #testsuite needs writable $HOME and $TMPDIR (see bug#696262 #790403)
 FAKETMP = $(CURDIR)/debian/faketmp
 
+
 %:
-	dh $@ --parallel --with autotools-dev --with autoreconf --with bash-completion
+	CC=gcc-5 CXX=g++-5 dh $@ --parallel --with autotools-dev --with autoreconf --with bash-completion
 
 override_dh_auto_configure:
 	mkdir -p "$(FAKETMP)"

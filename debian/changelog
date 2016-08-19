@@ -7,6 +7,7 @@ bitcoin (0.12.1-0.1) UNRELEASED; urgency=medium
   * Update dependencies to qt5.
   * Add dependency on libdevent-dev.
   * Add dependency on libzmq for ZeroMQ support.
+  * Force use of gcc/g++ 5. (Closes: Bug#812275)
 
  -- Anthony Towns <aj@erisian.com.au>  Fri, 19 Aug 2016 18:48:51 +1000
 
