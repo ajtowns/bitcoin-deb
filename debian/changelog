@@ -6,6 +6,7 @@ bitcoin (0.12.1-0.1) UNRELEASED; urgency=medium
     with updating debian/copyright info (Closes: Bug#808969)
   * Update dependencies to qt5.
   * Add dependency on libdevent-dev.
+  * Add dependency on libzmq for ZeroMQ support.
 
  -- Anthony Towns <aj@erisian.com.au>  Fri, 19 Aug 2016 18:48:51 +1000
 
