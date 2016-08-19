@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+include /usr/share/cdbs/1/rules/utils.mk
+
+# Ignore graphics and .mo files in addition to the default debian files
+
+DEB_COPYRIGHT_CHECK_IGNORE_EXTS=png tiff gitignore pgp
+DEB_COPYRIGHT_CHECK_IGNORE_PATHS=src/qt/res/icons/bitcoin_testnet.ico src/qt/res/icons/bitcoin\.icns contrib/macdeploy/background\.psd src/qt/locale/.*\.ts share/pixmaps/bitcoin\.ico src/qt/res/icons/bitcoin\.ico contrib/Bitcoin.app/Contents/Resources/BitcoinAppIcon\.icns debian/(changelog|copyright(|_hints|_newhints))
+
+#DEB_COPYRIGHT_EXTRACT_EXTS = gif icc jpeg jpg pfa pfb pdf png psd svg odp ods odt
+#DEB_COPYRIGHT_CHECK_MERGE_SAME_LICENSE = yes

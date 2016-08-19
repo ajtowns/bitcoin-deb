@@ -17,12 +17,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#used with "./debian/rules debian/stamp-copyright-check"
--include /usr/share/cdbs/1/rules/utils.mk
-
-# Ignore graphics and .mo files in addition to the default debian files
-DEB_COPYRIGHT_CHECK_IGNORE_REGEX = ^(.*\.png|src/qt/res/icons/bitcoin_testnet.ico|src/qt/res/icons/bitcoin\.icns|contrib/macdeploy/background\.psd|src/qt/res/images/splash_testnet\.png|src/qt/res/movies/.*\.png|src/qt/locale/.*\.ts|share/pixmaps/bitcoin256.png|share/pixmaps/bitcoin\.ico|src/qt/res/icons/bitcoin\.ico|doc/gitian-building/.*\.png|doc/bitcoin_logo_doxygen\.png|src/qt/res/icons/.*\.png|contrib/Bitcoin.app/Contents/Resources/BitcoinAppIcon\.icns|contrib/gitian-downloader/sipa-key\.pgp|debian/(changelog|copyright(|_hints|_newhints)))$
-
 #testsuite needs writable $HOME and $TMPDIR (see bug#696262 #790403)
 FAKETMP = $(CURDIR)/debian/faketmp
 
