@@ -3,5 +3,6 @@
 #1005_use_system_leveldb.patch
 1006_libmemenv_kfrebsd.patch
 1007_libmemenv_hurd.patch
+1008_reproducible_build.patch
 2002_libmemenv_debian-ports.patch
 3001_openssl_1_1_fixes.patch

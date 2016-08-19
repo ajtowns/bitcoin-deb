@@ -1,0 +1,20 @@
+Author: Reiner Herrmann <reiner@reiner-h.de>
+Description: Locale-independent sorting of file list
+ sort behaves differently depending on the configured locale,
+ which results in an unreproducible build.
+ By setting LC_ALL to C before sorting, the file list will
+ always be the same.
+
+Index: bitcoin-0.10.2/src/leveldb/build_detect_platform
+===================================================================
+--- bitcoin-0.10.2.orig/src/leveldb/build_detect_platform
++++ bitcoin-0.10.2/src/leveldb/build_detect_platform
+@@ -188,7 +188,7 @@ set -f # temporarily disable globbing so
+ PRUNE_TEST="-name *test*.cc -prune"
+ PRUNE_BENCH="-name *_bench.cc -prune"
+ PRUNE_TOOL="-name leveldb_main.cc -prune"
+-PORTABLE_FILES=`find $DIRS $PRUNE_TEST -o $PRUNE_BENCH -o $PRUNE_TOOL -o -name '*.cc' -print | sort | sed "s,^$PREFIX/,," | tr "\n" " "`
++PORTABLE_FILES=`find $DIRS $PRUNE_TEST -o $PRUNE_BENCH -o $PRUNE_TOOL -o -name '*.cc' -print | LC_ALL=C sort | sed "s,^$PREFIX/,," | tr "\n" " "`
+ 
+ set +f # re-enable globbing
+ 
