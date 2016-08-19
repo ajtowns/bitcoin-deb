@@ -1,3 +1,12 @@
+bitcoin (0.13.0~rc3-0.1) experimental; urgency=medium
+
+  * Non-maintainer upload.
+  * New upstream release candidate.
+  * Allow compilation with gcc/g++ 6. (See Bug#812275)
+  * Additional fixes for openssl 1.1 compatibility. (See Bug#828248)
+
+ -- Anthony Towns <aj@erisian.com.au>  Sat, 20 Aug 2016 02:22:48 +1000
+
 bitcoin (0.12.1-0.1) unstable; urgency=medium
 
   * Non-maintainer upload.
