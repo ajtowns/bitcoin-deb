@@ -1,0 +1,161 @@
+Description: openssl 1.1 compatability
+Author: Anthony Towns <aj@erisian.com.au>
+Bug-Debian: https://bugs.debian.org/828248
+
+
+
+--- a/src/qt/paymentrequestplus.cpp
++++ b/src/qt/paymentrequestplus.cpp
+@@ -19,6 +19,21 @@
+ #include <QDebug>
+ #include <QSslCertificate>
+ 
++#if OPENSSL_VERSION_NUMBER < 0x10100000L
++static EVP_MD_CTX *EVP_MD_CTX_new(void)
++{
++   EVP_MD_CTX *ctx = (EVP_MD_CTX *) OPENSSL_malloc(sizeof(*ctx));
++   if (ctx != NULL) {
++       EVP_MD_CTX_init(ctx);
++   }
++   return ctx;
++}
++static void EVP_MD_CTX_free(EVP_MD_CTX *ctx)
++{
++    OPENSSL_free(ctx);
++}
++#endif
++
+ class SSLVerifyError : public std::runtime_error
+ {
+ public:
+@@ -131,6 +146,7 @@ bool PaymentRequestPlus::getMerchant(X50
+ 
+     char *website = NULL;
+     bool fResult = true;
++    EVP_MD_CTX *ctx = NULL;
+     try
+     {
+         if (!X509_STORE_CTX_init(store_ctx, certStore, signing_cert, chain))
+@@ -159,12 +175,11 @@ bool PaymentRequestPlus::getMerchant(X50
+         std::string data_to_verify;                     // Everything but the signature
+         rcopy.SerializeToString(&data_to_verify);
+ 
+-        EVP_MD_CTX ctx;
+         EVP_PKEY *pubkey = X509_get_pubkey(signing_cert);
+-        EVP_MD_CTX_init(&ctx);
+-        if (!EVP_VerifyInit_ex(&ctx, digestAlgorithm, NULL) ||
+-            !EVP_VerifyUpdate(&ctx, data_to_verify.data(), data_to_verify.size()) ||
+-            !EVP_VerifyFinal(&ctx, (const unsigned char*)paymentRequest.signature().data(), (unsigned int)paymentRequest.signature().size(), pubkey)) {
++        ctx = EVP_MD_CTX_new();
++        if (!EVP_VerifyInit_ex(ctx, digestAlgorithm, NULL) ||
++            !EVP_VerifyUpdate(ctx, data_to_verify.data(), data_to_verify.size()) ||
++            !EVP_VerifyFinal(ctx, (const unsigned char*)paymentRequest.signature().data(), (unsigned int)paymentRequest.signature().size(), pubkey)) {
+             throw SSLVerifyError("Bad signature, invalid payment request.");
+         }
+ 
+@@ -186,6 +201,8 @@ bool PaymentRequestPlus::getMerchant(X50
+ 
+     if (website)
+         delete[] website;
++    if (ctx)
++        EVP_MD_CTX_free(ctx);
+     X509_STORE_CTX_free(store_ctx);
+     for (unsigned int i = 0; i < certs.size(); i++)
+         X509_free(certs[i]);
+--- a/src/secp256k1/src/tests.c
++++ b/src/secp256k1/src/tests.c
+@@ -22,6 +22,14 @@
+ #include "openssl/ec.h"
+ #include "openssl/ecdsa.h"
+ #include "openssl/obj_mac.h"
++
++#if OPENSSL_VERSION_NUMBER < 0x10100000L
++static void ECDSA_SIG_get0(const ECDSA_SIG *sig, const BIGNUM **r, const BIGNUM **s)
++{
++    *r = sig->r;
++    *s = sig->s;
++}
++#endif
+ #endif
+ 
+ #include "contrib/lax_der_parsing.c"
+@@ -3558,15 +3566,17 @@ int test_ecdsa_der_parse(const unsigned
+     sigptr = sig;
+     parsed_openssl = (d2i_ECDSA_SIG(&sig_openssl, &sigptr, siglen) != NULL);
+     if (parsed_openssl) {
+-        valid_openssl = !BN_is_negative(sig_openssl->r) && !BN_is_negative(sig_openssl->s) && BN_num_bits(sig_openssl->r) > 0 && BN_num_bits(sig_openssl->r) <= 256 && BN_num_bits(sig_openssl->s) > 0 && BN_num_bits(sig_openssl->s) <= 256;
++        const BIGNUM *r, *s;
++        ECDSA_SIG_get0(sig_openssl, &r, &s);
++        valid_openssl = !BN_is_negative(r) && !BN_is_negative(s) && BN_num_bits(r) > 0 && BN_num_bits(r) <= 256 && BN_num_bits(s) > 0 && BN_num_bits(s) <= 256;
+         if (valid_openssl) {
+             unsigned char tmp[32] = {0};
+-            BN_bn2bin(sig_openssl->r, tmp + 32 - BN_num_bytes(sig_openssl->r));
++            BN_bn2bin(r, tmp + 32 - BN_num_bytes(r));
+             valid_openssl = memcmp(tmp, max_scalar, 32) < 0;
+         }
+         if (valid_openssl) {
+             unsigned char tmp[32] = {0};
+-            BN_bn2bin(sig_openssl->s, tmp + 32 - BN_num_bytes(sig_openssl->s));
++            BN_bn2bin(s, tmp + 32 - BN_num_bytes(s));
+             valid_openssl = memcmp(tmp, max_scalar, 32) < 0;
+         }
+     }
+--- a/src/wallet/crypter.cpp
++++ b/src/wallet/crypter.cpp
+@@ -58,15 +58,21 @@ bool CCrypter::Encrypt(const CKeyingMaterial& vchPlaintext, std::vector<unsigned
+     int nCLen = nLen + AES_BLOCK_SIZE, nFLen = 0;
+     vchCiphertext = std::vector<unsigned char> (nCLen);
+ 
+-    EVP_CIPHER_CTX ctx;
++    EVP_CIPHER_CTX *ctx;
+ 
+     bool fOk = true;
+ 
+-    EVP_CIPHER_CTX_init(&ctx);
+-    if (fOk) fOk = EVP_EncryptInit_ex(&ctx, EVP_aes_256_cbc(), NULL, chKey, chIV) != 0;
+-    if (fOk) fOk = EVP_EncryptUpdate(&ctx, &vchCiphertext[0], &nCLen, &vchPlaintext[0], nLen) != 0;
+-    if (fOk) fOk = EVP_EncryptFinal_ex(&ctx, (&vchCiphertext[0]) + nCLen, &nFLen) != 0;
+-    EVP_CIPHER_CTX_cleanup(&ctx);
++    ctx = EVP_CIPHER_CTX_new();
++    if (ctx == NULL) fOk = false;
++
++    if (fOk) fOk = EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, chKey, chIV) != 0;
++    if (fOk) fOk = EVP_EncryptUpdate(ctx, &vchCiphertext[0], &nCLen, &vchPlaintext[0], nLen) != 0;
++    if (fOk) fOk = EVP_EncryptFinal_ex(ctx, (&vchCiphertext[0]) + nCLen, &nFLen) != 0;
++
++    if (ctx) {
++        EVP_CIPHER_CTX_cleanup(ctx);
++        EVP_CIPHER_CTX_free(ctx);
++    }
+ 
+     if (!fOk) return false;
+ 
+@@ -85,15 +91,21 @@ bool CCrypter::Decrypt(const std::vector<unsigned char>& vchCiphertext, CKeyingM
+ 
+     vchPlaintext = CKeyingMaterial(nPLen);
+ 
+-    EVP_CIPHER_CTX ctx;
++    EVP_CIPHER_CTX *ctx;
+ 
+     bool fOk = true;
+ 
+-    EVP_CIPHER_CTX_init(&ctx);
++    ctx = EVP_CIPHER_CTX_new();
++    if (ctx == NULL) fOk = false;
++
+-    if (fOk) fOk = EVP_DecryptInit_ex(&ctx, EVP_aes_256_cbc(), NULL, chKey, chIV) != 0;
+-    if (fOk) fOk = EVP_DecryptUpdate(&ctx, &vchPlaintext[0], &nPLen, &vchCiphertext[0], nLen) != 0;
+-    if (fOk) fOk = EVP_DecryptFinal_ex(&ctx, (&vchPlaintext[0]) + nPLen, &nFLen) != 0;
++    if (fOk) fOk = EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, chKey, chIV) != 0;
++    if (fOk) fOk = EVP_DecryptUpdate(ctx, &vchPlaintext[0], &nPLen, &vchCiphertext[0], nLen) != 0;
++    if (fOk) fOk = EVP_DecryptFinal_ex(ctx, (&vchPlaintext[0]) + nPLen, &nFLen) != 0;
+-    EVP_CIPHER_CTX_cleanup(&ctx);
++
++    if (ctx) {
++        EVP_CIPHER_CTX_cleanup(ctx);
++        EVP_CIPHER_CTX_free(ctx);
++    }
+ 
+     if (!fOk) return false;
+ 
+

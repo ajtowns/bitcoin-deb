@@ -4,3 +4,4 @@
 1006_libmemenv_kfrebsd.patch
 1007_libmemenv_hurd.patch
 2002_libmemenv_debian-ports.patch
+3001_openssl_1_1_fixes.patch
