@@ -5,7 +5,6 @@ Maintainer: Debian Bitcoin Packaging Team <pkg-bitcoin-devel@lists.alioth.debian
 Uploaders: Jonas Smedegaard <dr@jones.dk>, Micah Anderson <micah@debian.org>,
  Scott Howard <showard@debian.org>
 Build-Depends: autotools-dev, bash-completion, dh-exec,
- gcc-5, g++-5,
  debhelper (>= 9),
  libminiupnpc-dev,
  libboost-chrono-dev,

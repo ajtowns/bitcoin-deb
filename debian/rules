@@ -22,7 +22,7 @@ FAKETMP = $(CURDIR)/debian/faketmp
 
 
 %:
-	CC=gcc-5 CXX=g++-5 dh $@ --parallel --with autotools-dev --with autoreconf --with bash-completion
+	dh $@ --parallel --with autotools-dev --with autoreconf --with bash-completion
 
 override_dh_auto_configure:
 	mkdir -p "$(FAKETMP)"
