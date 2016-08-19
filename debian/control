@@ -25,7 +25,7 @@ Build-Depends: autotools-dev, bash-completion, dh-exec,
  libprotobuf-dev,
  protobuf-compiler,
  python
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Homepage: http://www.bitcoin.org/
 Vcs-Git: git://anonscm.debian.org/collab-maint/bitcoin
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/bitcoin.git
