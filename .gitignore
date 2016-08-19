@@ -116,3 +116,4 @@ src/*.exe
 /doc/doxygen/
 
 libbitcoinconsensus.pc
+contrib/devtools/split-debug.sh
