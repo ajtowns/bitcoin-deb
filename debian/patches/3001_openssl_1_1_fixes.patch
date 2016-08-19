@@ -100,9 +100,9 @@ Bug-Debian: https://bugs.debian.org/828248
              valid_openssl = memcmp(tmp, max_scalar, 32) < 0;
          }
      }
---- a/src/wallet/crypter.cpp
-+++ b/src/wallet/crypter.cpp
-@@ -58,15 +58,21 @@ bool CCrypter::Encrypt(const CKeyingMaterial& vchPlaintext, std::vector<unsigned
+--- a/src/wallet/test/crypto_tests.cpp
++++ b/src/wallet/test/crypto_tests.cpp
+@@ -42,15 +42,18 @@ bool OldEncrypt(const CKeyingMaterial& v
      int nCLen = nLen + AES_BLOCK_SIZE, nFLen = 0;
      vchCiphertext = std::vector<unsigned char> (nCLen);
  
@@ -117,20 +117,17 @@ Bug-Debian: https://bugs.debian.org/828248
 -    if (fOk) fOk = EVP_EncryptFinal_ex(&ctx, (&vchCiphertext[0]) + nCLen, &nFLen) != 0;
 -    EVP_CIPHER_CTX_cleanup(&ctx);
 +    ctx = EVP_CIPHER_CTX_new();
-+    if (ctx == NULL) fOk = false;
++    if (!ctx) return false;
 +
 +    if (fOk) fOk = EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, chKey, chIV) != 0;
 +    if (fOk) fOk = EVP_EncryptUpdate(ctx, &vchCiphertext[0], &nCLen, &vchPlaintext[0], nLen) != 0;
 +    if (fOk) fOk = EVP_EncryptFinal_ex(ctx, (&vchCiphertext[0]) + nCLen, &nFLen) != 0;
-+
-+    if (ctx) {
-+        EVP_CIPHER_CTX_cleanup(ctx);
-+        EVP_CIPHER_CTX_free(ctx);
-+    }
++    EVP_CIPHER_CTX_cleanup(ctx);
++    EVP_CIPHER_CTX_free(ctx);
  
      if (!fOk) return false;
  
-@@ -85,15 +91,21 @@ bool CCrypter::Decrypt(const std::vector<unsigned char>& vchCiphertext, CKeyingM
+@@ -66,15 +69,18 @@ bool OldDecrypt(const std::vector<unsign
  
      vchPlaintext = CKeyingMaterial(nPLen);
  
@@ -140,22 +137,18 @@ Bug-Debian: https://bugs.debian.org/828248
      bool fOk = true;
  
 -    EVP_CIPHER_CTX_init(&ctx);
-+    ctx = EVP_CIPHER_CTX_new();
-+    if (ctx == NULL) fOk = false;
-+
 -    if (fOk) fOk = EVP_DecryptInit_ex(&ctx, EVP_aes_256_cbc(), NULL, chKey, chIV) != 0;
 -    if (fOk) fOk = EVP_DecryptUpdate(&ctx, &vchPlaintext[0], &nPLen, &vchCiphertext[0], nLen) != 0;
 -    if (fOk) fOk = EVP_DecryptFinal_ex(&ctx, (&vchPlaintext[0]) + nPLen, &nFLen) != 0;
+-    EVP_CIPHER_CTX_cleanup(&ctx);
++    ctx = EVP_CIPHER_CTX_new();
++    if (!ctx) return false;
++
 +    if (fOk) fOk = EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, chKey, chIV) != 0;
 +    if (fOk) fOk = EVP_DecryptUpdate(ctx, &vchPlaintext[0], &nPLen, &vchCiphertext[0], nLen) != 0;
 +    if (fOk) fOk = EVP_DecryptFinal_ex(ctx, (&vchPlaintext[0]) + nPLen, &nFLen) != 0;
--    EVP_CIPHER_CTX_cleanup(&ctx);
-+
-+    if (ctx) {
-+        EVP_CIPHER_CTX_cleanup(ctx);
-+        EVP_CIPHER_CTX_free(ctx);
-+    }
++    EVP_CIPHER_CTX_cleanup(ctx);
++    EVP_CIPHER_CTX_free(ctx);
  
      if (!fOk) return false;
  
-
