@@ -122,7 +122,7 @@ Support for block relay using the Compact Blocks protocol has been implemented
 in PR 8068.
 
 The primary goal is reducing the bandwidth spikes at relay time, though in many
-cases it also reduces propagation relay. It is automatically enabled between
+cases it also reduces propagation delay. It is automatically enabled between
 compatible peers.
 [BIP 152](https://github.com/bitcoin/bips/blob/master/bip-0152.mediawiki)
 
@@ -135,6 +135,8 @@ Existing wallets will still use traditional key generation.
 Backups of HD wallets, regardless of when they have been created, can
 therefore be used to re-generate all possible private keys, even the
 ones which haven't already been generated during the time of the backup.
+**Attention:** Encrypting the wallet will create a new seed which requires
+a new backup!
 
 HD key generation for new wallets can be disabled by `-usehd=0`. Keep in
 mind that this flag only has affect on newly created wallets.
@@ -145,6 +147,68 @@ There is no distinction between internal (change) and external keys.
 HD wallets are incompatible with older versions of Bitcoin Core.
 
 [Pull request](https://github.com/bitcoin/bitcoin/pull/8035/files), [BIP 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)
+
+Segregated Witness
+------------------
+
+The code preparations for Segregated Witness ("segwit"), as described in [BIP
+141](https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki), [BIP
+143](https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki), [BIP
+144](https://github.com/bitcoin/bips/blob/master/bip-0144.mediawiki), and [BIP
+145](https://github.com/bitcoin/bips/blob/master/bip-0145.mediawiki) are
+finished and included in this release.  However, BIP 141 does not yet specify
+activation parameters on mainnet, and so this release does not support segwit
+use on mainnet.  Testnet use is supported, and after BIP 141 is updated with
+proposed parameters, a future release of Bitcoin Core is expected that
+implements those parameters for mainnet.
+
+Furthermore, because segwit activation is not yet specified for mainnet,
+version 0.13.0 will behave similarly as other pre-segwit releases even after a
+future activation of BIP 141 on the network.  Upgrading from 0.13.0 will be
+required in order to utilize segwit-related features on mainnet (such as signal
+BIP 141 activation, mine segwit blocks, fully validate segwit blocks, relay
+segwit blocks to other segwit nodes, and use segwit transactions in the
+wallet, etc).
+
+Mining transaction selection ("Child Pays For Parent")
+------------------------------------------------------
+
+The mining transaction selection algorithm has been replaced with an algorithm
+that selects transactions based on their feerate inclusive of unconfirmed
+ancestor transactions.  This means that a low-fee transaction can become more
+likely to be selected if a high-fee transaction that spends its outputs is
+relayed.
+
+With this change, the `-blockminsize` command line option has been removed.
+
+The command line option `-blockmaxsize` remains an option to specify the
+maximum number of serialized bytes in a generated block.  In addition, the new
+command line option `-blockmaxweight` has been added, which specifies the
+maximum "block weight" of a generated block, as defined by [BIP 141 (Segregated
+Witness)] (https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki).
+
+In preparation for Segregated Witness, the mining algorithm has been modified
+to optimize transaction selection for a given block weight, rather than a given
+number of serialized bytes in a block.  In this release, transaction selection
+is unaffected by this distinction (as BIP 141 activation is not supported on
+mainnet in this release, see above), but in future releases and after BIP 141
+activation, these calculations would be expected to differ.
+
+For optimal runtime performance, miners using this release should specify
+`-blockmaxweight` on the command line, and not specify `-blockmaxsize`.
+Additionally (or only) specifying `-blockmaxsize`, or relying on default
+settings for both, may result in performance degradation, as the logic to
+support `-blockmaxsize` performs additional computation to ensure that
+constraint is met.  (Note that for mainnet, in this release, the equivalent
+parameter for `-blockmaxweight` would be four times the desired
+`-blockmaxsize`.  See [BIP 141]
+(https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki) for additional
+details.)
+
+In the future, the `-blockmaxsize` option may be removed, as block creation is
+no longer optimized for this metric.  Feedback is requested on whether to
+deprecate or keep this command line option in future releases.
+
 
 Removal of internal miner
 --------------------------
@@ -170,7 +234,7 @@ Low-level P2P changes
   instantly, while queueing up the rest and sending them out in batch. As
   this resulted in chains of dependent transactions being reordered, it
   systematically hurt transaction relay. The relay code was redesigned in PRs
-  #7840 and #8082, and now always batches transactions announcements while also
+  \#7840 and #8082, and now always batches transactions announcements while also
   sorting them according to dependency order. This significantly reduces orphan
   transactions. To compensate for the removal of instant relay, the frequency of
   batch sending was doubled for outgoing peers.
@@ -297,6 +361,7 @@ git merge commit are mentioned.
 - #8149 `d612837` Testnet-only segregated witness (sipa)
 - #8305 `3730393` Improve handling of unconnecting headers (sdaftuar)
 - #8363 `fca1a41` Rename "block cost" to "block weight" (sdaftuar)
+- #8381 `f84ee3d` Make witness v0 outputs non-standard (jl2012)
 
 ### P2P protocol and network code
 
@@ -343,6 +408,7 @@ git merge commit are mentioned.
 - #8312 `ca40ef6` Fix mempool DoS vulnerability from malleated transactions (sdaftuar)
 - #7180 `16ccb74` Account for `sendheaders` `verack` messages (laanwj)
 - #8102 `425278d` Bugfix: use global ::fRelayTxes instead of CNode in version send (sipa)
+- #8408 `b7e2011` Prevent fingerprinting, disk-DoS with compact blocks (sdaftuar)
 
 ### Build system
 
@@ -386,6 +452,8 @@ git merge commit are mentioned.
 - #8310 `6ae20df` Require boost for bench (theuni)
 - #8315 `2e51590` Don't require sudo for Linux (theuni)
 - #8314 `67caef6` Fix pkg-config issues for 0.13 (theuni)
+- #8373 `1fe7f40` Fix OSX non-deterministic dmg (theuni)
+- #8358 `cfd1280` Gbuild: Set memory explicitly (default is too low) (MarcoFalke)
 
 ### GUI
 
@@ -429,6 +497,7 @@ git merge commit are mentioned.
 - #7707 `a914968` UI support for abandoned transactions (jonasschnelli)
 - #8207 `f7a403b` Add a link to the Bitcoin-Core repository and website to the About Dialog (MarcoFalke)
 - #8281 `6a87eb0` Remove client name from debug window (laanwj)
+- #8407 `45eba4b` Add dbcache migration path (jonasschnelli)
 
 ### Wallet
 
@@ -459,6 +528,10 @@ git merge commit are mentioned.
 - #8324 `bc94b87` Keep HD seed during salvagewallet (jonasschnelli)
 - #8323 `238300b` Add HD keypath to CKeyMetadata, report metadata in validateaddress (jonasschnelli)
 - #8367 `3b38a6a` Ensure <0.13 clients can't open HD wallets (jonasschnelli)
+- #8378 `ebea651` Move SetMinVersion for FEATURE_HD to SetHDMasterKey (pstratem)
+- #8390 `73adfe3` Correct hdmasterkeyid/masterkeyid name confusion (jonasschnelli)
+- #8206 `18b8ee1` Add HD xpriv to dumpwallet (jonasschnelli)
+- #8389 `c3c82c4` Create a new HD seed after encrypting the wallet (jonasschnelli)
 
 ### Tests and QA
 
@@ -552,6 +625,7 @@ git merge commit are mentioned.
 - #7600 `66db2d6` Select transactions using feerate-with-ancestors (sdaftuar)
 - #8295 `f5660d3` Mining-related fixups for 0.13.0 (sdaftuar)
 - #7796 `536b75e` Add support for negative fee rates, fixes `prioritizetransaction` (MarcoFalke)
+- #8362 `86edc20` Scale legacy sigop count in CreateNewBlock (sdaftuar)
 
 ### Documentation and miscellaneous
 
@@ -618,6 +692,7 @@ git merge commit are mentioned.
 - #7934 `f17032f` Improve rolling bloom filter performance and benchmark (sipa)
 - #8004 `2efe38b` signal handling: fReopenDebugLog and fRequestShutdown should be type sig_atomic_t (catilac)
 - #7713 `f6598df` Fixes for verify-commits script (petertodd)
+- #8412 `8360d5b` libconsensus: Expose a flag for BIP112 (jtimon)
 
 Credits
 =======
@@ -663,9 +738,9 @@ Thanks to everyone who directly contributed to this release:
 - Gregory Sanders
 - instagibbs
 - James O'Beirne
+- Jannes Faber
 - Jarret Dyrbye
 - Jeremy Rand
-- jl2012
 - jloughry
 - jmacwhyte
 - Joao Fonseca
