@@ -4,6 +4,7 @@ bitcoin (0.13.0~rc3-0.1) experimental; urgency=medium
   * New upstream release candidate.
   * Allow compilation with gcc/g++ 6. (See Bug#812275)
   * Additional fixes for openssl 1.1 compatibility. (See Bug#828248)
+  * Check if -latomic is needed (it is on mips*).
 
  -- Anthony Towns <aj@erisian.com.au>  Sat, 20 Aug 2016 02:22:48 +1000
 

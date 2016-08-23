@@ -6,3 +6,4 @@
 1008_reproducible_build.patch
 2002_libmemenv_debian-ports.patch
 3001_openssl_1_1_fixes.patch
+3002_latomic_check.patch
