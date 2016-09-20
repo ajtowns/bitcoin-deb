@@ -7,6 +7,8 @@ bitcoin (0.13.0-0.1~exp1) experimental; urgency=medium
   * Check if -latomic is needed (it is on mips*).
   * Remove reproducible build patch, since leveldb build system is
     no longer used in 0.13. (See Bug#791834)
+  * Update description since the blockchain is much more than "several GB"
+    now. (Closes: Bug#835809)
 
  -- Anthony Towns <aj@erisian.com.au>  Tue, 23 Aug 2016 17:06:04 +1000
 
