@@ -5,6 +5,8 @@ bitcoin (0.13.0-0.1~exp1) experimental; urgency=medium
   * Allow compilation with gcc/g++ 6. (See Bug#812275)
   * Additional fixes for openssl 1.1 compatibility. (See Bug#828248)
   * Check if -latomic is needed (it is on mips*).
+  * Remove reproducible build patch, since leveldb build system is
+    no longer used in 0.13. (See Bug#791834)
 
  -- Anthony Towns <aj@erisian.com.au>  Tue, 23 Aug 2016 17:06:04 +1000
 
