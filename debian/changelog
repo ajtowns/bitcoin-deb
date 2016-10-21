@@ -1,4 +1,4 @@
-bitcoin (0.13.1~rc2-0.1) UNRELEASED; urgency=medium
+bitcoin (0.13.1~rc2-0.1) experimental; urgency=medium
 
   * Non-maintainer upload.
   * New upstream release.
