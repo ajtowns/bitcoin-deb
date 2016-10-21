@@ -1,4 +1,4 @@
-bitcoin (0.13.0-0.1~exp1) experimental; urgency=medium
+bitcoin (0.13.0-0.1) unstable; urgency=medium
 
   * Non-maintainer upload.
   * New upstream release.
@@ -10,7 +10,7 @@ bitcoin (0.13.0-0.1~exp1) experimental; urgency=medium
   * Update description since the blockchain is much more than "several GB"
     now. (Closes: Bug#835809)
 
- -- Anthony Towns <aj@erisian.com.au>  Tue, 23 Aug 2016 17:06:04 +1000
+ -- Anthony Towns <aj@erisian.com.au>  Fri, 21 Oct 2016 17:13:13 +1000
 
 bitcoin (0.12.1-0.1) unstable; urgency=medium
 
