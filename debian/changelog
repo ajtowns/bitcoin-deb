@@ -2,7 +2,7 @@ bitcoin (0.13.0-0.1~exp1) experimental; urgency=medium
 
   * Non-maintainer upload.
   * New upstream release.
-  * Allow compilation with gcc/g++ 6. (See Bug#812275)
+  * Allow compilation with gcc/g++ 6. (Closes: Bug#835963)
   * Additional fixes for openssl 1.1 compatibility. (See Bug#828248)
   * Check if -latomic is needed (it is on mips*).
   * Remove reproducible build patch, since leveldb build system is
