@@ -1,3 +1,10 @@
+bitcoin (0.13.1~rc2-0.1) UNRELEASED; urgency=medium
+
+  * Non-maintainer upload.
+  * New upstream release.
+
+ -- Anthony Towns <aj@erisian.com.au>  Fri, 21 Oct 2016 20:03:13 +1000
+
 bitcoin (0.13.0-0.1) unstable; urgency=medium
 
   * Non-maintainer upload.
