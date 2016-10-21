@@ -3,6 +3,7 @@ bitcoin (0.13.1~rc2-0.1) experimental; urgency=medium
   * Non-maintainer upload.
   * New upstream release.
   * Patch for -latomic is included upstream, so drop Debian-specific patch.
+  * Add semi-colons for hppa patch. (Closes: Bug#841706)
 
  -- Anthony Towns <aj@erisian.com.au>  Fri, 21 Oct 2016 20:03:13 +1000
 

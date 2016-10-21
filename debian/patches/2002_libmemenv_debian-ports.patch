@@ -150,10 +150,10 @@ Index: bitcoin/src/leveldb/port/atomic_pointer.h
 +#elif defined(ARCH_CPU_PARISC_FAMILY)
 +
 +inline void ReadMemoryBarrier() {
-+  __asm__ __volatile__("" : : : "memory")
++  __asm__ __volatile__("" : : : "memory");
 +}
 +inline void WriteMemoryBarrier() {
-+  __asm__ __volatile__("" : : : "memory")
++  __asm__ __volatile__("" : : : "memory");
  }
  #define LEVELDB_HAVE_MEMORY_BARRIER
  
