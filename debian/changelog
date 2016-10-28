@@ -1,11 +1,11 @@
-bitcoin (0.13.1-0.1~exp1) experimental; urgency=medium
+bitcoin (0.13.1-0.1) unstable; urgency=medium
 
   * Non-maintainer upload.
   * New upstream release.
   * Patch for -latomic is included upstream, so drop Debian-specific patch.
   * Add semi-colons for hppa patch. (Closes: Bug#841706)
 
- -- Anthony Towns <aj@erisian.com.au>  Thu, 27 Oct 2016 18:30:35 +1000
+ -- Anthony Towns <aj@erisian.com.au>  Fri, 28 Oct 2016 13:40:17 +1000
 
 bitcoin (0.13.0-0.1) unstable; urgency=medium
 
